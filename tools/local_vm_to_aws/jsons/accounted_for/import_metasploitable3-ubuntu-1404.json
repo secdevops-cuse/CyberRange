@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "metasploitable3-ubuntu-1404",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/metasploitable3-ubuntu-1404.ova"
+    }
+  }
+]
