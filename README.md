@@ -11,8 +11,8 @@ provisioning of assets for a penetration tester, ethical hacker, &
 aspiring cyber security engineers.
 
 Recognition is key for community success therefore all credit to tools,
-influencer's, and forks were added to the credits.md  Don't shy away
-
+influencer's, and forks were added to the credits.md and will be updated 
+as often as possible.
 
 ##
 This is simply an AWS-based solution for a PenTester.  The goal is to
