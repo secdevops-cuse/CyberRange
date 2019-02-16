@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "kali",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/kali.ova"
+    }
+  }
+]
