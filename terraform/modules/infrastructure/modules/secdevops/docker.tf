@@ -33,27 +33,28 @@ resource "aws_instance" "docker" {
 }
 
 # todo: convert this from a locally depending to cloud-init
-resource "null_resource" "docker" {
-  count = "${var.docker_ct}"
-
-  connection {
-    type = "ssh"
-    user = "centos"
-    private_key = "${file("../../keys/circleci_terraform")}"
-    host = "${element(aws_instance.docker.*.public_ip, count.index)}"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo yum install -y epel-release",
-      "sudo yum update -y",
-      "sudo yum install -y python-pip docker",
-      "sudo pip install docker-compose",
-      "sudo service docker start",
-      "sudo docker run -d -p 8080:8080 -t webgoat/webgoat-8.0",
-    ]
-  }
-}
+#todo: troubleshoot private key creation
+//resource "null_resource" "docker" {
+//  count = "${var.docker_ct}"
+//
+//  connection {
+//    type = "ssh"
+//    user = "centos"
+//    private_key = "${file("../../keys/circleci_terraform")}"
+//    host = "${element(aws_instance.docker.*.public_ip, count.index)}"
+//  }
+//
+//  provisioner "remote-exec" {
+//    inline = [
+//      "sudo yum install -y epel-release",
+//      "sudo yum update -y",
+//      "sudo yum install -y python-pip docker",
+//      "sudo pip install docker-compose",
+//      "sudo service docker start",
+//      "sudo docker run -d -p 8080:8080 -t webgoat/webgoat-8.0",
+//    ]
+//  }
+//}
 
 
 
