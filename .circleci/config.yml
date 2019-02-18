@@ -172,7 +172,7 @@ jobs:
       - persist_to_workspace:
           root: *working_directory
           paths:
-            - ~/CyberRange/terraform/terraform.plan
+            - ./terraform/terraform.plan
 
   apply:
     <<: *apply_job
