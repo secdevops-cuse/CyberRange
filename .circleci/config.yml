@@ -163,7 +163,7 @@ jobs:
             chmod 700 circleci_terraform
             cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
             terraform init
-            terraform plan -out=../../terraform.plan
+            terraform plan -out=~/CyberRange/terraform/terraform.plan
             apk add python python-dev py-pip
             pip install awscli
 #            if [ $? -eq 0 ]; then
@@ -172,7 +172,7 @@ jobs:
       - persist_to_workspace:
           root: *working_directory
           paths:
-            - terraform.plan
+            - ~/CyberRange/terraform/terraform.plan
 
   apply:
     <<: *apply_job
@@ -183,7 +183,7 @@ jobs:
 
 workflows:
   version: 2
-  build_development:
+  development_build:
     jobs:
       - build
       - plan:
