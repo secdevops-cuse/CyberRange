@@ -183,28 +183,15 @@ jobs:
 
 workflows:
   version: 2
-  build_plan_approve_apply:
+  build_development:
     jobs:
       - build
       - plan:
           requires:
             - build
-      - approve:
-          type: approval
-          requires:
-            - plan
-          filters:
-            branches:
-              only: master
-      - apply-with-approval:
-          requires:
-            - approve
-          filters:
-            branches:
-              only: master
       - apply:
           requires:
             - plan
           filters:
             branches:
-              only: stage
+              only: development
