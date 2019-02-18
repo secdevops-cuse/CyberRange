@@ -19,6 +19,10 @@ resource "aws_instance" "kali" {
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
+  root_block_device {
+    delete_on_termination = true
+  }
+
   tags {
     Name = "kali-${count.index}"
     Environment = "${var.environment}"
