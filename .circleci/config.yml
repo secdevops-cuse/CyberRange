@@ -155,9 +155,6 @@ jobs:
             terraform plan -out=../../terraform.plan
             apk add python python-dev py-pip
             pip install awscli
-#            if [ $? -eq 0 ]; then
-#              aws s3 rm s3://secdevops-cuse/oregon-terraform.tfstate
-#            fi
       - persist_to_workspace:
           root: *working_directory
           paths:
