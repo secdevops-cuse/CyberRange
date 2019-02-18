@@ -101,24 +101,12 @@ apply_job: &apply_job
           mv circleci_terraform .circleci_terraform
     - *alpine_setup
     - run:
-        name: Inspec the AWS assets
-        command: |
-          cat /tmp/output.json
-          mkdir aws-security/files || true
-          mkdir /tmp/test-results || true
-          cp /tmp/output.json aws-security/files/output.json
-          inspec detect -t aws://
-          inspec exec aws-security --reporter=cli junit:/tmp/test-results/inspec-junit.xml -t aws://us-east-1
-    - store_test_results:
-        path: /tmp/test-results
-    - run:
         name: Delete Terraform Assets
         when: on_fail
         command: |
           source $BASH_ENV
           cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
           terraform destroy -force
-
 
 jobs:
 
