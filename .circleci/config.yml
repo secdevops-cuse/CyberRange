@@ -51,7 +51,7 @@ terraform_init: &terraform_init
     name: terraform init
     command: |
       source $BASH_ENV
-      cd terraform/environments/$TERRAFORM_ENVIRONMENT
+      cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
       terraform init
 
 alpine_setup: &alpine_setup
@@ -89,12 +89,12 @@ apply_job: &apply_job
         name: terraform apply
         command: |
           source $BASH_ENV
-          cd terraform/keys
+          cd ~/CyberRange/terraform/keys
           echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
           echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
           echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
           chmod 700 circleci_terraform
-          cd terraform/environments/$TERRAFORM_ENVIRONMENT
+          cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
           terraform apply --auto-approve ../../terraform.plan
           terraform output -json > /tmp/output.json
           mv circleci_terraform .circleci_terraform
