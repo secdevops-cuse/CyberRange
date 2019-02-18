@@ -20,6 +20,12 @@ resource "aws_instance" "docker" {
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
+  user_data = "${file("../../cloud-init/docker.targets.yml")}"
+
+  root_block_device {
+    delete_on_termination = true
+  }
+
   tags = {
     Name      = "docker-web-apps-${count.index}"
     Environment = "${var.environment}"
@@ -27,7 +33,7 @@ resource "aws_instance" "docker" {
   }
 }
 
-
+# todo: convert this from a locally depending to cloud-init
 resource "null_resource" "docker" {
   count = "${var.docker_ct}"
 
