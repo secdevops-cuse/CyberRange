@@ -107,7 +107,7 @@ apply_job: &apply_job
           mkdir /tmp/test-results || true
           cp /tmp/output.json aws-security/files/output.json
           inspec detect -t aws://
-          inspec exec aws-security --reporter=cli junit:/tmp/test-results/inspec-junit.xml -t aws://us-west-2
+          inspec exec aws-security --reporter=cli junit:/tmp/test-results/inspec-junit.xml -t aws://us-east-1
     - store_test_results:
         path: /tmp/test-results
     - run:
@@ -115,7 +115,7 @@ apply_job: &apply_job
         when: on_fail
         command: |
           source $BASH_ENV
-          cd environments/$TERRAFORM_ENVIRONMENT
+          cd ~/CyberRange/environments/$TERRAFORM_ENVIRONMENT
           terraform destroy -force
 
 
@@ -131,7 +131,7 @@ jobs:
           name: terraform format (fmt) check
           command: |
             source $BASH_ENV
-            cd environments/$TERRAFORM_ENVIRONMENT
+            cd ~/CyberRange/environments/$TERRAFORM_ENVIRONMENT
 
             if [ $(terraform fmt | grep -v .terraform | tee fmt_result.txt | wc -l) -gt 1 ]; then
               echo "Format of this terraform files is not appropiate:"
@@ -167,9 +167,9 @@ jobs:
             terraform plan -out=../../terraform.plan
             apk add python python-dev py-pip
             pip install awscli
-            if [ $? -eq 0 ]; then
-              aws s3 rm s3://secdevops-cuse/oregon-terraform.tfstate
-            fi
+#            if [ $? -eq 0 ]; then
+#              aws s3 rm s3://secdevops-cuse/oregon-terraform.tfstate
+#            fi
       - persist_to_workspace:
           root: *working_directory
           paths:
