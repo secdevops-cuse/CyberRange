@@ -156,7 +156,7 @@ jobs:
           name: terraform plan
           command: |
             source $BASH_ENV
-            cd keys
+            cd terraform/keys
             echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
             echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
