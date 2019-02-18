@@ -119,7 +119,6 @@ apply_job: &apply_job
           terraform destroy -force
 
 
-
 jobs:
 
   build:
@@ -180,8 +179,6 @@ jobs:
 
   apply-with-approval:
     <<: *apply_job
-
-
 
 
 workflows:
