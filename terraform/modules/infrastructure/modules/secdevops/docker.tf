@@ -20,8 +20,7 @@ resource "aws_instance" "docker" {
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
-  user_data = "${file("../../cloud-init/docker.targets.yml")}"
-
+  user_data = "${file("../../modules/infrastructure/cloud-init/docker.targets.yml")}"
   root_block_device {
     delete_on_termination = true
   }
