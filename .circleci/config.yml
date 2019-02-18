@@ -156,12 +156,12 @@ jobs:
           name: terraform plan
           command: |
             source $BASH_ENV
-            cd terraform/keys
+            cd ~/CyberRange/terraform/keys
             echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
             echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
             chmod 700 circleci_terraform
-            cd terraform/environments/$TERRAFORM_ENVIRONMENT
+            cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
             terraform init
             terraform plan -out=../../terraform.plan
             apk add python python-dev py-pip
