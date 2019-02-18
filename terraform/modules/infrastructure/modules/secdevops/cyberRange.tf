@@ -7,8 +7,6 @@ locals {
   ]
 }
 
-
-
 resource "aws_instance" "cr_skytower" {
   count = "${var.docker_ct}"
 
@@ -152,6 +150,10 @@ resource "aws_instance" "cr_fristileaks" {
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
+  root_block_device {
+    delete_on_termination = true
+  }
+
   tags = {
     Name      = "CyberRange fristileaks-${count.index}"
     Environment = "${var.environment}"
@@ -168,6 +170,10 @@ resource "aws_instance" "cr_ms3_nix" {
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}",]
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
+
+  root_block_device {
+    delete_on_termination = true
+  }
 
   tags = {
     Name      = "CyberRange ms3_nix-${count.index}"
