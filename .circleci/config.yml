@@ -51,7 +51,7 @@ terraform_init: &terraform_init
     name: terraform init
     command: |
       source $BASH_ENV
-      cd environments/$TERRAFORM_ENVIRONMENT
+      cd terraform/environments/$TERRAFORM_ENVIRONMENT
       terraform init
 
 alpine_setup: &alpine_setup
@@ -94,7 +94,7 @@ apply_job: &apply_job
           echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
           echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
           chmod 700 circleci_terraform
-          cd ../environments/$TERRAFORM_ENVIRONMENT
+          cd terraform/environments/$TERRAFORM_ENVIRONMENT
           terraform apply --auto-approve ../../terraform.plan
           terraform output -json > /tmp/output.json
           mv circleci_terraform .circleci_terraform
@@ -115,7 +115,7 @@ apply_job: &apply_job
         when: on_fail
         command: |
           source $BASH_ENV
-          cd ~/CyberRange/environments/$TERRAFORM_ENVIRONMENT
+          cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
           terraform destroy -force
 
 
@@ -131,7 +131,7 @@ jobs:
           name: terraform format (fmt) check
           command: |
             source $BASH_ENV
-            cd ~/CyberRange/environments/$TERRAFORM_ENVIRONMENT
+            cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
 
             if [ $(terraform fmt | grep -v .terraform | tee fmt_result.txt | wc -l) -gt 1 ]; then
               echo "Format of this terraform files is not appropiate:"
@@ -162,7 +162,7 @@ jobs:
             echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
             chmod 700 circleci_terraform
-            cd ../environments/$TERRAFORM_ENVIRONMENT
+            cd terraform/environments/$TERRAFORM_ENVIRONMENT
             terraform init
             terraform plan -out=../../terraform.plan
             apk add python python-dev py-pip
