@@ -75,24 +75,13 @@ resource "aws_security_group" "kali" {
   description = "kali"
   vpc_id      = "${var.vpc-id}"
 
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   # terminal/ssh rule
   ingress {
     from_port = 22
@@ -100,7 +89,6 @@ resource "aws_security_group" "kali" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
 
   tags {
     Name = "kali-${count.index}"
@@ -140,19 +128,13 @@ resource "aws_security_group" "webgoat" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   # inbound rules
   ingress {
     from_port = 0
     to_port = 0
     protocol = "-1"
     cidr_blocks = ["${var.ip_list}"]
-  }
-  # inbound rules
-  ingress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    security_groups = ["${aws_security_group.kali.id}"]
   }
 
   tags = {
@@ -162,4 +144,22 @@ resource "aws_security_group" "webgoat" {
     Zombie = "false"
     verified = "false"
   }
+}
+
+resource "aws_security_group_rule" "allow_all_between_webgoat_and_kali" {
+  type            = "ingress"
+  from_port       = 0
+  to_port         = 0
+  protocol        = "-1"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.webgoat.id}"
+}
+
+resource "aws_security_group_rule" "allow_all_between_kali_and_webgoat" {
+  type            = "ingress"
+  from_port       = 0
+  to_port         = 0
+  protocol        = "-1"
+  cidr_blocks     = ["0.0.0.0/0"]
+  security_group_id = "${aws_security_group.kali.id}"
 }
