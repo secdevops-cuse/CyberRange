@@ -1,0 +1,13 @@
+#cloud-config
+runcmd:
+  - sudo apt-get install ntp
+  - sudo service ntp stop
+  - sudo ntpd -gq
+  - sudo service ntp start
+  - sudo apt-get update
+  - sudo apt-get install git
+  - git clone https://github.com/facebook/fbctf
+  - cd fbctf
+  - ./extra/provision.sh -m dev -s $PWD
+  - source ./extra/lib.sh
+  - set_password ctfadmin ctf ctf fbctf $PWD
