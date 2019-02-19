@@ -99,7 +99,6 @@ resource "aws_security_group" "kali" {
     to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    //    cidr_blocks = ["${var.ip_list}"]
   }
 
 
@@ -123,7 +122,6 @@ resource "aws_security_group" "webgoat" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-//    cidr_blocks = ["0.0.0.0/0"]
     cidr_blocks = ["${var.ip_list}"]
   }
 
@@ -132,7 +130,6 @@ resource "aws_security_group" "webgoat" {
     from_port = 8080
     to_port = 8080
     protocol = "tcp"
-//    cidr_blocks = ["0.0.0.0/0"]
     cidr_blocks = ["${var.ip_list}"]
   }
 
@@ -149,7 +146,13 @@ resource "aws_security_group" "webgoat" {
     to_port = 0
     protocol = "-1"
     cidr_blocks = ["${var.ip_list}"]
-//    cidr_blocks = ["0.0.0.0/0"]
+  }
+  # inbound rules
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    security_group_id = "${aws_security_group.kali.id}"
   }
 
   tags = {
