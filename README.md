@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
+[![CircleCI](https://circleci.com/gh/cappetta/CyberRange/tree/development.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange/tree/development)
+
 # Cyber Range
 ## Overview
 This aims to provide a simple setup for a reproducible offensive security lab.
