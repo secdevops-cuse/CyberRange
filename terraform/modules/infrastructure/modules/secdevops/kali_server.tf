@@ -19,6 +19,8 @@ resource "aws_instance" "kali" {
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
+  user_data = "${file("../../modules/infrastructure/cloud-init/kali.yml")}"
+
   root_block_device {
     delete_on_termination = true
   }

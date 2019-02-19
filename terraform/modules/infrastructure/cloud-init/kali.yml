@@ -1,0 +1,8 @@
+#cloud-config
+runcmd:
+  - apt install -y ntp
+  - service ntp stop
+  - ntpd -gq
+  - service ntp start
+  - apt-get update
+  - apt install -y git
