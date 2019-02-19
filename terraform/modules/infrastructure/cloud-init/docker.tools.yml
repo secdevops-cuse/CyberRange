@@ -1,0 +1,10 @@
+#cloud-config
+runcmd:
+  - sudo apt-get install ntp
+  - sudo service ntp stop
+  - sudo ntpd -gq
+  - sudo service ntp start
+  - sudo apt-get update
+  - sudo apt-get install git
+  - docker build -t amass https://github.com/OWASP/Amass.git
+  - docker run -d -p 9000:9000 -p 9092:9092 owasp/sonarqube

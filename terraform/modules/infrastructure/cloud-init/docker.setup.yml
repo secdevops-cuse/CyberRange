@@ -1,0 +1,13 @@
+#cloud-config
+runcmd:
+  - sudo apt-get install ntp
+  - sudo service ntp stop
+  - sudo ntpd -gq
+  - sudo service ntp start
+  - sudo apt-get update
+  - sudo apt-get install git
+  - sudo yum install -y epel-release
+  - sudo yum update -y
+  - sudo yum install -y python-pip docker
+  - sudo pip install docker-compose
+  - sudo service docker start
