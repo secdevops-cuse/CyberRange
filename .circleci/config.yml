@@ -66,14 +66,6 @@ alpine_setup: &alpine_setup
       pip install awscli
       apk --purge -v del py-pip
       rm -rf /var/cache/apk/*
-      cd ~/CyberRange
-      git clone https://github.com/inspec/inspec.git
-      cd inspec
-      gem build inspec.gemspec
-      gem install inspec-*.gem
-      gem install inspec-iggy
-      bundle install
-      echo "checking for directory..."
 
 
 
