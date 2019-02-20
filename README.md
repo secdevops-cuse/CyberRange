@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/cappetta/CyberRange/tree/development.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange/tree/development)
+[![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 # Cyber Range
 ## Overview
