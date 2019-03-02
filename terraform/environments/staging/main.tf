@@ -1,7 +1,5 @@
 provider "aws" {
   region = "${var.region}"
-//  shared_credentials_file = "/Users/cappetta/.aws/credentials"
-//  profile                 = "circleci"
 }
 
 module "staging-state" {
@@ -13,8 +11,8 @@ module "staging-state" {
 
 terraform {
   backend "s3" {
-    bucket  = "secdevops-cuse/staging"
-    key     = "nvirginia-terraform.tfstate"
+    bucket  = "secdevops-cuse"
+    key     = "staging/secdevops-cuse-stage-terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
   }
@@ -23,13 +21,5 @@ terraform {
 module "staging-infrastructure" {
   source      = "../../modules/infrastructure"
   environment = "${var.environment}"
-}
-
-output "web-alb-dns-name" {
-  value = "${module.staging-infrastructure.web-alb-dns-name}"
-}
-
-output "web-instance-ips" {
-  value = "${module.staging-infrastructure.web-instance-ips}"
 }
 

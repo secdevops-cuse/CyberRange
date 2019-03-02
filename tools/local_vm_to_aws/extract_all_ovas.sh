@@ -11,6 +11,6 @@ cd /Applications/VMware\ Fusion.app/Contents/Library/VMware\ OVF\ Tool/
 for vmx in $(find /Volumes/backup/vms -name "*vmx" ); do
     ova=$(echo $vmx | awk -F"/" '{print $5}'|sed 's/ //g')".ova";
     echo "Exporting: ["$vmx"] into ["$ova"]";
-    time ./ovftool --acceptAllEulas $vmx /Volumes/backup/vm-exports/$ova
+    time ./ovftool --X:logToConsole --X:logLevel=verbose  --acceptAllEulas $vmx /Volumes/backup/vm-exports/$ova
 done
 
