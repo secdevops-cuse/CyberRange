@@ -46,13 +46,13 @@ resource "aws_security_group" "fbctf" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.ip_list}"]
   }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.ip_list}"]
   }
   egress {
     from_port   = 0
@@ -87,7 +87,23 @@ resource "aws_security_group" "kali" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.ip_list}"]
+  }
+
+  # vnc rule
+  ingress {
+    from_port = 5901
+    to_port = 5901
+    protocol = "tcp"
+    cidr_blocks = ["${var.ip_list}"]
+  }
+
+  # just open up everything else
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["${var.ip_list}"]
   }
 
   tags {
@@ -126,7 +142,7 @@ resource "aws_security_group" "webgoat" {
     from_port = 0
     to_port = 0
     protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.ip_list}"]
   }
 
   # inbound rules

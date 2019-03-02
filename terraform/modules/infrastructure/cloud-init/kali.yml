@@ -1,0 +1,13 @@
+#cloud-config
+runcmd:
+  - apt install -y ntp kde-plasma-desktop
+  - service ntp stop
+  - ntpd -gq
+  - service ntp start
+  - apt-get update
+  - apt install -y git tightvncserver autocutsel
+  - /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -localhost -nolisten tcp &
+  - curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+      chmod 755 msfinstall && \
+      ./msfinstall
+
