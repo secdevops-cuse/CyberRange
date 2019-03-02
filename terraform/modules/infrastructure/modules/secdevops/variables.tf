@@ -136,6 +136,13 @@ variable "ami_skytower"
   description = "SkyTower"
 }
 
+# private kali image
+variable "ami_kali"
+{
+  default = "ami-09266feaf7dd9e12e"
+  description = "Kali-2019.1"
+}
+
 variable "ip_list"
 {
   default = "71.115.214.236/32"
