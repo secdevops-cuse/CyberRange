@@ -2,36 +2,42 @@ resource "aws_security_group" "tpot" {
   name        = "T-Pot"
   description = "T-Pot Honeypot"
   vpc_id      = "${var.vpc-id}"
+
   ingress {
     from_port   = 0
     to_port     = 64294
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   ingress {
     from_port   = 64295
     to_port     = 64295
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   ingress {
     from_port   = 64297
     to_port     = 64297
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   ingress {
     from_port   = 64298
     to_port     = 65535
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   tags {
     Name = "T-Pot"
   }
@@ -48,12 +54,14 @@ resource "aws_security_group" "fbctf" {
     protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
   }
+
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
   }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -62,10 +70,10 @@ resource "aws_security_group" "fbctf" {
   }
 
   tags {
-    Name = "FB-CTF-${count.index}"
-    Environment = "${var.environment}"
-    Terraform = "True"
-    Zombie = "True"
+    Name                    = "FB-CTF-${count.index}"
+    Environment             = "${var.environment}"
+    Terraform               = "True"
+    Zombie                  = "True"
     Initialization_Complete = "True"
   }
 }
@@ -84,98 +92,98 @@ resource "aws_security_group" "kali" {
 
   # terminal/ssh rule
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   # vnc rule
   ingress {
-    from_port = 5901
-    to_port = 5901
-    protocol = "tcp"
+    from_port   = 5901
+    to_port     = 5901
+    protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   # just open up everything else
   ingress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   tags {
-    Name = "kali-${count.index}"
+    Name        = "kali-${count.index}"
     Environment = "${var.environment}"
-    Terraform = "True"
-    Zombie = "false"
-    verified = "false"
+    Terraform   = "True"
+    Zombie      = "false"
+    verified    = "false"
   }
 }
 
 #WebGoat security group rules
 resource "aws_security_group" "webgoat" {
-  name = "webgoat-instances"
+  name        = "webgoat-instances"
   description = "Access to webgoat instances"
-  vpc_id = "${var.vpc-id}"
+  vpc_id      = "${var.vpc-id}"
 
   # terminal/ssh rule
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   # terminal/ssh rule
   ingress {
-    from_port = 8080
-    to_port = 8080
-    protocol = "tcp"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   # outbound rules
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   # inbound rules
   ingress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["${var.ip_list}"]
   }
 
   tags = {
-    Name = "webgoat-instances"
+    Name        = "webgoat-instances"
     Environment = "${var.environment}"
-    Terraform = "True"
-    Zombie = "false"
-    verified = "false"
+    Terraform   = "True"
+    Zombie      = "false"
+    verified    = "false"
   }
 }
 
 resource "aws_security_group_rule" "allow_all_between_webgoat_and_kali" {
-  type            = "ingress"
-  from_port       = 0
-  to_port         = 0
-  protocol        = "-1"
-  cidr_blocks     = ["0.0.0.0/0"]
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.webgoat.id}"
 }
 
 resource "aws_security_group_rule" "allow_all_between_kali_and_webgoat" {
-  type            = "ingress"
-  from_port       = 0
-  to_port         = 0
-  protocol        = "-1"
-  cidr_blocks     = ["0.0.0.0/0"]
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.kali.id}"
 }
