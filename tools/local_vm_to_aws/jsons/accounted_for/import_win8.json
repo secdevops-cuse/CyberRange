@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "win81",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/win81.ova"
+    }
+  }
+]
