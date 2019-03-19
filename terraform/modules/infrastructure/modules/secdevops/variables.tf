@@ -25,6 +25,11 @@ variable "private-b-subnet-id" {
   description = "private subnet b"
 }
 
+variable "ip_list"
+{
+  default = "71.115.214.236/32"
+  description = "private ip"
+}
 
 variable "count" {
   description = "default # of assets to create"
@@ -57,7 +62,12 @@ variable "tpot_instance_type" {
 
 variable "docker_instance_type" {
   description = "tpot instance type"
-  default = "t2.small"
+  default = "t2.micro"
+}
+
+variable "instance_type_kali" {
+  description = "tpot instance type"
+  default = "t2.micro"
 }
 
 variable "tpot_root_vol_size" {
@@ -90,7 +100,7 @@ variable "alarms_email" {
   default = "your"
 }
 
-
+//todo: make python script or erb template to create desired public assets
 variable "ami_win2016"{
   description = "The ami of the 2016 server asset"
   default = "ami-xxxx"
@@ -143,8 +153,20 @@ variable "ami_kali"
   description = "Kali-2019.1"
 }
 
-variable "ip_list"
+# clean template win7 asset
+variable "ami_win7"
 {
-  default = "71.115.214.236/32"
-  description = "private ip"
+  default = "ami-00578b8a9a7ac5c57"
+  description = "Win7"
 }
+
+# clean template win8 asset
+variable "ami_win8"
+{
+  default = "ami-0cde9a4ded4299c11"
+  description = "Win8"
+}
+
+
+
+
