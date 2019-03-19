@@ -5,8 +5,14 @@ runcmd:
   - ntpd -gq
   - service ntp start
   - apt-get update
-  - apt install -y git tightvncserver autocutsel
-  - /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -localhost -nolisten tcp &
+  - apt install -y git tightvncserver autocutsel curl gnupg apt-transport-https
+  - /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -localhost -nolisten tcp
+  - curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+  - echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/powershell.list
+  - echo "deb http://ftp.us.debian.org/debian stretch main "/etc/apt/sources.list
+  - apt update
+  - apt -y install powershell
+  - cd /root & mkdir git && cd git && git clone https://github.com/PowerShellMafia/PowerSploit.git
   - curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
       chmod 755 msfinstall && \
       ./msfinstall

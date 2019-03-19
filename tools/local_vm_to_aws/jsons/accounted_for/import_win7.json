@@ -1,10 +1,10 @@
 [
   {
-    "Description": "mrRobot",
+    "Description": "win7",
     "Format": "ova",
     "UserBucket": {
       "S3Bucket": "xxxx",
-      "S3Key": "vulnvms/mrRobot.ova"
+      "S3Key": "vulnvms/win7.ova"
     }
   }
 ]
