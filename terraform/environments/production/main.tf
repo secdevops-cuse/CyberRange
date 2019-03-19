@@ -1,9 +1,10 @@
 provider "aws" {
   region = "${var.region}"
+  profile = "default"
 }
 
 module "production-state" {
-  source = "../../modules/state"
+  source      = "../../modules/state"
   environment = "${var.environment}"
 }
 
@@ -17,7 +18,7 @@ terraform {
 }
 
 module "production-infrastructure" {
-  source = "../../modules/infrastructure"
+  source      = "../../modules/infrastructure"
   environment = "${var.environment}"
 }
 
