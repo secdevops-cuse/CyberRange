@@ -5,16 +5,15 @@ locals {
   ]
 }
 
-
 resource "aws_instance" "kali" {
   count = "${var.kali_ct}"
 
-  ami           = "${var.ami_kali}"
+  ami = "${var.ami_kali}"
 
-  instance_type = "${var.instance_type_kali"
+  instance_type = "${var.instance_type_kali}"
 
-  subnet_id = "${element(local.kali_subnet_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.kali.id}",]
+  subnet_id              = "${element(local.kali_subnet_ids, count.index)}"
+  vpc_security_group_ids = ["${aws_security_group.kali.id}"]
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
@@ -22,16 +21,15 @@ resource "aws_instance" "kali" {
 
   root_block_device {
     delete_on_termination = true
-    volume_size = 120
+    volume_size           = 120
   }
 
   tags {
-    Name = "kali-${count.index}"
+    Name        = "kali-${count.index}"
     Environment = "${var.environment}"
-    Terraform = "True"
+    Terraform   = "True"
   }
 }
-
 
 resource "aws_ebs_volume" "kali-volume" {
   availability_zone = "${aws_instance.kali.availability_zone}"
@@ -44,7 +42,6 @@ resource "aws_volume_attachment" "kali-volume-attachment" {
   instance_id = "${aws_instance.kali.id}"
   volume_id   = "${aws_ebs_volume.kali-volume.id}"
 }
-
 
 resource "null_resource" "kali" {
   count = "1"
