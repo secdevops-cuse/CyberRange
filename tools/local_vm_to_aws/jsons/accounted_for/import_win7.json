@@ -3,7 +3,7 @@
     "Description": "win7",
     "Format": "ova",
     "UserBucket": {
-      "S3Bucket": "xxxx",
+      "S3Bucket": "xxx",
       "S3Key": "vulnvms/win7.ova"
     }
   }
