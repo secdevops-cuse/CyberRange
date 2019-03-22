@@ -16,12 +16,28 @@ This is simply an AWS-based solution for a PenTester.  The goal is to
 provide a sterile cloud penTesting environment with the attacker machine
 and multiple targets within minutes.
 
-To date this project provides access to 11 AMI's in us-east-1.
+To date this project provides access to 14 AMI's, 3 Windows boxes, 2 Offensive
+ Security desktops in us-east-1.
 
-Note: use aws-nuke carefully to and successfully purge all resources from
-your aws environment as there are occassional times when `terraform destroy` 
-leaves lingering assets.  You will see conflicts on `terraform apply` when
-applicable.
+```
+  "ami": "ami-0539fa87bb2306efe"  "name": "FristiLeaks_1.3"
+  "ami": "ami-0af37127c6324f3f4"  "name": "Sick0s1.2"
+  "ami": "ami-0edaa47a082e55340"  "name": "SkyTower"
+  "ami": "ami-0cbf02480a95b6edd"  "name": "Stapler"
+  "ami": "ami-0b5b15c7c25534a9c"  "name": "VulnOSv2"
+  "ami": "ami-02f2c19a14caca250"  "name": "Win7"
+  "ami": "ami-0de7687b932832df7"  "name": "Win8"
+  "ami": "ami-0d3b2e68e1701a861"  "name": "hack-in-os"
+  "ami": "ami-0e13b2fb6e590fc77"  "name": "kali-2019.1"
+  "ami": "ami-05056794734905857"  "name": "metasploitable3-ubuntu-1404"
+  "ami": "ami-0da37791afc9aea77"  "name": "metasploitable3-win2k8"
+  "ami": "ami-067d428e8151617b0"  "name": "mrRobot"
+  "ami": "ami-016b701c461d2f341"  "name": "myhouse7"
+  "ami": "ami-0ebb80088327d57fc"  "name": "seed-ubuntu-1604"
+```
 
 
+### Protect your AWS keys
+Once you start developing and using git to commit changes to a project
+you will need to protect your AWS keys.  Use [Git-Secrets](https://github.com/cappetta/SecDevOps-Toolkit/blob/master/SecDevOps-Toolkit.wiki/git-secrets.md)
 

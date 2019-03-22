@@ -17,6 +17,7 @@ resource "aws_route_table_association" "public-a" {
   route_table_id = "${aws_route_table.public-a.id}"
 }
 
+
 resource "aws_route_table" "public-b" {
   vpc_id = "${aws_vpc.main.id}"
 

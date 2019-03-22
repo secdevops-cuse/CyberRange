@@ -1,7 +1,7 @@
 locals {
   kali_subnet_ids = [
-    "${var.public-a-subnet-id}",
     "${var.public-b-subnet-id}",
+    "${var.public-a-subnet-id}",
   ]
 }
 
@@ -53,3 +53,5 @@ resource "null_resource" "kali" {
     host        = "${element(aws_instance.kali.*.public_ip, count.index)}"
   }
 }
+
+//todo: flare-vm  -> https://github.com/fireeye/flare-vm/blob/master/README.md

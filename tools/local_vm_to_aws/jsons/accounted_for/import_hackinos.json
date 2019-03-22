@@ -1,0 +1,10 @@
+[
+  {
+    "Description":  "hack-in-os",
+    "Format":       "ova",
+    "UserBucket": {
+      "S3Bucket": "xxx",
+      "S3Key": "vulnvms/HackInOS.ova"
+    }
+  }
+]

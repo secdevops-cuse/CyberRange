@@ -118,8 +118,6 @@ resource "aws_security_group" "kali" {
     Name        = "kali-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
-    Zombie      = "false"
-    verified    = "false"
   }
 }
 

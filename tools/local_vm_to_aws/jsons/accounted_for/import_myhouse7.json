@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "myhouse",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/myhouse7.ova"
+    }
+  }
+]
