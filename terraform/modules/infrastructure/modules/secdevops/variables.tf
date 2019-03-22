@@ -73,7 +73,7 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "tpot_root_vol_size" {
@@ -110,7 +110,7 @@ variable "alarms_email" {
 //todo: make python script or erb template to create desired public assets
 variable "ami_winchoco" {
   description = "The ami of the windows chocolatey desktop"
-  default     = "ami-xxxx"
+  default     = "ami-3e768644"
 }
 
 variable "ami_ms3_nix" {
