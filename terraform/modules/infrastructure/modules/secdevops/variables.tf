@@ -27,13 +27,13 @@ variable "private-b-subnet-id" {
 }
 
 variable "ip_list" {
-  default     = "71.115.214.236/32"
+  default     = "127.0.0.1/32"
   description = "private ip"
 }
 
 variable "count" {
   description = "default # of assets to create"
-  default     = 2
+  default     = 1
 }
 
 variable "tpot_ct" {
@@ -57,17 +57,22 @@ variable "docker_ct" {
 }
 
 variable "tpot_instance_type" {
-  description = "tpot instance type"
-  default     = "t2.small"
+  description = "honeypot instance type"
+  default     = "t2.micro"
 }
 
 variable "docker_instance_type" {
-  description = "tpot instance type"
+  description = "docker instance type"
+  default     = "t2.micro"
+}
+
+variable "instance_type" {
+  description = "default instance type"
   default     = "t2.micro"
 }
 
 variable "instance_type_kali" {
-  description = "tpot instance type"
+  description = "kali instance type"
   default     = "t2.micro"
 }
 
@@ -96,15 +101,16 @@ variable "private_key" {
   default     = "../../keys/circleci_terraform"
 }
 
+//todo: set up billing alarm automatically
 variable "alarms_email" {
-  description = ""
-  default     = "your"
+  description = "the email to notify you of excessive aws costs"
+  default     = "your.email@this.com"
 }
 
 //todo: make python script or erb template to create desired public assets
-variable "ami_win2016" {
-  description = "The ami of the 2016 server asset"
-  default     = "ami-xxxx"
+variable "ami_winchoco" {
+  description = "The ami of the windows chocolatey desktop"
+  default     = "ami-xxxxx"
 }
 
 variable "ami_ms3_nix" {
@@ -146,21 +152,43 @@ variable "ami_skytower" {
   default     = "ami-0edaa47a082e55340"
   description = "SkyTower"
 }
+# public kali image
+variable "ami_kali-old" {
+  default     = "ami-07360d1b1c9e13198"
+  description = "Kali-2018.3"
+}
 
 # private kali image
 variable "ami_kali" {
-  default     = "ami-09266feaf7dd9e12e"
+  default     = "ami-0e13b2fb6e590fc77"
   description = "Kali-2019.1"
 }
 
 # clean template win7 asset
 variable "ami_win7" {
-  default     = "ami-00578b8a9a7ac5c57"
+  default     = "ami-02f2c19a14caca250"
   description = "Win7"
 }
 
 # clean template win8 asset
 variable "ami_win8" {
-  default     = "ami-0cde9a4ded4299c11"
+  default     = "ami-0de7687b932832df7"
   description = "Win8"
 }
+
+# seed lab vm from Syr.edu
+variable "ami_seed_ubuntu1604" {
+  default     = "ami-0ebb80088327d57fc"
+  description = "seed-ubuntu-1604"
+}
+#
+variable "ami_hackinos" {
+  default     = "ami-0d3b2e68e1701a861"
+  description = "hack-in-os"
+}
+//#
+//variable "ami_" {
+//  default     = "ami-"
+//  description = "Win"
+//}
+

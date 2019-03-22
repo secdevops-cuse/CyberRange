@@ -1,10 +1,10 @@
 [
   {
-    "Description": "win7",
+    "Description": "seed-andriod",
     "Format": "ova",
     "UserBucket": {
       "S3Bucket": "xxx",
-      "S3Key": "vulnvms/win7.ova"
+      "S3Key": "vulnvms/Seed-Android.ova"
     }
   }
 ]

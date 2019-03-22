@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "samuraiwtf",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxxx",
+      "S3Key": "vulnvms/SamuraiWTF.ova"
+    }
+  }
+]
