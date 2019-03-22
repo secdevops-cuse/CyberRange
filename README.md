@@ -1,6 +1,9 @@
 [![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
+# Jump Right In
+[Go here](https://github.com/secdevops-cuse/CyberRange/tree/master/tutorials#how-to-get-started)
+
 # Mission Statement
 
 The SecDevOps@Cuse Cyber Range Project is currently in hacker-invite mode.  The next milestone of the project involves a project proposal to the NSF.
@@ -50,7 +53,10 @@ Ping `@Cappetta` and I'll share the private amazon images I created with your ac
 This project's idea originated on a MDF board screwed into the side of a wall in a garage in 2014.
 
 The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.  
-Vagrant is an awesome tool yet this depends on terraform.  A tool that performs at a much better scale and more functional. 
+
+Vagrant is an awesome tool for smaller virtual environments both locally and in the cloud.
+
+Terraform is a tool that performs at a much better scale and contains more functionality. 
 
 ## Range Technology      
 CyberRange combines best practices with emerging technologies.
