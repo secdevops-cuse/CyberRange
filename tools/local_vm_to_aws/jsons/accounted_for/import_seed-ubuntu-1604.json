@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "win7",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxx",
+      "S3Key": "vulnvms/seed-ubuntu-1604.ova"
+    }
+  }
+]

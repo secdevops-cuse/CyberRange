@@ -48,7 +48,7 @@ variable "fbctf_ct" {
 
 variable "kali_ct" {
   description = "# of kali assets to create"
-  default     = 1
+  default     = 2
 }
 
 variable "docker_ct" {
@@ -66,9 +66,14 @@ variable "docker_instance_type" {
   default     = "t2.micro"
 }
 
+variable "instance_type" {
+  description = "default instance type"
+  default     = "t2.micro"
+}
+
 variable "instance_type_kali" {
   description = "tpot instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "tpot_root_vol_size" {
@@ -146,21 +151,26 @@ variable "ami_skytower" {
   default     = "ami-0edaa47a082e55340"
   description = "SkyTower"
 }
+# public kali image
+variable "ami_kali-old" {
+  default     = "ami-07360d1b1c9e13198"
+  description = "Kali-2018.3"
+}
 
 # private kali image
 variable "ami_kali" {
-  default     = "ami-09266feaf7dd9e12e"
+  default     = "ami-0e13b2fb6e590fc77"
   description = "Kali-2019.1"
 }
 
 # clean template win7 asset
 variable "ami_win7" {
-  default     = "ami-00578b8a9a7ac5c57"
+  default     = "ami-02f2c19a14caca250"
   description = "Win7"
 }
 
 # clean template win8 asset
 variable "ami_win8" {
-  default     = "ami-0cde9a4ded4299c11"
+  default     = "ami-0de7687b932832df7"
   description = "Win8"
 }

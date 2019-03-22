@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "seed-andriod",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxx",
+      "S3Key": "vulnvms/Seed-Android.ova"
+    }
+  }
+]
