@@ -96,4 +96,4 @@ ensuring accurate architecture blueprints of systems.
     - Clean-up:    
         - destroy everything: `terraform destroy -force`
         - Suggestion: You are charged per hour by AWS, nuke your environment w [aws-nuke](https://github.com/rebuy-de/aws-nuke) 
-            - e.g.:`./aws-nuke -c ./config/aws-all.yml --profile default --no-dry-run`
+            - e.g.:`./aws-nuke -c ./config/aws-all.yml --profile default --no-dry-run` 
