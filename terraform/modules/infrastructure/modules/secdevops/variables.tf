@@ -48,7 +48,7 @@ variable "fbctf_ct" {
 
 variable "kali_ct" {
   description = "# of kali assets to create"
-  default     = 2
+  default     = 1
 }
 
 variable "docker_ct" {
@@ -58,7 +58,7 @@ variable "docker_ct" {
 
 variable "tpot_instance_type" {
   description = "tpot instance type"
-  default     = "t2.small"
+  default     = "t2.micro"
 }
 
 variable "docker_instance_type" {
@@ -72,8 +72,8 @@ variable "instance_type" {
 }
 
 variable "instance_type_kali" {
-  description = "tpot instance type"
-  default     = "t2.medium"
+  description = "kali instance type"
+  default     = "t2.micro"
 }
 
 variable "tpot_root_vol_size" {
