@@ -3,8 +3,44 @@
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
 ## Overview
 
-<div class="htmlSection" id="tfa_1"><div class="htmlContent" id="tfa_1-HTML"><div>The SecDevOps@Cuse Cyber Range Project is currently in alpha-invite mode.&nbsp; <br></div><div><br></div><div>The goal of the Cyber Range project is to provide&nbsp; Offensive / Defensive Cyber Security researchers a safe, controlled, elastic compute framework.&nbsp; <br></div><div><br></div><div>This project aims to support an NSF Advancing Informal STEM Learning, <a href="https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm" target="_blank">Program Solicitation NSF 17-573.</a><br></div><div><br></div><div>To obtain full access to the private amazon images, simply enter a name, email, and AWS Account Number. The account number is will enable the images to be shared across accounts.<br></div><div><br></div><div>To obtain an AWS free-tier account,&nbsp; <a href="https://portal.aws.amazon.com/billing/signup?refid=em_127222&amp;redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start" target="_blank">Click Here.</a> Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div><div><br></div><div>Please Use the <a href="http://www.formassembly.com" target="_blank">FormAssembly.com</a> Form below to Sign-Up to support the project, then use the private AMI's located: <a href="https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md">In the Asset Inventory page</a><br></div></div></div>
+<div class="htmlSection" id="tfa_1">
+<div class="htmlContent" id="tfa_1-HTML">
+<div>The SecDevOps@Cuse Cyber Range Project is currently in hacker-invite mode.&nbsp; 
+<br>
+Simply read the info below, follow the form link, and I'll add the 
+ 
+<br>
+The only request is to open github issues if you have any questions or issues.  
+This will simply improve the project over time.<br></div>
 
+<div><br></div>
+
+<div>The goal of the Cyber Range project is to provide&nbsp; Offensive / Defensive Cyber Security researchers a safe & controlled environment 
+while leveraging the elastic scalability of the cloud using common DevOps tooling to
+create a reproducable framework.&nbsp; <br></div>
+
+<div><br></div>
+<div>This project's idea originated in a garage in 2014 & was formed
+ on a now depreciated OpenStack-based <a href="https://github.com/cappetta/CyberCloud">
+CyberCloud</a> project. 
+
+This project is an accumulation of knowledge based on years of professional
+research, training, and working experience in the Cyber Security,
+Cloud Computing, and DevOps domains.  The goal is to transmit that knowledge
+transparently using a collaborative open-source approach for all to benefit from.
+  <br>
+The next phase of the project aims to evolve this project further with a
+ project proposal being drafted for an NSF Advancing Informal STEM Learning grant, using <a href="https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm" target="_blank">Program Solicitation NSF 17-573.</a><br></div>
+<div><br></div>
+<div>To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. The account number enables the images to be shared across accounts.<br></div>
+<div><br></div>
+<div>To obtain an AWS free-tier account,&nbsp; <a href="https://portal.aws.amazon.com/billing/signup?refid=em_127222&amp;redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start" target="_blank">Click Here.</a> Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
+<div><br></div>
+<div>Please Use the <a href="http://www.formassembly.com" target="_blank">FormAssembly.com</a> Form below to Sign-Up to support the project, then use the private AMI's located: <a href="https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md">In the Asset Inventory page</a><br></div>
+</div>
+</div>
+
+<br>
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
 
 ### Purpose
