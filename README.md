@@ -1,65 +1,76 @@
 [![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
-## Overview
+# Mission Statement
 
-<div class="htmlSection" id="tfa_1">
-<div class="htmlContent" id="tfa_1-HTML">
-<div>The SecDevOps@Cuse Cyber Range Project is currently in hacker-invite mode.&nbsp; 
-<br>
-Simply read the info below, follow the form link, and I'll add the 
+The SecDevOps@Cuse Cyber Range Project is currently in hacker-invite mode.  The next milestone of the project involves a project proposal to the NSF.
+  
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make 
+advancements in informal STEM learning through grants which aid, evolve, and innovate communities.  
+
+This open-source project is an informal learning platform aimed at many groups of IT professionals 
+and across all yrs of knowledge.
+   
+The ultimate vision enables the community to build an extensive 
+open-source bootstrap red/blue team training environment leveraging 
+the largest cloud environment and helping individuals become familiar 
+with the most in-demand skillsets. 
+
+## 3 Reasons for the cloud
+1. Cloud adoption is enormously high. 
+2. Most seasoned research engineers leverage virtualization.  
+3. a laptop w/ 10 virtual machines is pushing its limit and minimizing battery life. 
+
+
+## Domains of knowledge
+This project covers 7 gigantically broad domains of knowledge.  Subdomains 
+can be expanded upon and broken down by difficulty & supplemental training/tooling.
+
+1. Offensive Security
+2. SecDevOps
+3. Architecture & Engineering
+4. Vulnerability, Change, & Configuration Management
+5. Quality Assurance
+6. Auditing - Processing, Systems, Applications
+7. Development - Infrastructure / Web Applications
+
+Eventually this will evolve into a multi-cloud version of [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
+
+Phase 2 - projected for 2019 will build out inspec checks to confirm environment meets expectations.
+
+# Joining the Range
+Simply read the info below, add your contact info via the form link or join the slack group.
+
+Ping `@Cappetta` and I'll share the private amazon images I created with your account.  
+
+[Join the Cyber Range Slack Channel](https://join.slack.com/t/acsaws/shared_invite/enQtNTg0NjU1NDY3MTQwLWU4MDc2ZDUyYjg4OTMxNTJkMDljMDM2NzRhOTQzZjQ3MTk1NTFkMmE4OTc2MGRiM2U4NzIwNTVkNmIzYWY0YmY") 
+
+
+## Range History
+This project's idea originated on a MDF board screwed into the side of a wall in a garage in 2014.
+
+The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.  
+Vagrant is an awesome tool yet this depends on terraform.  A tool that performs at a much better scale and more functional. 
+
+## Range Technology      
+CyberRange combines best practices with emerging technologies.
+ - Amazon Web Services
+ - Kali/Nessus/Burpsuite
+ - Terraform
+ - OpenSourced Vulnerable VM's [See Asset Inventory](asset-inventory.md)
+ - using a CI/CD tool to verify builds [CircleCI](https://circleci.com/)
+
+The goal is to always have a functioning product.
+
+To obtain an AWS free-tier account: [Amazon Free-Trial Sign-up](https://portal.aws.amazon.com/billing/signup?refid=em_127222) Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
+
+To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. 
+The account number enables the images to be shared across accounts.<br></div>
+
+Please Use the [FormAssembly.com](http://www.formassembly.com)
  
-<br>
-The only request is to open github issues if you have any questions or issues.  
-This will simply improve the project over time.<br></div>
+Form below to Sign-Up to support the project, then use the private AMI's located: [In the Asset Inventory page](https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md")
 
-<div><br></div>
-
-<div>The goal of the Cyber Range project is to provide&nbsp; Offensive / Defensive Cyber Security researchers a safe & controlled environment 
-while leveraging the elastic scalability of the cloud using common DevOps tooling to
-create a reproducable framework.&nbsp; <br></div>
-
-<div><br></div>
-<div>This project's idea originated in a garage in 2014 & was formed
- on a now depreciated OpenStack-based <a href="https://github.com/cappetta/CyberCloud">
-CyberCloud</a> project. 
-<div><br></div>
-
-The goal of this initiative is to help individuals get up & running quickly.  
-<br>
-Minimizing what you need to know to get started & maximizing your ability to learn over time.    
-<br>
-CyberRange simply combines the best practices by using a CI/CD tool [CircleCI](https://circleci.com/)
-  to continuously test every change sent into this project.
- <br> 
-This tooling aims to provide a cloud-based learning platform for individuals
-working in IT.  From Auditing to Operations to Cyber Security.  Across 
-Vulnerability Mgmt, DevOps, Cloud Computing, Offensive Security, 
-Quality Assurance, & Configuration Mgmt domains.  
-<br>
-This toolkit create a vulnerable enviroment from 10+ vulnerable virtual
-machines, 3 of which are windows.  
-<br>
-You can break everything, destroy anything, and rebuild it all when you
-want to start fresh and master a concept.
-
-  <br>
-The deeper you go the more interest in customization
-(e.g. install software, update licenses, download, etc).  Learn how to 
-automate those tasks so you don't have to waste time repeating them. 
-  <br>
-The next phase of the project aims to evolve this project further with a
- project proposal being drafted for an NSF Advancing Informal STEM Learning grant, using <a href="https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm" target="_blank">Program Solicitation NSF 17-573.</a><br></div>
-<div><br></div>
-<div>To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. The account number enables the images to be shared across accounts.<br></div>
-<div><br></div>
-<div>To obtain an AWS free-tier account,&nbsp; <a href="https://portal.aws.amazon.com/billing/signup?refid=em_127222&amp;redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start" target="_blank">Click Here.</a> Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
-<div><br></div>
-<div>Please Use the <a href="http://www.formassembly.com" target="_blank">FormAssembly.com</a> Form below to Sign-Up to support the project, then use the private AMI's located: <a href="https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md">In the Asset Inventory page</a><br></div>
-</div>
-</div>
-
-<br>
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
 
 ### Purpose
