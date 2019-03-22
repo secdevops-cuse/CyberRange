@@ -1,8 +1,8 @@
 [![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
-# Jump Right In
-[Go here](https://github.com/secdevops-cuse/CyberRange/tree/master/tutorials#how-to-get-started)
+# Get Started
+To get started - [Go here](https://github.com/secdevops-cuse/CyberRange/tree/master/tutorials#how-to-get-started)
 
 # Mission Statement
 
