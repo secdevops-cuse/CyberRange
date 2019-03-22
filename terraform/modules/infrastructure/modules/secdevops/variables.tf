@@ -27,13 +27,13 @@ variable "private-b-subnet-id" {
 }
 
 variable "ip_list" {
-  default     = "71.115.214.236/32"
+  default     = "this.is.your.ip"
   description = "private ip"
 }
 
 variable "count" {
   description = "default # of assets to create"
-  default     = 2
+  default     = 1
 }
 
 variable "tpot_ct" {
@@ -57,12 +57,12 @@ variable "docker_ct" {
 }
 
 variable "tpot_instance_type" {
-  description = "tpot instance type"
+  description = "honeypot instance type"
   default     = "t2.micro"
 }
 
 variable "docker_instance_type" {
-  description = "tpot instance type"
+  description = "docker instance type"
   default     = "t2.micro"
 }
 
