@@ -23,11 +23,30 @@ create a reproducable framework.&nbsp; <br></div>
 <div>This project's idea originated in a garage in 2014 & was formed
  on a now depreciated OpenStack-based <a href="https://github.com/cappetta/CyberCloud">
 CyberCloud</a> project. 
+<div><br></div>
 
-This project is an accumulation of knowledge based on years of professional
-research, training, and working experience in the Cyber Security,
-Cloud Computing, and DevOps domains.  The goal is to transmit that knowledge
-transparently using a collaborative open-source approach for all to benefit from.
+The goal of this initiative is to help individuals get up & running quickly.  
+<br>
+Minimizing what you need to know to get started & maximizing your ability to learn over time.    
+<br>
+CyberRange simply combines the best practices by using a CI/CD tool [CircleCI](https://circleci.com/)
+  to continuously test every change sent into this project.
+ <br> 
+This tooling aims to provide a cloud-based learning platform for individuals
+working in IT.  From Auditing to Operations to Cyber Security.  Across 
+Vulnerability Mgmt, DevOps, Cloud Computing, Offensive Security, 
+Quality Assurance, & Configuration Mgmt domains.  
+<br>
+This toolkit create a vulnerable enviroment from 10+ vulnerable virtual
+machines, 3 of which are windows.  
+<br>
+You can break everything, destroy anything, and rebuild it all when you
+want to start fresh and master a concept.
+
+  <br>
+The deeper you go the more interest in customization
+(e.g. install software, update licenses, download, etc).  Learn how to 
+automate those tasks so you don't have to waste time repeating them. 
   <br>
 The next phase of the project aims to evolve this project further with a
  project proposal being drafted for an NSF Advancing Informal STEM Learning grant, using <a href="https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm" target="_blank">Program Solicitation NSF 17-573.</a><br></div>
