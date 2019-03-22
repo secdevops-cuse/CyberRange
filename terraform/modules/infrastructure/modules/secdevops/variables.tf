@@ -110,7 +110,7 @@ variable "alarms_email" {
 //todo: make python script or erb template to create desired public assets
 variable "ami_winchoco" {
   description = "The ami of the windows chocolatey desktop"
-  default     = "ami-3e768644"
+  default     = "ami-xxxxx"
 }
 
 variable "ami_ms3_nix" {
@@ -176,13 +176,13 @@ variable "ami_win8" {
   description = "Win8"
 }
 
-#
+# seed lab vm from Syr.edu
 variable "ami_seed_ubuntu1604" {
   default     = "ami-0ebb80088327d57fc"
   description = "seed-ubuntu-1604"
 }
 #
-variable "ami_hackinos  " {
+variable "ami_hackinos" {
   default     = "ami-0d3b2e68e1701a861"
   description = "hack-in-os"
 }
