@@ -27,7 +27,7 @@ variable "private-b-subnet-id" {
 }
 
 variable "ip_list" {
-  default     = "this.is.your.ip"
+  default     = "127.0.0.1/32"
   description = "private ip"
 }
 
@@ -73,7 +73,7 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "tpot_root_vol_size" {
@@ -101,14 +101,15 @@ variable "private_key" {
   default     = "../../keys/circleci_terraform"
 }
 
+//todo: set up billing alarm automatically
 variable "alarms_email" {
-  description = ""
-  default     = "your"
+  description = "the email to notify you of excessive aws costs"
+  default     = "your.email@this.com"
 }
 
 //todo: make python script or erb template to create desired public assets
-variable "ami_win2016" {
-  description = "The ami of the 2016 server asset"
+variable "ami_winchoco" {
+  description = "The ami of the windows chocolatey desktop"
   default     = "ami-xxxx"
 }
 
@@ -174,3 +175,20 @@ variable "ami_win8" {
   default     = "ami-0de7687b932832df7"
   description = "Win8"
 }
+
+#
+variable "ami_seed_ubuntu1604" {
+  default     = "ami-0ebb80088327d57fc"
+  description = "seed-ubuntu-1604"
+}
+#
+variable "ami_hackinos  " {
+  default     = "ami-0d3b2e68e1701a861"
+  description = "hack-in-os"
+}
+//#
+//variable "ami_" {
+//  default     = "ami-"
+//  description = "Win"
+//}
+
