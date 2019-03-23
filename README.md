@@ -6,7 +6,7 @@ To get started - [Go here](https://github.com/secdevops-cuse/CyberRange/tree/mas
 
 # Mission Statement
 
-The SecDevOps@Cuse Cyber Range Project is currently in hacker-invite mode.  The next milestone of the project involves a project proposal to the NSF.
+The SecDevOps@Cuse Cyber Range Project is currently in hacker open-invite phase.  The next milestone of the project involves a project proposal to the NSF.
   
 [Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make 
 advancements in informal STEM learning through grants which aid, evolve, and innovate communities.  
@@ -19,10 +19,14 @@ open-source bootstrap red/blue team training environment leveraging
 the largest cloud environment and helping individuals become familiar 
 with the most in-demand skillsets. 
 
+The virtual machines are mostly found on vulnhub.com and converted, then imported into AWS compatible machine images. 
+
+Outlining the process of conversion is outside of this project's goal but I did include a tools directory to help.
+
 ## 3 Reasons for the cloud
-1. Cloud adoption is enormously high. 
-2. Most seasoned research engineers leverage virtualization.  
-3. a laptop w/ 10 virtual machines is pushing its limit and minimizing battery life. 
+1. Cloud adoption is enormous, so learning the cloud will be a value-add
+2. Most seasoned research engineers leverage virtualization, yet many VM's take up precious SSD / RAM on local laptops.  
+3. a laptop w/ 10 virtual machines is pushing its limit and minimizing battery life making deep-broad research difficult without elastic compute. 
 
 
 ## Domains of knowledge
@@ -37,9 +41,7 @@ can be expanded upon and broken down by difficulty & supplemental training/tooli
 6. Auditing - Processing, Systems, Applications
 7. Development - Infrastructure / Web Applications
 
-Eventually this will evolve into a multi-cloud version of [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
-
-Phase 2 - projected for 2019 will build out inspec checks to confirm environment meets expectations.
+Eventually the goal is to evolve into a multi-cloud version of [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
 
 # Joining the Range
 Simply read the info below, add your contact info via the form link or join the slack group.
@@ -69,13 +71,12 @@ CyberRange combines best practices with emerging technologies.
 The goal is to always have a functioning product.
 
 To obtain an AWS free-tier account: [Amazon Free-Trial Sign-up](https://portal.aws.amazon.com/billing/signup?refid=em_127222) Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
+To obtain a Nessus Home license, e.g. for academic purposes, [Nessus Home License](https://www.tenable.com/products/nessus-home)
 
 To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. 
 The account number enables the images to be shared across accounts.<br></div>
 
-Please Use the [FormAssembly.com](http://www.formassembly.com)
- 
-Form below to Sign-Up to support the project, then use the private AMI's located: [In the Asset Inventory page](https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md")
+Please Use the [FormAssembly.com](http://www.formassembly.com) Form below to Sign-Up to support the project and gain access to the private AMI's located: [In the Asset Inventory page](https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md")
 
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
 
@@ -89,7 +90,7 @@ provide a sterile cloud penTesting environment with the attacker machine
 and multiple targets within minutes.
 
 To date this project provides access to 14 AMI's, 3 Windows boxes, 2 Offensive
- Security desktops in us-east-1.
+ Security desktops in us-east-1. All are freely available on the internet.
 
 ```
   "ami": "ami-0539fa87bb2306efe"  "name": "FristiLeaks_1.3"
@@ -113,3 +114,10 @@ To date this project provides access to 14 AMI's, 3 Windows boxes, 2 Offensive
 Once you start developing and using git to commit changes to a project
 you will need to protect your AWS keys.  Use [Git-Secrets](https://github.com/cappetta/SecDevOps-Toolkit/blob/master/SecDevOps-Toolkit.wiki/git-secrets.md)
 
+### Other Environments to us
+Naturally folks will ask, what other learning environments exist.  There are many so consider:
+ - hackthebox.eu
+ - www.hacking-lab.com
+ 
+### Whats coming up next?
+ There are many benefits of having an open-source project.  One is maintaining full creative control
