@@ -1,4 +1,4 @@
-# List of issues encountered
+# Assets not currently compatible 
 
 ## Virtual-Box Only Assets
 Requires setup in VB - then export ova - requires a different script to automate.

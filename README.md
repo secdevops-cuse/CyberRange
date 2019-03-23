@@ -52,13 +52,14 @@ Ping `@Cappetta` and I'll share the private amazon images I created with your ac
 
 
 ## Range History
-This project's idea originated on a MDF board screwed into the side of a wall in a garage in 2014.
+This project originated on a MDF board screwed into the side of a wall in my garage in 2014.
 
 The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.  
 
 Vagrant is an awesome tool for smaller virtual environments both locally and in the cloud.
 
-Terraform is a tool that performs at a much better scale and contains more functionality. 
+Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
+framework.
 
 ## Range Technology      
 CyberRange combines best practices with emerging technologies.
@@ -116,9 +117,9 @@ you will need to protect your AWS keys.  Use [Git-Secrets](https://github.com/ca
 
 ### Other Environments to Perform Cyber Research in
 Naturally folks will ask, what other learning environments exist.  There are many so consider:
- - hackthebox.eu
+ - www.hackthebox.eu
  - www.hacking-lab.com
- - VulnHub.com
+ - www.vulnhub.com
  
 ### Whats coming up next?
  There are many benefits of having an open-source project.  One is maintaining full creative control

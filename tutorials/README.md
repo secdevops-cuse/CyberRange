@@ -1,8 +1,6 @@
 # Overview
 
-The goal of this initiative is to help individuals get up & running quickly.  
-Let's minimizing what you need to know & maximize how much time you spend
- learning.    
+The goal of this initiative is to help individuals get up & running quickly. Minimizing what you need to know & maximizing the time you spend learning a vast amount of content
 
 CyberRange simply combines the best practices by using a CI/CD tool [CircleCI](https://circleci.com/)
   to continuously test every change sent into this project.
@@ -25,13 +23,15 @@ automate those tasks so you don't have to waste time repeating them.
   
 ## Low-Cost
 The goal is to make this project 'free tier' compatible, yet it might not be.  
+
 Just in case obtain an AWS edu gift-card of Amazon, [$150 of credit for $30](https://www.ebay.com/itm/150-Amazon-Web-Services-AWS-Credit-Code/153384276906).
 
 Destroy assets often. Terraform does a great job at creating assets, sometimes 
 it's destruction is not perfect.  Consider learning how to wipe-out
 your entire cloud account with `https://github.com/rebuy-de/aws-nuke`
 
-This will help constantly minimize your bill and force you to learn how to use the basic AWS services.  
+This will help ensure a minimal bill & force you to learn how to use the basic AWS Cloud services.  
+
 There are many training guides outlining the services, their purpose, and how-to connect things. 
 
 [Monitor your AWS billing and find out how to set billing alerts](http://lmgtfy.com/?q=aws+billing+alert) 

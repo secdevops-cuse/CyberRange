@@ -49,7 +49,7 @@ Ref: Medium Article:            https://medium.com/@andr3w_hilton/oscp-training-
      [aws][x] win2k8 :          https://github.com/rapid7/metasploitable3
      [aws][x] ubuntu1404 :      https://github.com/rapid7/metasploitable3
 [aws][x] Kali - 2019.1 & Metasploit v5
-[aws][x] Windows 7
+[aws][x] Windows 7              
 [aws][x] Windows 8.1
 
 ### In-Progress
