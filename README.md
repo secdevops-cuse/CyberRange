@@ -114,10 +114,11 @@ To date this project provides access to 14 AMI's, 3 Windows boxes, 2 Offensive
 Once you start developing and using git to commit changes to a project
 you will need to protect your AWS keys.  Use [Git-Secrets](https://github.com/cappetta/SecDevOps-Toolkit/blob/master/SecDevOps-Toolkit.wiki/git-secrets.md)
 
-### Other Environments
+### Other Environments to Perform Cyber Research in
 Naturally folks will ask, what other learning environments exist.  There are many so consider:
  - hackthebox.eu
  - www.hacking-lab.com
+ - VulnHub.com
  
 ### Whats coming up next?
  There are many benefits of having an open-source project.  One is maintaining full creative control
