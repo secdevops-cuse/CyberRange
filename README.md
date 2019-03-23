@@ -120,6 +120,3 @@ Naturally folks will ask, what other learning environments exist.  There are man
  - www.hackthebox.eu
  - www.hacking-lab.com
  - www.vulnhub.com
- 
-### Whats coming up next?
- There are many benefits of having an open-source project.  One is maintaining full creative control
