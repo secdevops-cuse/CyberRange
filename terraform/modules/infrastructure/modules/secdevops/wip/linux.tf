@@ -4,7 +4,7 @@ resource "aws_instance" "centos7" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "centos7",
@@ -15,7 +15,7 @@ resource "aws_instance" "centos7" {
     connection {
       type     = "ssh"
       user     = "centos"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -28,7 +28,7 @@ resource "aws_instance" "ubuntu1604" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "ubuntu1604"
@@ -39,7 +39,7 @@ resource "aws_instance" "ubuntu1604" {
     connection {
       type     = "ssh"
       user     = "ubuntu"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -51,7 +51,7 @@ resource "aws_instance" "ubuntu1404" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "ubuntu1404"
@@ -62,7 +62,7 @@ resource "aws_instance" "ubuntu1404" {
     connection {
       type     = "ssh"
       user     = "ubuntu"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -74,7 +74,7 @@ resource "aws_instance" "ubuntu1204" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "ubuntu1204"
@@ -85,7 +85,7 @@ resource "aws_instance" "ubuntu1204" {
     connection {
       type     = "ssh"
       user     = "ubuntu"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -97,7 +97,7 @@ resource "aws_instance" "debian8" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "debian8"
@@ -108,7 +108,7 @@ resource "aws_instance" "debian8" {
     connection {
       type     = "ssh"
       user     = "admin"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -120,7 +120,7 @@ resource "aws_instance" "suse12" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "suse12"
@@ -131,7 +131,7 @@ resource "aws_instance" "suse12" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -143,7 +143,7 @@ resource "aws_instance" "suse11" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "suse11"
@@ -154,7 +154,7 @@ resource "aws_instance" "suse11" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -166,7 +166,7 @@ resource "aws_instance" "amazon_ecs_ami" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "amazon_ecs_ami"
@@ -177,7 +177,7 @@ resource "aws_instance" "amazon_ecs_ami" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -189,7 +189,7 @@ resource "aws_instance" "amazon_hvm_ami" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "amazon_hvm_ami"
@@ -200,7 +200,7 @@ resource "aws_instance" "amazon_hvm_ami" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -212,7 +212,7 @@ resource "aws_instance" "rhel7" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "rhel7"
@@ -223,7 +223,7 @@ resource "aws_instance" "rhel7" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -235,7 +235,7 @@ resource "aws_instance" "rhel6_5" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "rhel6.5"
@@ -246,7 +246,7 @@ resource "aws_instance" "rhel6_5" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -258,7 +258,7 @@ resource "aws_instance" "rhel5" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "rhel5"
@@ -269,7 +269,7 @@ resource "aws_instance" "rhel5" {
     connection {
       type     = "ssh"
       user     = "root"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -277,11 +277,11 @@ resource "aws_instance" "rhel5" {
 
 resource "aws_instance" "kali-linux" {
   ami = "${var.ami_kali}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.instance_type_kali}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "kali-linux"
@@ -292,7 +292,7 @@ resource "aws_instance" "kali-linux" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -304,7 +304,7 @@ resource "aws_instance" "coreos" {
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "coreos"
@@ -315,7 +315,7 @@ resource "aws_instance" "coreos" {
     connection {
       type     = "ssh"
       user     = "core"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
@@ -327,7 +327,7 @@ resource "aws_instance" "opensuse42_2" {
   subnet_id               = "${element(local.cyberRange_subnets_ids, count.index)}"
   key_name                = "${aws_key_pair.circleci_key.key_name}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  user_data = "${file("${var.linux_user_data}")}"
+  // user_data = "${file("${var.linux_user_data}")}"
 
   tags {
     Name = "opensuse42_2"
@@ -338,8 +338,9 @@ resource "aws_instance" "opensuse42_2" {
     connection {
       type     = "ssh"
       user     = "ec2-user"
-      private_key = "${file("${var.key_name}")}"
+      private_key = "${file("${var.private_key}")}"
       insecure = true
     }
   }
 }
+
