@@ -3,15 +3,28 @@
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
 # Get Started
 To get started - [Go here](https://github.com/secdevops-cuse/CyberRange/tree/master/tutorials#how-to-get-started)
+On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
+
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.
+
+The Cyber Range has 22 AMI's available . 
+
+
+The next major milestone requires a project proposal draft being submitted
+for review.   
+
+The ultimate goal is to provide an opensource hostile environment leveraging hundreds of known vulnerable assets & configurations. 
+ from  minimize the effort needed to create a maximum  goal is to emulate the quality in the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
 
 # Mission Statement
 
-The SecDevOps@Cuse Cyber Range Project is currently in hacker open-invite phase.  The next milestone of the project involves a project proposal to the NSF.
-  
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make 
-advancements in informal STEM learning through grants which aid, evolve, and innovate communities.  
+This open-source research lab provides a bootstrap learning platform for Technologists studying any one of the "Big-3" technology domains.  
+The Width & Depth of these domains require a documented 
+1. Cyber Security
+2. Cloud Computing
+3. DevOps
 
-This open-source project is an informal learning platform aimed at many groups of IT professionals 
+leveraging the newest technologies to aimed at many groups of IT professionals 
 and across all yrs of knowledge.
    
 The ultimate vision enables the community to build an extensive 
@@ -120,6 +133,3 @@ Naturally folks will ask, what other learning environments exist.  There are man
  - www.hackthebox.eu
  - www.hacking-lab.com
  - www.vulnhub.com
- 
-### Whats coming up next?
- There are many benefits of having an open-source project.  One is maintaining full creative control
