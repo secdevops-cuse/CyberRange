@@ -125,10 +125,6 @@ To date this project provides access to 14 AMI's, 3 Windows boxes, 2 Offensive
   # 10.0.5.0/24 - RedTeam Subnet
   "ami": "ami-0e13b2fb6e590fc77"  "name": "kali-2019.1"
   "ami": "ami-0ebb80088327d57fc"  "name": "seed-ubuntu-1604"
-  "ami": "ami-0bd120b2cee2fe956"  "name": "Tenable-Core-NNM-20190308"
-  "ami": "ami-08eacb613e5117551"  "name": "Tenable-Core-Nessus-20190308"
-  "ami": "ami-0278263968295c6e8"  "name": "Tenable-Core-SecurityCenter-20190308"
-  "ami": "ami-082347635d1dcc9fa"  "name": "Tenable-Core-WAS-20190308"
 ```
 
 
