@@ -58,22 +58,34 @@ Ultimately, how-to's & tutorials will be crafted to supplement many of the techn
 # Joining the Range
 Simply read the info below, add your contact info via the form link or join the slack group.
 
-Ping `@Cappetta` and I'll share the private amazon images I created with your account.  
+Ping `@Cappetta` and I'll share the private amazon images with your aws account. Why require sign-up?  
+There are a couple of windows machines and I'm paranoid about a window license issues.  All of these
+machines leverage evaluation edition licenses & I'll need to account for it's usage at some point.
 
 [Join the Cyber Range Slack Channel](https://join.slack.com/t/acsaws/shared_invite/enQtNTg0NjU1NDY3MTQwLWU4MDc2ZDUyYjg4OTMxNTJkMDljMDM2NzRhOTQzZjQ3MTk1NTFkMmE4OTc2MGRiM2U4NzIwNTVkNmIzYWY0YmY") 
 
 
 ## Range History
-This project originated on a MDF board screwed into the side of a wall in my garage in 2014.
+This project originated on a MDF board screwed into the side of a wall in my garage in 2014. The board is still there.  It represents
+one of the most emerging trends within the industry and the first public Cyber Range known of in NYS, one of a handful across the country.
 
-The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.  
+The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.
+Having an Ops background, tooling enables us to do more, quicker, faster, and with less.  I've Collected the best-in-class tools,
+solutions, and bootstrap frameworks to create an integrated solution capable of enormous growth.
 
-Vagrant is an awesome tool for smaller virtual environments both locally and in the cloud.
-
-Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
+## Range Technology  
+- Vagrant is an awesome tool for smaller virtual environments both locally and in the cloud.
+- Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
 framework.
+- Docker is another standard virtualization platform
+- Kali is the go-to system of penetration testers
+- Metasplotiable 2/3 & other open-source vuln vms provide foundational stability and future growth.
+- Commando-VM is a newly released windows-based penetration testing VM
+- DetectionLab is a bootstrap framework by Chris Long which is actively being integrated into this project
+- Inspec provides a way to test the state of your environment, application, system, processes, configurations, plus more.
+- Plus Much more... 
 
-## Range Technology      
+    
 CyberRange combines best practices with emerging technologies.
  - Amazon Web Services
  - Kali/Nessus/Burpsuite
@@ -81,10 +93,14 @@ CyberRange combines best practices with emerging technologies.
  - OpenSourced Vulnerable VM's [See Asset Inventory](asset-inventory.md)
  - using a CI/CD tool to verify builds [CircleCI](https://circleci.com/)
 
-The goal is to always have a functioning product.
+### License Keys
+To use this project you need an AWS account and license keys for any products which require one.  Learning how to access & use the individual
+tools is placed on the individual researcher and a holistic guide outlining every single step is best preserved outside of this project,
+google the info for Open-Source Intelligence (OSINT)
 
 To obtain an AWS free-tier account: [Amazon Free-Trial Sign-up](https://portal.aws.amazon.com/billing/signup?refid=em_127222) Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
 To obtain a Nessus Home license, e.g. for academic purposes, [Nessus Home License](https://www.tenable.com/products/nessus-home)
+
 
 To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. 
 The account number enables the images to be shared across accounts.<br></div>
