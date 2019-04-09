@@ -7,16 +7,12 @@ On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
 
 [Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.
 
-The Cyber Range has 22 AMI's available . 
-
-
-The next major milestone requires a project proposal draft being submitted
-for review.   
-
-The ultimate goal is to provide an opensource hostile environment leveraging hundreds of known vulnerable assets & configurations. 
- from  minimize the effort needed to create a maximum  goal is to emulate the quality in the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
 
 # Mission Statement
+
+The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an opensource hostile environment leveraging hundreds of known vulnerable assets & configurations. 
+ from  minimize the effort needed to create a maximum  goal is to emulate the quality in the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
+
 
 This open-source research lab provides a bootstrap learning platform for Technologists studying any one of the "Big-3" technology domains.  
 The Width & Depth of these domains require a documented 
@@ -24,9 +20,7 @@ The Width & Depth of these domains require a documented
 2. Cloud Computing
 3. DevOps
 
-leveraging the newest technologies to aimed at many groups of IT professionals 
-and across all yrs of knowledge.
-   
+  
 The ultimate vision enables the community to build an extensive 
 open-source bootstrap red/blue team training environment leveraging 
 the largest cloud environment and helping individuals become familiar 
@@ -92,7 +86,9 @@ The account number enables the images to be shared across accounts.<br></div>
 
 Please Use the [FormAssembly.com](http://www.formassembly.com) Form below to Sign-Up to support the project and gain access to the private AMI's located: [In the Asset Inventory page](https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md")
 
-[Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
+[Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
+ 
+ ![alt text](https://github.com/secdevops-cuse/CyberRange/blob/master/CyberRange.png "Cyber Range")
 
 ### Purpose
 It enables researchers to setup assets quickly, maintain manifests of common
