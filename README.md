@@ -3,17 +3,24 @@
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
 # Get Started
 To get started - [Go here](https://github.com/secdevops-cuse/CyberRange/tree/master/tutorials#how-to-get-started)
+On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
+
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.
+
 
 # Mission Statement
 
-The SecDevOps@Cuse Cyber Range Project is currently in hacker open-invite phase.  The next milestone of the project involves a project proposal to the NSF.
-  
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make 
-advancements in informal STEM learning through grants which aid, evolve, and innovate communities.  
+The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an opensource hostile environment leveraging hundreds of known vulnerable assets & configurations. 
+ from  minimize the effort needed to create a maximum  goal is to emulate the quality in the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
 
-This open-source project is an informal learning platform aimed at many groups of IT professionals 
-and across all yrs of knowledge.
-   
+
+This open-source research lab provides a bootstrap learning platform for Technologists studying any one of the "Big-3" technology domains.  
+The Width & Depth of these domains require a documented 
+1. Cyber Security
+2. Cloud Computing
+3. DevOps
+
+  
 The ultimate vision enables the community to build an extensive 
 open-source bootstrap red/blue team training environment leveraging 
 the largest cloud environment and helping individuals become familiar 
@@ -52,13 +59,14 @@ Ping `@Cappetta` and I'll share the private amazon images I created with your ac
 
 
 ## Range History
-This project's idea originated on a MDF board screwed into the side of a wall in a garage in 2014.
+This project originated on a MDF board screwed into the side of a wall in my garage in 2014.
 
 The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.  
 
 Vagrant is an awesome tool for smaller virtual environments both locally and in the cloud.
 
-Terraform is a tool that performs at a much better scale and contains more functionality. 
+Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
+framework.
 
 ## Range Technology      
 CyberRange combines best practices with emerging technologies.
@@ -78,7 +86,9 @@ The account number enables the images to be shared across accounts.<br></div>
 
 Please Use the [FormAssembly.com](http://www.formassembly.com) Form below to Sign-Up to support the project and gain access to the private AMI's located: [In the Asset Inventory page](https://github.com/secdevops-cuse/CyberRange/blob/master/asset-inventory.md")
 
-[Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
+[Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
+ 
+![alt text](https://raw.githubusercontent.com/secdevops-cuse/CyberRange/master/CyberRange.png "Cyber Range")
 
 ### Purpose
 It enables researchers to setup assets quickly, maintain manifests of common
@@ -93,21 +103,34 @@ To date this project provides access to 14 AMI's, 3 Windows boxes, 2 Offensive
  Security desktops in us-east-1. All are freely available on the internet.
 
 ```
+  # 10 Linux Assets
+  "ami": "ami-016b701c461d2f341"  "name": "myhouse7"
   "ami": "ami-0539fa87bb2306efe"  "name": "FristiLeaks_1.3"
+  "ami": "ami-067d428e8151617b0"  "name": "mrRobot"
+  "ami": "ami-088907da57ded04b2"  "name": "bulldog"
   "ami": "ami-0af37127c6324f3f4"  "name": "Sick0s1.2"
+  "ami": "ami-0b5b15c7c25534a9c"  "name": "VulnOSv2"
   "ami": "ami-0edaa47a082e55340"  "name": "SkyTower"
   "ami": "ami-0cbf02480a95b6edd"  "name": "Stapler"
-  "ami": "ami-0b5b15c7c25534a9c"  "name": "VulnOSv2"
-  "ami": "ami-02f2c19a14caca250"  "name": "Win7"
-  "ami": "ami-0de7687b932832df7"  "name": "Win8"
   "ami": "ami-0d3b2e68e1701a861"  "name": "hack-in-os"
-  "ami": "ami-0e13b2fb6e590fc77"  "name": "kali-2019.1"
   "ami": "ami-05056794734905857"  "name": "metasploitable3-ubuntu-1404"
+  
+  # 5 Windows Assets
+  "ami": "ami-0370dcc12619f05e1"  "name": "metasploitable3-win2k12"
   "ami": "ami-0da37791afc9aea77"  "name": "metasploitable3-win2k8"
-  "ami": "ami-067d428e8151617b0"  "name": "mrRobot"
-  "ami": "ami-016b701c461d2f341"  "name": "myhouse7"
+  "ami": "ami-0ba457e31b3666965"  "name": "defender-win2010"
+  "ami": "ami-0de7687b932832df7"  "name": "Win8"
+  "ami": "ami-02f2c19a14caca250"  "name": "Win7"
+  
+  # 10.0.5.0/24 - RedTeam Subnet
+  "ami": "ami-0e13b2fb6e590fc77"  "name": "kali-2019.1"
   "ami": "ami-0ebb80088327d57fc"  "name": "seed-ubuntu-1604"
+  "ami": "ami-0bd120b2cee2fe956"  "name": "Tenable-Core-NNM-20190308"
+  "ami": "ami-08eacb613e5117551"  "name": "Tenable-Core-Nessus-20190308"
+  "ami": "ami-0278263968295c6e8"  "name": "Tenable-Core-SecurityCenter-20190308"
+  "ami": "ami-082347635d1dcc9fa"  "name": "Tenable-Core-WAS-20190308"
 ```
+
 
 
 ### Protect your AWS keys
@@ -116,9 +139,6 @@ you will need to protect your AWS keys.  Use [Git-Secrets](https://github.com/ca
 
 ### Other Environments to Perform Cyber Research in
 Naturally folks will ask, what other learning environments exist.  There are many so consider:
- - hackthebox.eu
+ - www.hackthebox.eu
  - www.hacking-lab.com
- - VulnHub.com
- 
-### Whats coming up next?
- There are many benefits of having an open-source project.  One is maintaining full creative control
+ - www.vulnhub.com
