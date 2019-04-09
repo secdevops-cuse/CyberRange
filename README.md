@@ -15,7 +15,7 @@ The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an open
 
 
 This open-source research lab provides a bootstrap learning platform for Technologists studying any one of the "Big-3" technology domains.  
-The Width & Depth of these domains require a documented 
+
 1. Cyber Security
 2. Cloud Computing
 3. DevOps
@@ -23,17 +23,22 @@ The Width & Depth of these domains require a documented
   
 The ultimate vision enables the community to build an extensive 
 open-source bootstrap red/blue team training environment leveraging 
-the largest cloud environment and helping individuals become familiar 
-with the most in-demand skillsets. 
+the largest cloud environment to help individuals develop the most 
+in-demand skillsets in the technology industry. 
 
-The virtual machines are mostly found on vulnhub.com and converted, then imported into AWS compatible machine images. 
+The virtual machines are mostly found on vulnhub.com, built locally, then converted into private 
+amazon machine images (ami's) as they are uploaded into S3 and imported into EC2.
 
-Outlining the process of conversion is outside of this project's goal but I did include a tools directory to help.
+Outlining the process of conversion is outside of this project's goal but I did include a tools directory to help you gain 
+some insight into reproducing the AMI's.  Building AMI's is one of the many learning opportunities you can tackle throughout
+this project.
 
-## 3 Reasons for the cloud
-1. Cloud adoption is enormous, so learning the cloud will be a value-add
-2. Most seasoned research engineers leverage virtualization, yet many VM's take up precious SSD / RAM on local laptops.  
-3. a laptop w/ 10 virtual machines is pushing its limit and minimizing battery life making deep-broad research difficult without elastic compute. 
+## 3 Reasons for the cloud-based Cyber Range
+1. Cloud adoption is enormous, learning how to use it sooner than later is a competitive advantage as a professional.
+2. Most seasoned researchers leverage virtualization, whether virtualbox, vmware, or docker.  
+    Yet VM's, especially windows consume precious SSD / RAM on local laptops.  
+3. A laptop w/ 10 virtual machines is pushing its limit and minimizing battery life making deep-broad-isolated 
+    research difficult without a form of elastic compute. 
 
 
 ## Domains of knowledge
@@ -48,7 +53,7 @@ can be expanded upon and broken down by difficulty & supplemental training/tooli
 6. Auditing - Processing, Systems, Applications
 7. Development - Infrastructure / Web Applications
 
-Eventually the goal is to evolve into a multi-cloud version of [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
+Ultimately, how-to's & tutorials will be crafted to supplement many of the technologies, processes, and tools leveraged here.
 
 # Joining the Range
 Simply read the info below, add your contact info via the form link or join the slack group.
