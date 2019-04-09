@@ -88,7 +88,7 @@ Please Use the [FormAssembly.com](http://www.formassembly.com) Form below to Sig
 
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
  
-![alt text](https://raw.githubusercontent.com/secdevops-cuse/CyberRange/master/CyberRange.png "Cyber Range")
+![alt text](https://raw.githubusercontent.com/secdevops-cuse/CyberRange/master/CyberRange.png "Cyber Range" =250x250))
 
 ### Purpose
 It enables researchers to setup assets quickly, maintain manifests of common
