@@ -2,7 +2,7 @@
 runcmd:
   - apt-get update
   - apt update
-  - apt install -y ntp kde-plasma-desktop
+  - apt install -y ntp kde-plasma-desktop wget
   - service ntp stop
   - ntpd -gq
   - service ntp start
@@ -21,7 +21,13 @@ runcmd:
     git clone https://github.com/scottslowe/learning-tools.git && \
     git clone https://github.com/RhinoSecurityLabs/cloudgoat.git && \
     git clone https://github.com/jesusprubio/awesome-nodejs-pentest.git && \
-    git clone https://github.com/AdrianVollmer/PowerHub.git
+    git clone https://github.com/AdrianVollmer/PowerHub.git && \
+    git clone https://github.com/xapax/oscp.git recon_enum && \
+    mkdir scripts && \
+    wget https://www.securitysift.com/download/linuxprivchecker.py && \
+    wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz && \
+    wget https://storage.googleapis.com/google-code-archive-source/v2/code.google.com/windows-privesc-check/source-archive.zip && \
+    wget https://www.securitysift.com/download/MS_privesc_and_exploits_table.csv
   - curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
       chmod 755 msfinstall && \
       ./msfinstall
