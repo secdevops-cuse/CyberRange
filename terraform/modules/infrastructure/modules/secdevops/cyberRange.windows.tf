@@ -65,7 +65,7 @@ resource "aws_instance" "win2016" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${file("../../cloud-init/windows.setup")}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -83,6 +83,7 @@ resource "aws_instance" "win7" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -100,6 +101,7 @@ resource "aws_instance" "win8" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -134,6 +136,7 @@ resource "aws_instance" "win8" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -151,6 +154,7 @@ resource "aws_instance" "win2003" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -168,6 +172,7 @@ resource "aws_instance" "win2008" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -185,6 +190,7 @@ resource "aws_instance" "win2012" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -202,6 +208,7 @@ resource "aws_instance" "win2012_RTM" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -219,6 +226,7 @@ resource "aws_instance" "win2016" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -236,6 +244,7 @@ resource "aws_instance" "win2019" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
