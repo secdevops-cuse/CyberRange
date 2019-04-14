@@ -1,0 +1,26 @@
+<script>netsh advfirewall set allprofiles state off & echo 'Firewall is disabled' & winrm set winrm/config/service @{AllowUnencrypted="true"} & winrm set winrm/config/client @{AllowUnencrypted="true"} & echo 'set winrm allow unencrypted' & winrm set winrm/config/service/auth @{Basic="true"} & winrm set winrm/config/client/auth @{Basic="true"} & echo 'set  basic auth' & winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"} & net stop winrm & sc config winrm start= auto & net start winrm & echo 'print final winrm config' & winrm get winrm/config
+</script>
+<powershell>
+    $start = Get-Date
+    $user="terraform"
+    $password="terraform"
+
+    # Disable password complexity requirements
+    $seccfg = [IO.Path]::GetTempFileName()
+    secedit /export /cfg $seccfg
+    (Get-Content $seccfg) | Foreach-Object {$_ -replace "PasswordComplexity\s*=\s*1", "PasswordComplexity=0"} | Set-Content $seccfg
+    secedit /configure /db $env:windir\security\new.sdb /cfg $seccfg /areas SECURITYPOLICY
+    del $seccfg
+
+    net user /add $user $password;
+    net localgroup Administrators /add $user;
+
+    net user Administrator $password;
+
+    # Disable Internet Explorer Security
+    # http://stackoverflow.com/a/9368555/2067999
+    $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
+    $UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
+    Set-ItemProperty -Path $AdminKey -Name "IsInstalled" -Value 0
+    Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0
+</powershell>
