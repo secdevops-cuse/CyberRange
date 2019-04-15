@@ -32,12 +32,6 @@ variable "alb_arn" {
   default = ""
 }
 
-
-variable "ami_win2016"{
-  description = "The ami of the 2016 server asset"
-  default = "ami-xxxx"
-}
-
 variable "ami_ms3_nix" {
   default = "ami-05056794734905857"
   description = "metasploitable3-ubuntu-1404"

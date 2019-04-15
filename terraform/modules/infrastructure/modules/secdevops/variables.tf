@@ -27,7 +27,7 @@ variable "private-b-subnet-id" {
 }
 
 variable "ip_list" {
-  default     = "127.0.0.1/32"
+  default     = "71.115.214.236/32"
   description = "private ip"
 }
 
@@ -56,14 +56,14 @@ variable "docker_ct" {
   default     = 1
 }
 
-variable "tpot_instance_type" {
+variable "instance_type_tpot" {
   description = "honeypot instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
-variable "docker_instance_type" {
+variable "instance_type_docker" {
   description = "docker instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "instance_type" {
@@ -73,7 +73,12 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
+}
+
+variable "instance_type_win" {
+  description = "windows instance type"
+  default     = "t2.large"
 }
 
 variable "tpot_root_vol_size" {
@@ -96,6 +101,22 @@ variable "fbctf_user_data" {
   default     = "../../modules/infrastructure/cloud-init/fbctf.setup.yml"
 }
 
+variable "win_bootstrap_user_data" {
+  description = "win_bootstrap cloud-init script"
+  default     = "../../modules/infrastructure/cloud-init/windows.bootstrap.yml"
+}
+
+# setup a default user/pass
+variable "winrm_user" {
+  description = "The winrm user we login as"
+  default = "terraform"
+}
+
+variable "winrm_pass" {
+  description = "The winrm user password"
+  default = "terraform"
+}
+
 variable "private_key" {
   description = "default private key"
   default     = "../../keys/circleci_terraform"
@@ -106,89 +127,4 @@ variable "alarms_email" {
   description = "the email to notify you of excessive aws costs"
   default     = "your.email@this.com"
 }
-
-//todo: make python script or erb template to create desired public assets
-variable "ami_winchoco" {
-  description = "The ami of the windows chocolatey desktop"
-  default     = "ami-xxxxx"
-}
-
-variable "ami_ms3_nix" {
-  default     = "ami-05056794734905857"
-  description = "metasploitable3-ubuntu-1404"
-}
-
-variable "ami_fristileaks" {
-  default     = "ami-0539fa87bb2306efe"
-  description = "FristiLeaks_1.3"
-}
-
-variable "ami_mrrobot" {
-  default     = "ami-067d428e8151617b0"
-  description = "mrRobot"
-}
-
-variable "ami_sickos" {
-  default     = "ami-0af37127c6324f3f4"
-  description = "Sick0s1.2"
-}
-
-variable "ami_vulnos" {
-  default     = "ami-0b5b15c7c25534a9c"
-  description = " q qVulnOSv2"
-}
-
-variable "ami_stapler" {
-  default     = "ami-0cbf02480a95b6edd"
-  description = "Stapler"
-}
-
-variable "ami_ms3_2k8" {
-  default     = "ami-0da37791afc9aea77"
-  description = "metasploitable3-win2k8"
-}
-
-variable "ami_skytower" {
-  default     = "ami-0edaa47a082e55340"
-  description = "SkyTower"
-}
-# public kali image
-variable "ami_kali-old" {
-  default     = "ami-07360d1b1c9e13198"
-  description = "Kali-2018.3"
-}
-
-# private kali image
-variable "ami_kali" {
-  default     = "ami-0e13b2fb6e590fc77"
-  description = "Kali-2019.1"
-}
-
-# clean template win7 asset
-variable "ami_win7" {
-  default     = "ami-02f2c19a14caca250"
-  description = "Win7"
-}
-
-# clean template win8 asset
-variable "ami_win8" {
-  default     = "ami-0de7687b932832df7"
-  description = "Win8"
-}
-
-# seed lab vm from Syr.edu
-variable "ami_seed_ubuntu1604" {
-  default     = "ami-0ebb80088327d57fc"
-  description = "seed-ubuntu-1604"
-}
-#
-variable "ami_hackinos" {
-  default     = "ami-0d3b2e68e1701a861"
-  description = "hack-in-os"
-}
-//#
-//variable "ami_" {
-//  default     = "ami-"
-//  description = "Win"
-//}
 

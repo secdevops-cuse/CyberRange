@@ -74,3 +74,10 @@ resource "aws_route_table_association" "private-b" {
   subnet_id      = "${aws_subnet.private-b.id}"
   route_table_id = "${aws_route_table.private-b.id}"
 }
+
+// public-b
+//resource "aws_route" "internet_access" {
+//  route_table_id         = "${aws_vpc.main.main_route_table_id}"
+//  destination_cidr_block = "0.0.0.0/0"
+//  gateway_id             = "${aws_internet_gateway.gw.id}"
+//}
