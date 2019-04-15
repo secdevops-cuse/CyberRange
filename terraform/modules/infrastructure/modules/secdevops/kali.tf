@@ -7,16 +7,11 @@ locals {
 
 resource "aws_instance" "kali" {
   count = "${var.kali_ct}"
-
   ami = "${var.ami_kali}"
-
   instance_type = "${var.instance_type_kali}"
-
   subnet_id              = "${element(local.kali_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-
   key_name = "${aws_key_pair.circleci_key.key_name}"
-
   user_data = "${file("../../modules/infrastructure/cloud-init/kali.yml")}"
 
   root_block_device {
@@ -54,4 +49,48 @@ resource "null_resource" "kali" {
   }
 }
 
+// seed ami-0ebb80088327d57fc
+
 //todo: flare-vm  -> https://github.com/fireeye/flare-vm/blob/master/README.md
+
+
+resource "aws_instance" "r7vm" {
+  count = "${var.kali_ct}"
+
+  ami = "${var.ami_r7}"
+
+  instance_type = "t2.xlarge"
+//  instance_type = "${var.instance_type_kali}"
+
+  subnet_id              = "${element(local.kali_subnet_ids, count.index)}"
+  vpc_security_group_ids = ["${aws_security_group.kali.id}"]
+
+  key_name = "${aws_key_pair.circleci_key.key_name}"
+
+  user_data = "${file("../../modules/infrastructure/cloud-init/kali.yml")}"
+
+  root_block_device {
+    delete_on_termination = true
+    volume_size           = 120
+  }
+
+  tags {
+    Name        = "r7-${count.index}"
+    Environment = "${var.environment}"
+    Terraform   = "True"
+  }
+}
+
+resource "aws_ebs_volume" "r7-volume" {
+  availability_zone = "${aws_instance.kali.availability_zone}"
+  type              = "gp2"
+  size              = 80
+}
+
+resource "aws_volume_attachment" "r7-volume-attachment" {
+  device_name = "/dev/xvdb"
+  instance_id = "${aws_instance.r7vm.id}"
+  volume_id   = "${aws_ebs_volume.r7-volume.id}"
+}
+
+

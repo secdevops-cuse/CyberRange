@@ -11,7 +11,7 @@ resource "aws_instance" "docker" {
   count = "${var.docker_ct}"
 
   ami           = "${data.aws_ami.centos.id}"
-  instance_type = "${var.docker_instance_type}"
+  instance_type = "${var.instance_type_docker}"
 
   subnet_id              = "${element(local.docker_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
