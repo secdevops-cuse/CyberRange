@@ -77,13 +77,13 @@ resource "aws_instance" "win2016" {
 }
 
 resource "aws_instance" "win7" {
-  count = "${var.docker_ct}"
+  count         = "${var.docker_ct}"
   ami           = "${var.ami_win7}"
   instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
+  subnet_id               = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  vpc_security_group_ids  = ["${aws_security_group.webgoat.id}"]
+  key_name                = "${aws_key_pair.circleci_key.key_name}"
+  user_data               = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -101,7 +101,6 @@ resource "aws_instance" "win8" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -129,24 +128,6 @@ resource "aws_instance" "defender_win2k10" {
   }
 }
 
-resource "aws_instance" "win8" {
-  count = "${var.docker_ct}"
-  ami           = "${var.ami_win8}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
-  root_block_device {
-    delete_on_termination = true
-  }
-  tags = {
-    Name        = "CyberRange win8-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
-
 resource "aws_instance" "win2003" {
   count = "${var.docker_ct}"
   ami           = "${var.ami_win2003}"
@@ -154,7 +135,6 @@ resource "aws_instance" "win2003" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -172,7 +152,6 @@ resource "aws_instance" "win2008" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -190,7 +169,6 @@ resource "aws_instance" "win2012" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
@@ -208,30 +186,11 @@ resource "aws_instance" "win2012_RTM" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }
   tags = {
     Name        = "CyberRange win2012_RTM-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
-
-resource "aws_instance" "win2016" {
-  count = "${var.docker_ct}"
-  ami           = "${var.ami_win2016}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
-  root_block_device {
-    delete_on_termination = true
-  }
-  tags = {
-    Name        = "CyberRange win2016-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -244,7 +203,6 @@ resource "aws_instance" "win2019" {
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
   root_block_device {
     delete_on_termination = true
   }

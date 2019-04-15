@@ -64,9 +64,8 @@ data "aws_ami" "centos" {
     values = ["ebs"]
   }
 }
-
-//todo: Build detection-lab us-east-1,
-// currently ami's are only available in us-west-1
+//
+//
 //// direct import from https://github.com/clong/DetectionLab
 //# Use Data Sources to resolve the AMI-ID for the pre-built DC host
 //data "aws_ami" "dc_ami" {
@@ -109,7 +108,7 @@ data "aws_ami" "centos" {
 //  }
 //}
 //
-//# build your own AMIs then replace the default values below with
+//# If you are building your own AMIs, replace the default values below with
 //# the AMI IDs
 //variable "logger_ami" {
 //  default = "*"
@@ -182,7 +181,7 @@ variable "ami_kali-old" {
   description = "Kali-2018.3"
 }
 
-# private kali image updated / built.
+# private kali image
 variable "ami_kali" {
   default     = "ami-0e13b2fb6e590fc77"
   description = "Kali-2019.1"
@@ -216,11 +215,6 @@ variable "ami_r7" {
   default     = "ami-0911621222a8c9590"
   description = "r7vm"
 }
-#
-variable "ami_ms3_2k12" {
-  default     = "ami-0370dcc12619f05e1"
-  description = "ms3-2k12"
-}
 
 #
 variable "ami_nessus" {
@@ -246,7 +240,7 @@ variable "ami_sc" {
   description = "security center"
 }
 
-// added < 4/13
+//-- new
 variable "ami_myhouse7" {
   default     = "ami-016b701c461d2f341"
   description = "myhouse7"
@@ -261,6 +255,11 @@ variable "ami_defender_win2k10" {
   default     = "ami-0ba457e31b3666965"
   description = "defender-win2010"
 }
+
+//variable "ami_ms3_2k12" {
+//  default     = "ami-0370dcc12619f05e1"
+//  description = "metasploitable3-win2k12"
+//}
 
 variable "ami_win2003"{
   description = "The ami of the Windows_Server-2003-R2_SP2-English-32Bit-Base-2019.02.13 server asset"
