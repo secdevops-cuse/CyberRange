@@ -5,36 +5,21 @@ Development - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/deve
 <!--Master - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/master.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/master)-->
 
 
-# Overview
-This started as an unofficial fork of the terraform-with-circleci-example
-and was enhanced to create a SecDevOps penTesting lab of cloud targets.
+# CyberRange Terraform 
 
-The simple goal is to create an open-source repository of targets which 
-aid the common researcher and leverages the elastic compute potential of 
-the cloud  
+## Booting up
+To bootup the range you need to perform the following steps:
+1 - clone the project & perform the [basic setup guide]():
+2 - terraform apply
+3 - awsnuke to destroy
 
-## PenTester Desktop
-    - kali
- 
- 
-## Targets 
-    - docker 
-        - webgoat
-    - FBCTF
-    - FristiLeaks: 1.3       https://www.vulnhub.com/entry/fristileaks-13,133/
-    - Stapler: 1             https://www.vulnhub.com/entry/stapler-1,150/
-    - VulnOS: 2              https://www.vulnhub.com/entry/vulnos-2,147/
-    - SickOs: 1.2            https://www.vulnhub.com/entry/sickos-12,144/
-    - SkyTower: 1            https://www.vulnhub.com/entry/skytower-1,96/
-    - mrRobot:               https://www.vulnhub.com/entry/mr-robot-1,151/
-    - Metasploitable3 
-         win2k8 : https://github.com/rapid7/metasploitable3
-         ubuntu1404 : https://github.com/rapid7/metasploitable3
 
-# Research
-    - T-pot
-    - AWS Inspector (note some regions are indicating the rules are non-existant)
+##  Overview 
+This started as an unofficial fork of the [terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example).  Then quickly evolved into a cloud-based SecDevOps penTesting lab.
 
-## AMI's
+The simple goal is to create an open-source repository of vulernable targets which 
+provide the security researcher with the scalability, performance, and 
+elastic compute of the cloud.
+
 
     
