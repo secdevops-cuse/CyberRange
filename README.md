@@ -10,9 +10,13 @@ On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
 
 # Mission Statement
 
-The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an opensource hostile environment leveraging hundreds of known vulnerable assets & configurations. 
- from  minimize the effort needed to create a maximum  goal is to emulate the quality in the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
+The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an 
+opensource hostile training environment leveraging hundreds of known 
+vulnerable assets & configurations. 
 
+This project will continue to go through multiple phases of evolution, 
+training, and enhancements.  The ultimate goal is to emulate the 
+quality, format, and presentation of the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/).
 
 This open-source research lab provides a bootstrap learning platform for Technologists studying any one of the "Big-3" technology domains.  
 
