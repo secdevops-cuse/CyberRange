@@ -1,5 +1,6 @@
 provider "aws" {
-  region = "${var.region}"
+  region                  = "${var.region}"
+  shared_credentials_file = "${pathexpand("~/.aws/credentials")}"
 }
 
 module "staging-state" {
@@ -7,13 +8,11 @@ module "staging-state" {
   environment = "${var.environment}"
 }
 
-
-
 terraform {
   backend "s3" {
-    bucket  = "secdevops-cuse"
-    key     = "staging/secdevops-cuse-stage-terraform.tfstate"
-    region  = "us-east-1"
+    bucket  = "secdevops-cuse-london"
+    key     = "staging/secdevops-cuse-dev.tfstate"
+    region  = "eu-west-2"
     encrypt = true
   }
 }
@@ -22,4 +21,3 @@ module "staging-infrastructure" {
   source      = "../../modules/infrastructure"
   environment = "${var.environment}"
 }
-
