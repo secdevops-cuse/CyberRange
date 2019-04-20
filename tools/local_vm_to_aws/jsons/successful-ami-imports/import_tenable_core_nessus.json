@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "tenable-core-nessus",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/Tenable-Core-Nessus-20190308.ova"
+    }
+  }
+]

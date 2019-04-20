@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "r7va",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/Rapid7VA.ova"
+    }
+  }
+]

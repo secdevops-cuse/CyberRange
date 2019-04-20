@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "defender-win2019",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/defender-win2019.ova"
+    }
+  }
+]

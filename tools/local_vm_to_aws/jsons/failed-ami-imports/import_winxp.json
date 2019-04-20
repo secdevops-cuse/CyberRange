@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "winxp-ova",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/winxp.ova"
+    }
+  }
+]

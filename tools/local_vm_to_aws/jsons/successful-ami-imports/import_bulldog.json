@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "bulldog",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/Bulldog2.ova"
+    }
+  }
+]
