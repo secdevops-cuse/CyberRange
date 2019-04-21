@@ -304,7 +304,7 @@ resource "aws_security_group" "malware" {
   description = "flarevm malware security group"
   vpc_id      = "${var.vpc-id}"
 
-  # RDP
+  # RDP 
   ingress {
     from_port   = 3389
     to_port     = 3389
