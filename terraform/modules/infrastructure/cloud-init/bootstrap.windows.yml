@@ -1,11 +1,81 @@
-<script>netsh advfirewall set allprofiles state off & echo 'Firewall is disabled' & winrm set winrm/config/service @{AllowUnencrypted="true"} & winrm set winrm/config/client @{AllowUnencrypted="true"} & echo 'set winrm allow unencrypted' & winrm set winrm/config/service/auth @{Basic="true"} & winrm set winrm/config/client/auth @{Basic="true"} & echo 'set  basic auth' & winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"} & net stop winrm & sc config winrm start= auto & net start winrm & echo 'print final winrm config' & winrm get winrm/config
-</script>
 <powershell>
-    $start = Get-Date
+$start = Get-Date
+Write-Host "Starting Cloud-Init... $start"
 
-# setup basic terraform user
-    $user="terraform"
-    $password="terraform"
+Write-Host "Disable Firewall..."
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+Write-Host "Disabling WinRM over HTTP..."
+Disable-NetFirewallRule -Name "WINRM-HTTP-In-TCP"
+Disable-NetFirewallRule -Name "WINRM-HTTP-In-TCP-PUBLIC"
+
+Start-Process -FilePath winrm `
+    -ArgumentList "delete winrm/config/listener?Address=*+Transport=HTTP" `
+    -NoNewWindow -Wait
+
+Write-Host "Configuring WinRM for HTTPS..."
+Start-Process -FilePath winrm `
+    -ArgumentList "set winrm/config @{MaxTimeoutms=`"1800000`"}" `
+    -NoNewWindow -Wait
+
+Start-Process -FilePath winrm `
+    -ArgumentList "set winrm/config/winrs @{MaxMemoryPerShellMB=`"1024`"}" `
+    -NoNewWindow -Wait
+
+Start-Process -FilePath winrm `
+    -ArgumentList "set winrm/config/service @{AllowUnencrypted=`"false`"}" `
+    -NoNewWindow -Wait
+
+Start-Process -FilePath winrm `
+    -ArgumentList "set winrm/config/service/auth @{Basic=`"true`"}" `
+    -NoNewWindow -Wait
+
+Start-Process -FilePath winrm `
+    -ArgumentList "set winrm/config/service/auth @{CredSSP=`"true`"}" `
+    -NoNewWindow -Wait
+
+New-NetFirewallRule -Name "WINRM-HTTPS-In-TCP" `
+    -DisplayName "Windows Remote Management (HTTPS-In)" `
+    -Description "Inbound rule for Windows Remote Management via WS-Management. [TCP 5986]" `
+    -Group "Windows Remote Management" `
+    -Program "System" `
+    -Protocol TCP `
+    -LocalPort "5986" `
+    -Action Allow `
+    -Profile Domain,Private
+
+New-NetFirewallRule -Name "WINRM-HTTPS-In-TCP-PUBLIC" `
+    -DisplayName "Windows Remote Management (HTTPS-In)" `
+    -Description "Inbound rule for Windows Remote Management via WS-Management. [TCP 5986]" `
+    -Group "Windows Remote Management" `
+    -Program "System" `
+    -Protocol TCP `
+    -LocalPort "5986" `
+    -Action Allow `
+    -Profile Public
+
+$certContent = "<insert a base 64 encoded version of your certificate here>"
+
+$certBytes = [System.Convert]::FromBase64String($certContent)
+$pfx = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+$pfx.Import($certBytes, "", "Exportable,PersistKeySet,MachineKeySet")
+$certThumbprint = $pfx.Thumbprint
+$certSubjectName = $pfx.SubjectName.Name.TrimStart("CN = ").Trim()
+
+$store = new-object System.Security.Cryptography.X509Certificates.X509Store("My", "LocalMachine")
+try {
+    $store.Open("ReadWrite,MaxAllowed")
+    $store.Add($pfx)
+
+} finally {
+    $store.Close()
+}
+
+Write-Host "Restarting WinRM Service..."
+Start-Process -FilePath winrm `
+    -ArgumentList "create winrm/config/listener?Address=*+Transport=HTTPS @{Hostname=`"$certSubjectName`";CertificateThumbprint=`"$certThumbprint`";Port=`"5986`"}" `
+    -NoNewWindow -Wait
+
 
 # Disable password complexity requirements
     $seccfg = [IO.Path]::GetTempFileName()
@@ -14,21 +84,34 @@
     secedit /configure /db $env:windir\security\new.sdb /cfg $seccfg /areas SECURITYPOLICY
     del $seccfg
 
-# create user, set admin password
-    net user /add $user $password;
-    net localgroup Administrators /add $user;
-    net user Administrator $password;
+# This part is optional
+$user = [adsi]"WinNT://localhost/Administrator,user"
+$user.SetPassword("terraform")
+$user.SetInfo()
 
-    # Disable Internet Explorer Security
-    # http://stackoverflow.com/a/9368555/2067999
-    $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
-    $UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
-    Set-ItemProperty -Path $AdminKey -Name "IsInstalled" -Value 0
-    Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0
+Write-Host "Restarting WinRM Service..."
+Stop-Service winrm
+Set-Service winrm -StartupType "Automatic"
+Start-Service winrm
 
-# Install the application
-  # flare-vm
-    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/flare-vm/master/install.ps1'))
-  # commando
-    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/commando-vm/master/install.ps1'))
+#
+## setup basic terraform user
+#    $user="terraform"
+#    $password="terraform"
+#
+## create user, set admin password
+#    net user /add $user $password;
+#    net localgroup Administrators /add $user;
+#    net user Administrator $password;
+
+# Disable Internet Explorer Security
+# http://stackoverflow.com/a/9368555/2067999
+$AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
+$UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
+Set-ItemProperty -Path $AdminKey -Name "IsInstalled" -Value 0
+Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0
+
+# Install some applications or do something...
+$end = Get-Date
+Write-Host "Ending Cloud-Init... $end"
 </powershell>

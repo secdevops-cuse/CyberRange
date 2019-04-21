@@ -1,49 +1,3 @@
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"]
-}
-
-data "aws_ami" "kali" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["kali*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["paravirtual"]
-  }
-
-  owners = ["679593333241"]
-}
-
-data "aws_ami" "amazon-linux-2" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "owner-alias"
-    values = ["amazon"]
-  }
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm*"]
-  }
-}
 
 data "aws_ami" "centos" {
   owners      = ["679593333241"]
@@ -64,72 +18,12 @@ data "aws_ami" "centos" {
     values = ["ebs"]
   }
 }
-//
-//
-//// direct import from https://github.com/clong/DetectionLab
-//# Use Data Sources to resolve the AMI-ID for the pre-built DC host
-//data "aws_ami" "dc_ami" {
-//  owners = ["505638924199"]
-//  filter {
-//    name = "tag:Name"
-//    values = ["dc"]
-//  }
-//  filter {
-//    name = "image-id"
-//    values = ["${var.dc_ami}"]
-//  }
-//}
-//
-//# Use Data Sources to resolve the AMI-ID for the pre-built WEF host
-//data "aws_ami" "wef_ami" {
-//  owners = ["505638924199"]
-//  most_recent = true
-//  filter {
-//    name = "tag:Name"
-//    values = ["wef"]
-//  }
-//  filter {
-//    name = "image-id"
-//    values = ["${var.wef_ami}"]
-//  }
-//}
-
-//# Use Data Sources to resolve the AMI-ID for the pre-built Win10 host
-//data "aws_ami" "win10_ami" {
-//  owners = ["505638924199"]
-//  most_recent = true
-//  filter {
-//    name = "tag:Name"
-//    values = ["win10"]
-//  }
-//  filter {
-//    name = "image-id"
-//    values = ["${var.win10_ami}"]
-//  }
-//}
-//
-//# If you are building your own AMIs, replace the default values below with
-//# the AMI IDs
-//variable "logger_ami" {
-//  default = "*"
-//}
-//variable "dc_ami" {
-//  default = "*"
-//}
-//variable "wef_ami" {
-//  default = "*"
-//}
-//variable "win10_ami" {
-//  default = "*"
-//}
-
 
 //todo: make python script or erb template to create desired public assets
 variable "ami_winchoco" {
   description = "The ami of the windows chocolatey desktop"
   default     = "ami-3e768644"
 }
-
 
 variable "ami_fristileaks" {
   default     = "ami-0539fa87bb2306efe"
@@ -192,6 +86,13 @@ variable "ami_win7" {
   default     = "ami-02f2c19a14caca250"
   description = "Win7"
 }
+# flarevm win7 asset
+variable "ami_flarewin7" {
+  default     = "ami-0c0c82ce58fe950e6"
+  description = "FlareVm-Win7"
+}
+
+
 
 # clean template win8 asset
 variable "ami_win8" {
@@ -285,6 +186,11 @@ variable "ami_win2016"{
   description = "The ami of the Windows_Server-2016-English-Full-ECS_Optimized-2017.11.24 server asset"
   default = "ami-9f1182e5"
 }
+//
+//variable "ami_win2016"{
+//  description = "The ami of the Windows_Server-2016-English-Full-ECS_Optimized-2017.11.24 server asset"
+//  default = "ami-0e8fe8e037f9a755a"
+//}
 
 variable "ami_win2019"{
   description = "The ami of the Windows_Server-2019-English-Full-Base-2019.03.13 server asset"

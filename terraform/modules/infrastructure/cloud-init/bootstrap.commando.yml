@@ -27,8 +27,6 @@
     Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0
 
 # Install the application
-  # flare-vm
-    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/flare-vm/master/install.ps1'))
   # commando
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/commando-vm/master/install.ps1'))
 </powershell>

@@ -17,7 +17,7 @@
 # create user, set admin password
     net user /add $user $password;
     net localgroup Administrators /add $user;
-    net user Administrator $password;
+    net user IEUser $password;
 
     # Disable Internet Explorer Security
     # http://stackoverflow.com/a/9368555/2067999
@@ -29,6 +29,4 @@
 # Install the application
   # flare-vm
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/flare-vm/master/install.ps1'))
-  # commando
-    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/commando-vm/master/install.ps1'))
 </powershell>
