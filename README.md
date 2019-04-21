@@ -6,8 +6,9 @@ To get started - [Go here](https://github.com/secdevops-cuse/CyberRange/tree/mas
 <br/>
 On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
 
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.  This project initiative aims to 
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.  
 
+The SecDevOps-Cuse/CyberRange project provides a bootstrap framework for an offensive security research lab containing 10+ vulnerable systems. It simply provides a researcher with a disposable AWS-based lab in less than 10 minutes.
 
 # Mission Statement
 
