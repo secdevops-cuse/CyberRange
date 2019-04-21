@@ -90,9 +90,9 @@ resource "aws_volume_attachment" "r7-volume-attachment" {
 
 resource "aws_instance" "pT16_commando" {
   count = "${var.docker_ct}"
-  ami = "${var.ami_win2016}"
-//  instance_type = "${var.instance_type_win}"
-  instance_type = "t2.2xlarge"
+  ami = "${var.ami_commando}"
+  instance_type = "${var.instance_type_win}"
+//  instance_type = "t2.2xlarge"
   subnet_id              = "${element(local.kali_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"

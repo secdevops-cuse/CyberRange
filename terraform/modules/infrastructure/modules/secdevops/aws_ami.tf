@@ -91,7 +91,11 @@ variable "ami_flarewin7" {
   default     = "ami-0c0c82ce58fe950e6"
   description = "FlareVm-Win7"
 }
-
+# flarevm win7 asset
+variable "ami_commando" {
+  default     = "ami-09f5a44cf69b1ec5c"
+  description = "CommandoVM"
+}
 
 
 # clean template win8 asset
