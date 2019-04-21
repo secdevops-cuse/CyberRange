@@ -5,36 +5,67 @@ Development - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/deve
 <!--Master - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/master.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/master)-->
 
 
-# Overview
-This started as an unofficial fork of the terraform-with-circleci-example
-and was enhanced to create a SecDevOps penTesting lab of cloud targets.
+# CyberRange Terraform 
 
-The simple goal is to create an open-source repository of targets which 
-aid the common researcher and leverages the elastic compute potential of 
-the cloud  
+## Booting up
+To bootup the range you need to perform the following steps:
+1 - clone the project & perform the [basic setup guide]():
+2 - terraform apply
+3 - awsnuke to destroy
 
-## PenTester Desktop
-    - kali
- 
- 
-## Targets 
-    - docker 
-        - webgoat
-    - FBCTF
-    - FristiLeaks: 1.3       https://www.vulnhub.com/entry/fristileaks-13,133/
-    - Stapler: 1             https://www.vulnhub.com/entry/stapler-1,150/
-    - VulnOS: 2              https://www.vulnhub.com/entry/vulnos-2,147/
-    - SickOs: 1.2            https://www.vulnhub.com/entry/sickos-12,144/
-    - SkyTower: 1            https://www.vulnhub.com/entry/skytower-1,96/
-    - mrRobot:               https://www.vulnhub.com/entry/mr-robot-1,151/
-    - Metasploitable3 
-         win2k8 : https://github.com/rapid7/metasploitable3
-         ubuntu1404 : https://github.com/rapid7/metasploitable3
 
-# Research
-    - T-pot
-    - AWS Inspector (note some regions are indicating the rules are non-existant)
+##  Overview 
+This started as an unofficial fork of the [terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example).  Then quickly evolved into a cloud-based SecDevOps penTesting lab.
 
-## AMI's
+The simple goal is to create an open-source repository of vulernable targets which 
+provide the security researcher with the scalability, performance, and 
+elastic compute of the cloud.
 
-    
+
+## Setting the project
+The range is primarily setup for us-east-1.  This is a simple reminder that I'm plan to 
+create regional ami manifests for simple copy/pasta simplication of setup. 
+
+### Setting up AWS
+
+Create a location for all the terraform state files.  These are the files which
+hold the 
+Let's create a bucket to store our terraform data in & a few folders within.
+
+```
+aws s3 mb s3://secdevops-cuse
+aws s3api put-object --bucket secdevops-cuse --key us-east-1
+aws s3api put-object --bucket secdevops-cuse --key eu-west-2
+aws s3api put-object --bucket secdevops-cuse --key ap-south-1
+```
+
+then let's initialize terraform in the desired aws region 
+`cd ./terraform/environments/<aws-region>; terraform init; terraform plan`
+
+
+
+## Terraform folder layout
+```
+ - docs
+ - environments
+ - keys
+ - modules
+    - infrastructure
+        - cloud-init
+        - config
+        - modules
+        
+    - state
+ - tutorials            
+```
+
+### Terraform subnets
+
+The only assets which obtain public IPs are configured for the kali subnet.  That subnet has the very 
+specific `map_public_ip_on_launch = true` configuration.  Add this configuration to other subnets before
+creating the subnet.
+  
+### Default Users / Passwords
+`IEUser / Passw0rd!` - win7
+`terraform / terraform`
+`administrator / terraform`

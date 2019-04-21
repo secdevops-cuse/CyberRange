@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "tenable-core-was",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/Tenable-Core-WAS-20190308.ova"
+    }
+  }
+]

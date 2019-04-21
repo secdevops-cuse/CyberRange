@@ -126,7 +126,7 @@ resource "aws_instance" "cr_ms3_nix" {
   }
 }
 
-resource "aws_instance" "hackinos" {
+resource "aws_instance" "cr_hackinos" {
   count = "${var.docker_ct}"
   ami           = "${var.ami_hackinos}"
   instance_type = "${var.instance_type}"
