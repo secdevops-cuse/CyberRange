@@ -1,6 +1,7 @@
 # Overview
 
-The goal of this initiative is to help individuals get up & running quickly. Minimizing what you need to know & maximizing the time you spend learning a vast amount of content
+The goal of this initiative is to help individuals get up & running quickly. 
+Minimizing what you need to know & maximizing the time you spend learning a vast amount of content
 
 CyberRange simply combines the best practices by using a CI/CD tool [CircleCI](https://circleci.com/)
   to continuously test every change sent into this project.

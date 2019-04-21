@@ -3,16 +3,22 @@
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
 # Get Started
 To get started - [Go here](https://github.com/secdevops-cuse/CyberRange/tree/master/tutorials#how-to-get-started)
+<br/>
 On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
 
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.  
 
+The SecDevOps-Cuse/CyberRange project provides a bootstrap framework for an offensive security research lab containing 10+ vulnerable systems. It simply provides a researcher with a disposable AWS-based lab in less than 10 minutes.
 
 # Mission Statement
 
-The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an opensource hostile environment leveraging hundreds of known vulnerable assets & configurations. 
- from  minimize the effort needed to create a maximum  goal is to emulate the quality in the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/)
+The Cyber Range has 22 AMI's available.  The ultimate goal is to provide an 
+opensource hostile training environment leveraging hundreds of known 
+vulnerable assets & configurations. 
 
+This project will continue to go through multiple phases of evolution, 
+training, and enhancements.  The ultimate goal is to emulate the 
+quality, format, and presentation of the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/).
 
 This open-source research lab provides a bootstrap learning platform for Technologists studying any one of the "Big-3" technology domains.  
 

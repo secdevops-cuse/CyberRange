@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "metasploitable3-win2k12",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/metasploitable3-win2k12.ova"
+    }
+  }
+]

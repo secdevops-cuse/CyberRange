@@ -198,24 +198,6 @@ resource "aws_security_group" "webgoat" {
   }
 }
 
-resource "aws_security_group_rule" "allow_all_between_webgoat_and_kali" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = "${aws_security_group.webgoat.id}"
-}
-
-resource "aws_security_group_rule" "allow_all_between_kali_and_webgoat" {
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = "${aws_security_group.kali.id}"
-}
-
 // import from https://github.com/clong/DetectionLab
 resource "aws_security_group" "logger" {
   name        = "logger_security_group"
@@ -314,5 +296,32 @@ resource "aws_security_group" "windows" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "malware" {
+  name        = "malware"
+  description = "flarevm malware security group"
+  vpc_id      = "${var.vpc-id}"
+
+  # RDP
+  ingress {
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    cidr_blocks = ["${var.ip_list}"]
+  }
+
+  # outbound internet access
+  egress {
+    from_port   = 1
+    to_port     = 1
+    protocol    = "tcp"
+    cidr_blocks = ["66.66.66.66/32"]
+  }
+  tags {
+    Name        = "malware-${count.index}"
+    Environment = "${var.environment}"
+    Terraform   = "True"
   }
 }

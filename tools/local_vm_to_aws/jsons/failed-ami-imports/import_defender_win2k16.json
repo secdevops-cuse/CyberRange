@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "defender-win2016",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/defender-win2016.ova"
+    }
+  }
+]
