@@ -22,4 +22,50 @@ provide the security researcher with the scalability, performance, and
 elastic compute of the cloud.
 
 
-    
+## Setting the project
+The range is primarily setup for us-east-1.  This is a simple reminder that I'm plan to 
+create regional ami manifests for simple copy/pasta simplication of setup. 
+
+### Setting up AWS
+
+Create a location for all the terraform state files.  These are the files which
+hold the 
+Let's create a bucket to store our terraform data in & a few folders within.
+
+```
+aws s3 mb s3://secdevops-cuse
+aws s3api put-object --bucket secdevops-cuse --key us-east-1
+aws s3api put-object --bucket secdevops-cuse --key eu-west-2
+aws s3api put-object --bucket secdevops-cuse --key ap-south-1
+```
+
+then let's initialize terraform in the desired aws region 
+`cd ./terraform/environments/<aws-region>; terraform init; terraform plan`
+
+
+
+## Terraform folder layout
+```
+ - docs
+ - environments
+ - keys
+ - modules
+    - infrastructure
+        - cloud-init
+        - config
+        - modules
+        
+    - state
+ - tutorials            
+```
+
+### Terraform subnets
+
+The only assets which obtain public IPs are configured for the kali subnet.  That subnet has the very 
+specific `map_public_ip_on_launch = true` configuration.  Add this configuration to other subnets before
+creating the subnet.
+  
+### Default Users / Passwords
+`IEUser / Passw0rd!` - win7
+`terraform / terraform`
+`administrator / terraform`
