@@ -103,7 +103,17 @@ variable "fbctf_user_data" {
 
 variable "win_bootstrap_user_data" {
   description = "win_bootstrap cloud-init script"
-  default     = "../../modules/infrastructure/cloud-init/windows.bootstrap.yml"
+  default     = "../../modules/infrastructure/cloud-init/bootstrap.windows.yml"
+}
+
+variable "bootstrap_commando_userdata" {
+  description = "commando cloud-init script"
+  default     = "../../modules/infrastructure/cloud-init/bootstrap.commando.yml"
+}
+
+variable "bootstrap_flarevm_userdata" {
+  description = "flarevm bootstrap cloud-init script"
+  default     = "../../modules/infrastructure/cloud-init/bootstrap.flarevm.yml"
 }
 
 # setup a default user/pass
