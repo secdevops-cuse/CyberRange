@@ -144,7 +144,7 @@ resource "aws_security_group" "kali" {
   }
 }
 
-#WebGoat security group rules
+#loot aka security group rules
 resource "aws_security_group" "webgoat" {
   name        = "webgoat-instances"
   description = "Access to webgoat instances"
