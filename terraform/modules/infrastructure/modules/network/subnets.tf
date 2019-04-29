@@ -74,3 +74,19 @@ resource "aws_subnet" "kali_subnets_ids" {
     create_before_destroy = true
   }
 }
+
+resource "aws_subnet" "malware_subnets_ids" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "10.0.6.0/24"
+  availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  map_public_ip_on_launch = true
+
+  tags {
+    name        = "malware_subnet"
+    environment = "${var.environment}"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
