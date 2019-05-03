@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRange_logo.png "Cyber Range")
 # Get Started
-To get started - [Go here](tutorials/geting_started)
+To get started - [Go here](tutorials/getting_started.md)
 <br/>
 On BlackDuck: [Code Analysis](https://www.openhub.net/p/CyberRange)
 
