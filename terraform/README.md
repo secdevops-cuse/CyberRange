@@ -67,5 +67,7 @@ creating the subnet.
   
 ### Default Users / Passwords
 `IEUser / Passw0rd!` - win7
+<br/>
 `terraform / terraform`
+<br/>
 `administrator / terraform`
