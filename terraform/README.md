@@ -21,6 +21,8 @@ The simple goal is to create an open-source repository of vulernable targets whi
 provide the security researcher with the scalability, performance, and 
 elastic compute of the cloud.
 
+If you don't know how to use terraform, consider: [this udemy terraform course content on github to learn the basics](https://github.com/wardviaene/terraform-course)
+
 
 ## Setting the project
 The range is primarily setup for us-east-1.  This is a simple reminder that I'm plan to 
