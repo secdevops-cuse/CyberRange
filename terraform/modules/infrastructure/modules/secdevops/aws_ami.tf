@@ -1,4 +1,4 @@
-
+#todo: determine if variable maps are needed: https://github.com/wardviaene/terraform-course/blob/master/demo-2b/vars.tf
 
 data "aws_ami" "centos" {
   owners = [
@@ -306,29 +306,104 @@ owners           = ["588675961644"]
 //  description = "metasploitable3-win2k12"
 //}
 
-variable "ami_win2003"{
-  description = "The ami of the Windows_Server-2003-R2_SP2-English-32Bit-Base-2019.02.13 server asset"
-  default = "ami-09ca0032099efb5a8"
+//variable "ami_win2003"{
+//  description = "The ami of the Windows_Server-2003-R2_SP2-English-32Bit-Base-2019.02.13 server asset"
+//  default = "ami-09ca0032099efb5a8"
+//}
+
+data "aws_ami" "win2k3" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["*2003-R2_SP2-English-32Bit*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
 
-variable "ami_win2008"{
-  description = "The ami of the Windows_Server-2008-R2_SP1-English-64Bit-SQL_2008_R2_SP3_Express-2019.03.13 server asset"
-  default = "ami-039be681c6acc0443"
+//variable "ami_win2008"{
+//  description = "The ami of the Windows_Server-2008-R2_SP1-English-64Bit-SQL_2008_R2_SP3_Express-2019.03.13 server asset"
+//  default = "ami-039be681c6acc0443"
+//}
+
+data "aws_ami" "win2k8" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["*2008-R2_SP1-English-64Bit-SQL_2008_R2_SP3_Express*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
 
-variable "ami_win2012"{
-  description = "The ami of the Windows_Server-2012-RTM-English-64Bit-SQL_2012_SP4_Express-2019.03.13 server asset"
-  default = "ami-0c25c3d407774dfdc"
+//variable "ami_win2012"{
+//  description = "The ami of the Windows_Server-2012-RTM-English-64Bit-SQL_2012_SP4_Express-2019.03.13 server asset"
+//  default = "ami-0c25c3d407774dfdc"
+//}
+
+data "aws_ami" "win2k12" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["*2012-RTM-English-64Bit-SQL_2012_SP4_Express*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
 
-variable "ami_win2012_RTM"{
-  description = "The ami of the Windows_Server-2012-R2_RTM-English-64Bit-SQL_2016_SP2_Express-2019.03.13 server asset"
-  default = "ami-00e4f149aa6ba8fcc"
-}
+//variable "ami_win2012_RTM"{
+//  description = "The ami of the Windows_Server-2012-R2_RTM-English-64Bit-SQL_2016_SP2_Express-2019.03.13 server asset"
+//  default = "ami-00e4f149aa6ba8fcc"
+//}
 
-variable "ami_win2016"{
-  description = "The ami of the Windows_Server-2016-English-Full-ECS_Optimized-2017.11.24 server asset"
-  default = "ami-9f1182e5"
+
+data "aws_ami" "win2k12_RTM" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["*2012-R2_RTM-English-64Bit-SQL_2016_SP2_Express*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+//variable "ami_win2016"{
+//  description = "The ami of the Windows_Server-2016-English-Full-ECS_Optimized-2017.11.24 server asset"
+//  default = "ami-9f1182e5"
+//}
+
+data "aws_ami" "win2k16" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["*2016-English-Full-ECS_Optimized*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
 //
 //variable "ami_win2016"{
@@ -336,8 +411,22 @@ variable "ami_win2016"{
 //  default = "ami-0e8fe8e037f9a755a"
 //}
 
-variable "ami_win2019"{
-  description = "The ami of the Windows_Server-2019-English-Full-Base-2019.03.13 server asset"
-  default = "ami-02d43577e47e684d9"
-}
+//variable "ami_win2019"{
+//  description = "The ami of the Windows_Server-2019-English-Full-Base-2019.03.13 server asset"
+//  default = "ami-02d43577e47e684d9"
+//}
 
+data "aws_ami" "win2k19" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["*2019-English-Full-Base*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
