@@ -9,7 +9,7 @@ locals {
 
 resource "aws_instance" "cr_skytower" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_skytower}"
+  ami           = "${data.aws_ami.skytower.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -18,7 +18,7 @@ resource "aws_instance" "cr_skytower" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange Skytower-${count.index}"
+    Name        = "CyberRange-Skytower-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -26,7 +26,7 @@ resource "aws_instance" "cr_skytower" {
 
 resource "aws_instance" "cr_stapler" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_stapler}"
+  ami           = "${data.aws_ami.stapler.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -35,7 +35,7 @@ resource "aws_instance" "cr_stapler" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange Stapler-${count.index}"
+    Name        = "CyberRange-Stapler-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -43,7 +43,7 @@ resource "aws_instance" "cr_stapler" {
 
 resource "aws_instance" "cr_vulnos" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_vulnos}"
+  ami           = "${data.aws_ami.vulnos.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -52,7 +52,7 @@ resource "aws_instance" "cr_vulnos" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange Vulnos-${count.index}"
+    Name        = "CyberRange-Vulnos-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -60,7 +60,7 @@ resource "aws_instance" "cr_vulnos" {
 
 resource "aws_instance" "cr_sickos" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_sickos}"
+  ami           = "${data.aws_ami.sickos.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -69,7 +69,7 @@ resource "aws_instance" "cr_sickos" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange Sickos-${count.index}"
+    Name        = "CyberRange-Sickos-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -77,7 +77,7 @@ resource "aws_instance" "cr_sickos" {
 
 resource "aws_instance" "cr_mrrobot" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_mrrobot}"
+  ami           = "${data.aws_ami.mrrobot.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -86,7 +86,7 @@ resource "aws_instance" "cr_mrrobot" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange MrRobot-${count.index}"
+    Name        = "CyberRange-MrRobot-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -94,7 +94,7 @@ resource "aws_instance" "cr_mrrobot" {
 
 resource "aws_instance" "cr_fristileaks" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_fristileaks}"
+  ami           = "${data.aws_ami.fristileaks.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -103,7 +103,7 @@ resource "aws_instance" "cr_fristileaks" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange fristileaks-${count.index}"
+    Name        = "CyberRange-fristileaks-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -111,7 +111,7 @@ resource "aws_instance" "cr_fristileaks" {
 
 resource "aws_instance" "cr_ms3_nix" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_ms3_nix}"
+  ami           = "${data.aws_ami.ms3_nix.id}"
   instance_type = "${var.instance_type_docker}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -120,7 +120,7 @@ resource "aws_instance" "cr_ms3_nix" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange ms3_nix-${count.index}"
+    Name        = "CyberRange-ms3_nix-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -128,7 +128,7 @@ resource "aws_instance" "cr_ms3_nix" {
 
 resource "aws_instance" "cr_hackinos" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_hackinos}"
+  ami           = "${data.aws_ami.hackinos.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -137,7 +137,7 @@ resource "aws_instance" "cr_hackinos" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange hackinos-${count.index}"
+    Name        = "CyberRange-hackinos-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -145,7 +145,7 @@ resource "aws_instance" "cr_hackinos" {
 
 resource "aws_instance" "cr_bulldog" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_bulldog}"
+  ami           = "${data.aws_ami.bulldog.id}"
   instance_type = "${var.instance_type_docker}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -154,7 +154,7 @@ resource "aws_instance" "cr_bulldog" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange bulldog-${count.index}"
+    Name        = "CyberRange-bulldog-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -162,7 +162,7 @@ resource "aws_instance" "cr_bulldog" {
 
 resource "aws_instance" "cr_myhouse7" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_myhouse7}"
+  ami           = "${data.aws_ami.myhouse7.id}"
   instance_type = "${var.instance_type_docker}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -171,7 +171,7 @@ resource "aws_instance" "cr_myhouse7" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange myhouse7-${count.index}"
+    Name        = "CyberRange-myhouse7-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }

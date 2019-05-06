@@ -8,7 +8,7 @@ locals {
 resource "aws_instance" "cr_ms3_2k8" {
   count = "${var.docker_ct}"
 
-  ami           = "${var.ami_ms3_2k8}"
+  ami           = "${data.aws_ami.ms3_2k8.id}"
   instance_type = "${var.instance_type_win}"
 
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
@@ -21,7 +21,7 @@ resource "aws_instance" "cr_ms3_2k8" {
   }
 
   tags = {
-    Name        = "CyberRange MetaSploitable 3 win2k8-${count.index}"
+    Name        = "CyberRange-MetaSploitable_3_win2k8-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -29,7 +29,7 @@ resource "aws_instance" "cr_ms3_2k8" {
 
 resource "aws_instance" "ami_ms3_2k12" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_ms3_2k12}"
+  ami           = "${data.aws_ami.ms3_2k12.id}"
   instance_type = "${var.instance_type_win}"
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -52,7 +52,7 @@ resource "aws_instance" "ami_ms3_2k12" {
   }
 
   tags = {
-    Name        = "CyberRange MS3 win2k12-${count.index}"
+    Name        = "CyberRange-MetaSploitable_3_win2k12-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -70,7 +70,7 @@ resource "aws_instance" "win2016" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win2016-${count.index}"
+    Name        = "CyberRange-win2016-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -78,7 +78,7 @@ resource "aws_instance" "win2016" {
 
 resource "aws_instance" "win7" {
   count         = "${var.docker_ct}"
-  ami           = "${var.ami_win7}"
+  ami           = "${data.aws_ami.win7.id}"
   instance_type = "${var.instance_type}"
   subnet_id               = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids  = ["${aws_security_group.webgoat.id}"]
@@ -88,7 +88,7 @@ resource "aws_instance" "win7" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win7-${count.index}"
+    Name        = "CyberRange-win7-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -96,7 +96,7 @@ resource "aws_instance" "win7" {
 
 resource "aws_instance" "win8" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_win8}"
+  ami           = "${data.aws_ami.win8.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -105,7 +105,7 @@ resource "aws_instance" "win8" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win8-${count.index}"
+    Name        = "CyberRange-win8-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -113,7 +113,7 @@ resource "aws_instance" "win8" {
 
 resource "aws_instance" "defender_win2k10" {
   count = "${var.docker_ct}"
-  ami           = "${var.ami_defender_win2k10}"
+  ami           = "${data.aws_ami.win2k10.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
@@ -122,7 +122,7 @@ resource "aws_instance" "defender_win2k10" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange defender_win2k10-${count.index}"
+    Name        = "CyberRange-defender_win2k10-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -139,7 +139,7 @@ resource "aws_instance" "win2003" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win2003-${count.index}"
+    Name        = "CyberRange-win2003-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -156,7 +156,7 @@ resource "aws_instance" "win2008" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win2008-${count.index}"
+    Name        = "CyberRange-win2008-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -173,7 +173,7 @@ resource "aws_instance" "win2012" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win2012-${count.index}"
+    Name        = "CyberRange-win2012-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -190,7 +190,7 @@ resource "aws_instance" "win2012_RTM" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win2012_RTM-${count.index}"
+    Name        = "CyberRange-win2012_RTM-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -207,7 +207,7 @@ resource "aws_instance" "win2019" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange win2019-${count.index}"
+    Name        = "CyberRange-win2019-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }

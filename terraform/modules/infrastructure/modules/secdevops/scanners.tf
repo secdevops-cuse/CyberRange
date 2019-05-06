@@ -8,7 +8,7 @@ locals {
 resource "aws_instance" "r7vm" {
   count = "${var.kali_ct}"
 
-  ami = "${var.ami_r7}"
+  ami = "${data.aws_ami.r7.id}"
 
   instance_type = "t2.xlarge"
 //  instance_type = "${var.instance_type_kali}"
@@ -26,7 +26,7 @@ resource "aws_instance" "r7vm" {
   }
 
   tags {
-    Name        = "r7-${count.index}"
+    Name        = "CyberRange-r7-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
