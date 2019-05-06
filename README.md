@@ -60,9 +60,6 @@ the opportunity to perform R&D in a controlled and isolated environment.
  One or many VM's on a laptop provides a minimum battery life, maximium RAM utilization.  When internet & cheap elastic compute
  are available, they are simply a better. 
 
-
-
-
 ## Range History
 This project was conceptualized and drafted on a MDF board screwed into the side of a wall in my garage in 2014. 
 It sysmbolizes an early interest in the most emerging trends within technology.  
@@ -93,14 +90,11 @@ CyberRange combines best practices with emerging technologies.
  - OpenSourced Vulnerable VM's [See Asset Inventory](asset-inventory.md)
  - using a CI/CD tool to verify builds [CircleCI](https://circleci.com/)
 
-### License Keys
-To use this project you need an AWS account and license keys for any products which require one.  Learning how to access & use the individual
-tools is placed on the individual researcher and a holistic guide outlining every single step is best preserved outside of this project,
-google the info for Open-Source Intelligence (OSINT)
+### Software License Keys
+To use this project you need license keys for any products which require one.  
 
 To obtain an AWS free-tier account: [Amazon Free-Trial Sign-up](https://portal.aws.amazon.com/billing/signup?refid=em_127222) Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
 To obtain a Nessus Home license, e.g. for academic purposes, [Nessus Home License](https://www.tenable.com/products/nessus-home)
-
 
 To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. 
 The account number enables the images to be shared across accounts.<br></div>
