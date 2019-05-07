@@ -40,7 +40,7 @@ set_terraform_environment: &set_terraform_environment
       apk add bash
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
-      elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
+      elif [ "${CIRCLE_BRANCH}" == "staging" || "${CIRCLE_BRANCH}" == "kali-setup"]; then
         echo 'export TERRAFORM_ENVIRONMENT=staging' >> $BASH_ENV
       else
         echo 'export TERRAFORM_ENVIRONMENT=development' >> $BASH_ENV
