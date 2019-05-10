@@ -9,7 +9,7 @@ resource "aws_instance" "tpot" {
   count = "${var.tpot_ct}"
 
   ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.large"
+  instance_type = "${var.instance_type_tpot}"
 
   subnet_id = "${element(local.subnets_ids, count.index)}"
 

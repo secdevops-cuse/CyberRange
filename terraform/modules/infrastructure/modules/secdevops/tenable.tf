@@ -9,12 +9,9 @@ resource "aws_instance" "nessus" {
   count = "${var.kali_ct}"
 
   ami = "${data.aws_ami.nessus.id}"
-
-  instance_type = "t2.xlarge"
-
+  instance_type = "${var.instance_type_kali}"
   subnet_id              = "${element(local.tenable_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
   root_block_device {
@@ -45,12 +42,9 @@ resource "aws_instance" "was" {
   count = "${var.kali_ct}"
 
   ami = "${data.aws_ami.was.id}"
-
   instance_type = "${var.instance_type_kali}"
-
   subnet_id              = "${element(local.tenable_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
   root_block_device {
@@ -82,13 +76,9 @@ resource "aws_instance" "sc" {
   count = "${var.kali_ct}"
 
   ami = "${data.aws_ami.sc.id}"
-
-//  instance_type = "${var.instance_type_kali}"
-  instance_type = "t2.xlarge"
-
+  instance_type = "${var.instance_type_kali}"
   subnet_id              = "${element(local.tenable_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
   root_block_device {
@@ -119,12 +109,9 @@ resource "aws_instance" "nnm" {
   count = "${var.kali_ct}"
 
   ami = "${data.aws_ami.nnm.id}"
-
   instance_type = "${var.instance_type_kali}"
-
   subnet_id              = "${element(local.tenable_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
   root_block_device {
