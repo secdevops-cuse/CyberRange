@@ -9,7 +9,7 @@ resource "aws_instance" "fbctf" {
   count = "${var.fbctf_ct}"
 
   ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.large"
+  instance_type = "${var.instance_type_docker}"
 
   subnet_id = "${element(local.fbctf_subnets_ids, count.index)}"
 
