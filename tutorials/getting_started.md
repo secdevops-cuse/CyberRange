@@ -1,11 +1,78 @@
 # Overview
-This will guide you through the setup of the Range in a new AWS region.
+This will guide you through the setup of the Range in a supported AWS region. 
+These AMI's are currently available in us-east-1 and eu-west-2.
 
-First let's start off with some basics, the pre-requisites:
-- an AWS account with access keys setup in `~/.aws/credentials`
-- An S3 bucket 
-- terraform (downloaded / installed)
-- git (to clone the repo)
+First let's start off with some basics & pre-requisites:
+- To gain access to the Cloud Images, the Amazon AMI's, I need to
+share them with your account. Simply use the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
+Note: it is a manual process
+- an AWS account, 
+- install the awscli and perform `aws configure` to setup `~/.aws/credentials`
+- create an S3 bucket 
+- have the following software: terraform, git, remote desktop client, ssh - see directly below.
+
+### Initializing your desktop
+This primarily outlines a windows desktop setup.   
+ - Linux / Mac: use your package manager for the software install steps.  If you can't figure out the conversion
+    then `try harder`.
+ - Windows Specific Instructions:
+    - [install chocolatey](https://chocolatey.org/docs/installation) 
+        - search for powershell (right-click and open as admin) 
+        - copy/paste: `Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))`
+        
+    - use `choco.exe` to install software:
+        - terraform
+        - awscli
+        - git
+        - e.g.: `choco.exe install -y terraform awscli git`
+        
+    - Create AWS free trial
+        - view your account
+        - obtain your account number
+        - obtain the access key
+        - Sign-up for the CyberRange to gain access to the amazon images:```
+
+[Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
+
+```
+    - In powershell:
+        - cd $env.USERPROFILE
+        - mkdir .aws; 
+        - type `aws configure` 
+            - enter access key
+            - enter secret access key
+            - enter us-east-1 as default region
+            - enter (no default format)
+        - perform a few AWS command-line checks:
+            - type: `aws s3 ls` 
+            - type: `aws ec2 describe-instances`
+        - Clone the repository:
+            - type: `cd $env.HOMEPATH\Desktop; git clone https://github.com/secdevops-cuse/CyberRange.git`
+        - create ssh keys:
+            - move to keys directory: `cd $env.HOMEPATH\Desktop\CyberRange\terraform\keys\`
+            - execute `ssh-keygen.exe` 
+                - enter file location: `$env.HOMEPATH\Desktop\CyberRange\terraform\keys\circleci_terraform`
+            - type `ls`
+                - confirm 2 files now exist, same name but 1 without the .pub extension
+        - Initialize terraform:
+            - execute: 
+                - `cd $env.HOMEPATH\Desktop\CyberRange\terraform\environments\development`
+                - `terraform.exe init`
+            - confirm the msg `Terraform has been successfully initialized!` exists in the output
+            
+    - Creating the Assets in AWS:
+        - By now your environment should be fully setup and initialized.
+        you've created an aws account, obtained the api access keys, queried
+        the aws ec2 & s3 services, cloned the CyberRange project locally, &
+        created your ssh keys to gain access to the kali desktop.
+        
+        - To see what's going to be created, execute: `terraform plan`
+        - Test creating the assets: `terraform apply --auto-approve`
+    - Clean-up:    
+        - destroy everything: `terraform destroy -force`
+        - Suggestion: You are charged per hour by AWS, nuke your environment w [aws-nuke](https://github.com/rebuy-de/aws-nuke) 
+            - e.g.:`./aws-nuke -c ./config/aws-all.yml --profile default --no-dry-run`
+```
 
 ## Getting Started
 - Clone the repo
@@ -81,7 +148,7 @@ $ terraform plan | grep -i module.staging-infrastructure
   + module.staging-infrastructure.module.network.aws_route_table.private-b
   + module.staging-infrastructure.module.network.aws_route_table.public-a
   + module.staging-infrastructure.module.network.aws_route_table.public-b
- + module.staging-infrastructure.module.network.aws_route_table_association.private-a                                
+ ++ module.staging-infrastructure.module.network.aws_route_table_association.private-a                                
   + module.staging-infrastructure.module.network.aws_route_table_association.private-b
   + module.staging-infrastructure.module.network.aws_route_table_association.public-a
   + module.staging-infrastructure.module.network.aws_route_table_association.public-b
@@ -92,7 +159,7 @@ $ terraform plan | grep -i module.staging-infrastructure
   + module.staging-infrastructure.module.network.aws_subnet.public-b
   + module.staging-infrastructure.module.network.aws_vpc.main
 
-# this first section represents the modules->infrastructure->modules->secdevops assets
+ the Next section represents the modules->infrastructure->modules->secdevops assets
 
   + module.staging-infrastructure.module.secdevops.aws_ebs_volume.kali-volume
   + module.staging-infrastructure.module.secdevops.aws_ebs_volume.nessus-volume
@@ -143,36 +210,3 @@ $ terraform plan | grep -i module.staging-infrastructure
   + module.staging-infrastructure.module.secdevops.null_resource.kali
 ```
 
-
-
-### Inspect
-
-```
-$ inspec exec /Users/cappetta/github/SecDevOps/CyberRange/terraform/inspec/cyberRange.targets.rb  -t aws://
-   Ignoring ffi-1.9.25 because its extensions are not built.  Try: gem pristine ffi --version 1.9.25
-   Ignoring unf_ext-0.0.7.5 because its extensions are not built.  Try: gem pristine unf_ext --version 0.0.7.5
-   Ignoring ffi-1.9.25 because its extensions are not built.  Try: gem pristine ffi --version 1.9.25
-   Ignoring unf_ext-0.0.7.5 because its extensions are not built.  Try: gem pristine unf_ext --version 0.0.7.5
-   
-   Profile: tests from /Users/cappetta/github/SecDevOps/CyberRange/terraform/inspec/cyberRange.targets.rb (tests from .Users.cappetta.github.SecDevOps.CyberRange.terraform.inspec.cyberRange.targets.rb)
-   Version: (not specified)
-   Target:  aws://
-   
-     EC2 Instance flarevm-win7-0
-        ✔  should exist
-        ×  should be running
-        expected that `EC2 Instance flarevm-win7-0` is running
-     EC2 Instance commando-pT16-0
-        ✔  should exist
-        ✔  should be running
-     EC2 Instance flarevm-win7-0
-        ×  image_id should eq "ami-0c0c82ce58fe950e6"
-   
-        expected: "ami-0c0c82ce58fe950e6"
-             got: "ami-02f2c19a14caca250"
-   
-        (compared using ==)
-   
-   
-   Test Summary: 3 successful, 2 failures, 0 skipped
-```

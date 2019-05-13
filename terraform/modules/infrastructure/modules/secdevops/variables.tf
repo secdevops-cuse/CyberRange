@@ -58,12 +58,12 @@ variable "docker_ct" {
 
 variable "instance_type_tpot" {
   description = "honeypot instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_type_docker" {
   description = "docker instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_type" {
@@ -73,12 +73,12 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_type_win" {
   description = "windows instance type"
-  default     = "t2.large"
+  default     = "t2.micro"
 }
 
 variable "tpot_root_vol_size" {
