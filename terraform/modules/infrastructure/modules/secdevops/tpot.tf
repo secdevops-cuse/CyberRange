@@ -22,7 +22,7 @@ resource "aws_instance" "tpot" {
   }
 
   tags {
-    Name = "tpot-${count.index}"
+    Name = "CyberRange-Tpot-${count.index}"
     Environment = "${var.environment}"
     Terraform = "True"
     Zombie = "True"
