@@ -12,7 +12,7 @@ resource "aws_instance" "cr_skytower" {
   ami           = "${data.aws_ami.skytower.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -29,7 +29,7 @@ resource "aws_instance" "cr_stapler" {
   ami           = "${data.aws_ami.stapler.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -46,7 +46,7 @@ resource "aws_instance" "cr_vulnos" {
   ami           = "${data.aws_ami.vulnos.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -63,7 +63,7 @@ resource "aws_instance" "cr_sickos" {
   ami           = "${data.aws_ami.sickos.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -80,7 +80,7 @@ resource "aws_instance" "cr_mrrobot" {
   ami           = "${data.aws_ami.mrrobot.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -97,7 +97,7 @@ resource "aws_instance" "cr_fristileaks" {
   ami           = "${data.aws_ami.fristileaks.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -114,7 +114,7 @@ resource "aws_instance" "cr_ms3_nix" {
   ami           = "${data.aws_ami.ms3_nix.id}"
   instance_type = "${var.instance_type_docker}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -131,7 +131,7 @@ resource "aws_instance" "cr_hackinos" {
   ami           = "${data.aws_ami.hackinos.id}"
   instance_type = "${var.instance_type}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -148,7 +148,7 @@ resource "aws_instance" "cr_bulldog" {
   ami           = "${data.aws_ami.bulldog.id}"
   instance_type = "${var.instance_type_docker}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
@@ -165,7 +165,7 @@ resource "aws_instance" "cr_myhouse7" {
   ami           = "${data.aws_ami.myhouse7.id}"
   instance_type = "${var.instance_type_docker}"
   subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.webgoat.id}"]
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
   root_block_device {
     delete_on_termination = true
