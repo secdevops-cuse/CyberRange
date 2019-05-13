@@ -8,7 +8,7 @@ locals {
 resource "aws_instance" "fbctf" {
   count = "${var.fbctf_ct}"
 
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami           = "${data.aws_ami.cuckoo-host.id}"
   instance_type = "${var.instance_type_docker}"
 
   subnet_id = "${element(local.fbctf_subnets_ids, count.index)}"
