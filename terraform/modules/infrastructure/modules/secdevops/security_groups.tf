@@ -145,8 +145,8 @@ resource "aws_security_group" "kali" {
 }
 
 #loot aka security group rules
-resource "aws_security_group" "webgoat" {
-  name        = "webgoat-instances"
+resource "aws_security_group" "targets" {
+  name        = "windows-linux-targets"
   description = "Access to webgoat instances"
   vpc_id      = "${var.vpc-id}"
 
