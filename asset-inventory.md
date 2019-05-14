@@ -8,14 +8,6 @@
  deploy them to the cloud & leverage it to host a dedicated set of 
  training assets for other security professionals.
 
- This ultimate goal is to share knowledge about how I 
- converted the vulnhub asset into a local ova/vmdk uploaded it into S3, 
- then created the ami's from the ova's.  From there I will have ami ids
- available for terraform deployment.  
-
- Given this is now the XXth iteration of this Cyber-Cloud project, 
- it is very likely it will continue to evolve.
- 
 ## Getting Access
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) or [Connect on Cyber Range Slack Channel](https://join.slack.com/t/acsaws/shared_invite/enQtNTg0NjU1NDY3MTQwLWU4MDc2ZDUyYjg4OTMxNTJkMDljMDM2NzRhOTQzZjQ3MTk1NTFkMmE4OTc2MGRiM2U4NzIwNTVkNmIzYWY0YmY") 
 
@@ -48,43 +40,3 @@ the `user/pass` for the win7/8 box is `IEUser/Passw0rd!` - all others you must r
   "ami": "ami-0278263968295c6e8"  "name": "Tenable-Core-SecurityCenter-20190308"
   "ami": "ami-082347635d1dcc9fa"  "name": "Tenable-Core-WAS-20190308"
 ```
-
-## Vulnerable machine (OVA) inventory
-Many of these ova's were created by other individuals.  Check out VulnHub, Google Search them, the name of the asset is 
-descriptively significant.
- 
-With plans to expand this list into the hundreds the specific reference URLS will be updated in bulk moving forward.
-
-Ref: Medium Article:            https://medium.com/@andr3w_hilton/oscp-training-vms-hosted-on-vulnhub-com-22fa061bf6a1
-[aws][x] FristiLeaks: 1.3       https://www.vulnhub.com/entry/fristileaks-13,133/
-[aws][x] Stapler: 1             https://www.vulnhub.com/entry/stapler-1,150/
-[aws][~] VulnOS: 2              https://www.vulnhub.com/entry/vulnos-2,147/
-[aws][x] SickOs: 1.2            https://www.vulnhub.com/entry/sickos-12,144/
-[aws][~] SkyTower: 1            https://www.vulnhub.com/entry/skytower-1,96/
-[aws][x] mrRobot:               https://www.vulnhub.com/entry/mr-robot-1,151/
-[aws][x] Metasploitable3 
-     [aws][x] win2k8 :          https://github.com/rapid7/metasploitable3
-     [aws][x] ubuntu1404 :      https://github.com/rapid7/metasploitable3
-[aws][x] Kali - 2019.1 & Metasploit v5
-[aws][x] Windows 7              
-[aws][x] Windows 8.1
-
-### In-Progress
-[ ][x] pwnlab_init:             https://www.vulnhub.com/entry/pwnlab-init,158/
-[ ][x] Metasploitable2 (nix):             
-[ ][~] Docker Assets:         
-[ ][~] Kioptrix:                https://www.vulnhub.com/entry/kioptrix-2014-5,62/
-[ ][~] Samuraiwtf               https://github.com/SamuraiWTF/samuraiwtf `"StatusMessage": "ClientError: Unsupported kernel version 4.9.0-8-amd64"`
-
-
-### Future Targets: 
-[] Docker Assets: https://github.com/vulhub/vulhub
-[] Generate vulnerable virtual machines on the fly:  https://github.com/SecGen/SecGen
-[] Vulnix:                https://www.vulnhub.com/entry/hacklab-vulnix,48/
-[] pWnOS: 2.0             https://www.vulnhub.com/entry/pwnos-20-pre-release,34/
-[] scream.exe             https://www.vulnhub.com/entry/devrandom-scream,47/
-
-
-
-## Technical Write-Ups
- Other OSCP attempt: https://github.com/ferreirasc/oscp
