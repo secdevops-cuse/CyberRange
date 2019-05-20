@@ -94,7 +94,7 @@ CyberRange combines best practices with emerging technologies.
 To use this project you need license keys for any products which require one.  
 
 To obtain an AWS free-tier account: [Amazon Free-Trial Sign-up](https://portal.aws.amazon.com/billing/signup?refid=em_127222) Note: The default configuration uses under-powered t2.micro assets.&nbsp;&nbsp;</div>
-To obtain a Nessus Essential license, e.g. for academic purposes, [Nessus Essentials License](https://www.tenable.com/products/nessus/nessus-essentials)
+To obtain a Nessus Essentials license, e.g. for academic purposes, [Nessus Essentials License](https://www.tenable.com/products/nessus/nessus-essentials)
 
 To obtain access to the private amazon images, simply enter a name, email, and AWS Account Number. 
 The account number enables the images to be shared across accounts.<br></div>
