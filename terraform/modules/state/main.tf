@@ -5,6 +5,10 @@
     enabled = true
   }
 
+  tags = {
+    environment = "${var.environment}"
+  }
+
   lifecycle {
     create_before_destroy = true
   }
@@ -19,5 +23,9 @@ resource "aws_dynamodb_table" "state-file-locking-table" {
   attribute {
     name = "LockID"
     type = "S"
+  }
+
+  tags = {
+    environment = "${var.environment}"
   }
 }
