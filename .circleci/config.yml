@@ -37,7 +37,7 @@ set_terraform_environment: &set_terraform_environment
     name: set terraform environment
     command: |
       cd && touch $BASH_ENV
-      apk add bash
+      apk add bash curl
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
       elif [ "${CIRCLE_BRANCH}" == "staging" || "${CIRCLE_BRANCH}" == "feature/kali-setup"]; then
