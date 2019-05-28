@@ -1,11 +1,3 @@
-variable "environment" {
-  default = "development"
-}
+variable "environment" {default = "staging"}
+variable "region" {default = "eu-west-2"}
 
-variable "region" {
-  default = "eu-west-2"
-}
-
-variable "company" {
-  default = "acs-dev"
-}

@@ -21,10 +21,9 @@ resource "aws_instance" "tpot" {
     delete_on_termination = "true"
   }
 
-  tags {
+  tags = {
     Name = "CyberRange-Tpot-${count.index}"
     Environment = "${var.environment}"
     Terraform = "True"
-    Zombie = "True"
   }
 }

@@ -3,7 +3,7 @@ version: 2
 references:
 
 base_image: &base_image
-  hashicorp/terraform:light
+  hashicorp/terraform:0.11.14
 
 working_directory: &working_directory
   ~/CyberRange
@@ -37,10 +37,10 @@ set_terraform_environment: &set_terraform_environment
     name: set terraform environment
     command: |
       cd && touch $BASH_ENV
-      apk add bash
+      apk add bash curl
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
-      elif [ "${CIRCLE_BRANCH}" == "staging" || "${CIRCLE_BRANCH}" == "feature/kali-setup"]; then
+      elif [ "${CIRCLE_BRANCH}" == "staging" || "${CIRCLE_BRANCH}" == "feature/kali-setup" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=staging' >> $BASH_ENV
       else
         echo 'export TERRAFORM_ENVIRONMENT=development' >> $BASH_ENV
@@ -183,4 +183,4 @@ workflows:
             - plan
           filters:
             branches:
-              only: development
+              only: master

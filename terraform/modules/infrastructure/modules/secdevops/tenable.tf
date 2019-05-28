@@ -19,23 +19,11 @@ resource "aws_instance" "nessus" {
     volume_size           = 120
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-nessus-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
-}
-
-resource "aws_ebs_volume" "nessus-volume" {
-  availability_zone = "${aws_instance.kali.availability_zone}"
-  type              = "gp2"
-  size              = 80
-}
-
-resource "aws_volume_attachment" "nessus-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.nessus.id}"
-  volume_id   = "${aws_ebs_volume.nessus-volume.id}"
 }
 
 resource "aws_instance" "was" {
@@ -52,24 +40,13 @@ resource "aws_instance" "was" {
     volume_size           = 250
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-was-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
 }
 
-resource "aws_ebs_volume" "was-volume" {
-  availability_zone = "${aws_instance.kali.availability_zone}"
-  type              = "gp2"
-  size              = 250
-}
-
-resource "aws_volume_attachment" "was-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.was.id}"
-  volume_id   = "${aws_ebs_volume.was-volume.id}"
-}
 
 
 resource "aws_instance" "sc" {
@@ -86,24 +63,13 @@ resource "aws_instance" "sc" {
     volume_size           = 250
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-sc-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
 }
 
-resource "aws_ebs_volume" "sc-volume" {
-  availability_zone = "${aws_instance.sc.availability_zone}"
-  type              = "gp2"
-  size              = 125
-}
-
-resource "aws_volume_attachment" "sc-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.sc.id}"
-  volume_id   = "${aws_ebs_volume.sc-volume.id}"
-}
 
 resource "aws_instance" "nnm" {
   count = "${var.kali_ct}"
@@ -119,21 +85,9 @@ resource "aws_instance" "nnm" {
     volume_size           = 120
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-nnm-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
-}
-
-resource "aws_ebs_volume" "nnm-volume" {
-  availability_zone = "${aws_instance.nnm.availability_zone}"
-  type              = "gp2"
-  size              = 80
-}
-
-resource "aws_volume_attachment" "nnm-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.nnm.id}"
-  volume_id   = "${aws_ebs_volume.nnm-volume.id}"
 }

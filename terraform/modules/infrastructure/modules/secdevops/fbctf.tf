@@ -25,7 +25,7 @@ resource "aws_instance" "fbctf" {
     delete_on_termination = "true"
   }
 
-  tags {
+  tags = {
     Name = "FB-CTF-${count.index}"
     Environment = "${var.environment}"
     Terraform = "True"
