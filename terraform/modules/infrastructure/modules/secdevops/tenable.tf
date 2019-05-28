@@ -26,18 +26,6 @@ resource "aws_instance" "nessus" {
   }
 }
 
-resource "aws_ebs_volume" "nessus-volume" {
-  availability_zone = "${aws_instance.kali.availability_zone}"
-  type              = "gp2"
-  size              = 80
-}
-
-resource "aws_volume_attachment" "nessus-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.nessus.id}"
-  volume_id   = "${aws_ebs_volume.nessus-volume.id}"
-}
-
 resource "aws_instance" "was" {
   count = "${var.kali_ct}"
 
@@ -59,17 +47,6 @@ resource "aws_instance" "was" {
   }
 }
 
-resource "aws_ebs_volume" "was-volume" {
-  availability_zone = "${aws_instance.kali.availability_zone}"
-  type              = "gp2"
-  size              = 250
-}
-
-resource "aws_volume_attachment" "was-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.was.id}"
-  volume_id   = "${aws_ebs_volume.was-volume.id}"
-}
 
 
 resource "aws_instance" "sc" {
@@ -93,17 +70,6 @@ resource "aws_instance" "sc" {
   }
 }
 
-resource "aws_ebs_volume" "sc-volume" {
-  availability_zone = "${aws_instance.sc.availability_zone}"
-  type              = "gp2"
-  size              = 125
-}
-
-resource "aws_volume_attachment" "sc-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.sc.id}"
-  volume_id   = "${aws_ebs_volume.sc-volume.id}"
-}
 
 resource "aws_instance" "nnm" {
   count = "${var.kali_ct}"
@@ -124,16 +90,4 @@ resource "aws_instance" "nnm" {
     Environment = "${var.environment}"
     Terraform   = "True"
   }
-}
-
-resource "aws_ebs_volume" "nnm-volume" {
-  availability_zone = "${aws_instance.nnm.availability_zone}"
-  type              = "gp2"
-  size              = 80
-}
-
-resource "aws_volume_attachment" "nnm-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.nnm.id}"
-  volume_id   = "${aws_ebs_volume.nnm-volume.id}"
 }

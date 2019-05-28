@@ -31,15 +31,3 @@ resource "aws_instance" "r7vm" {
     Terraform   = "True"
   }
 }
-
-resource "aws_ebs_volume" "r7-volume" {
-  availability_zone = "${aws_instance.kali.availability_zone}"
-  type              = "gp2"
-  size              = 80
-}
-
-resource "aws_volume_attachment" "r7-volume-attachment" {
-  device_name = "/dev/xvdb"
-  instance_id = "${aws_instance.r7vm.id}"
-  volume_id   = "${aws_ebs_volume.r7-volume.id}"
-}
