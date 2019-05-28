@@ -1,11 +1,11 @@
-resource "aws_s3_bucket" "state-file-bucket" {
+  resource "aws_s3_bucket" "state-file-bucket" {
   bucket = "${var.environment}-state-file"
 
   versioning {
     enabled = true
   }
 
-  tags {
+  tags = {
     environment = "${var.environment}"
   }
 
@@ -25,7 +25,7 @@ resource "aws_dynamodb_table" "state-file-locking-table" {
     type = "S"
   }
 
-  tags {
+  tags = {
     environment = "${var.environment}"
   }
 }
