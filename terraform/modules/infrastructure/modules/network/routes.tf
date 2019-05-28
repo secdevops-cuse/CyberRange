@@ -6,7 +6,7 @@ resource "aws_route_table" "public-a" {
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
 
-  tags {
+  tags = {
     name        = "public-a"
     environment = "${var.environment}"
   }
@@ -26,7 +26,7 @@ resource "aws_route_table" "public-b" {
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
 
-  tags {
+  tags = {
     name        = "public-b"
     environment = "${var.environment}"
   }
@@ -45,7 +45,7 @@ resource "aws_route_table" "private-a" {
     nat_gateway_id = "${aws_nat_gateway.nat-a.id}"
   }
 
-  tags {
+  tags = {
     name        = "private-a"
     environment = "${var.environment}"
   }
@@ -64,7 +64,7 @@ resource "aws_route_table" "private-b" {
     nat_gateway_id = "${aws_nat_gateway.nat-b.id}"
   }
 
-  tags {
+  tags = {
     name        = "private-b"
     environment = "${var.environment}"
   }

@@ -19,7 +19,7 @@ resource "aws_subnet" "public-b" {
   availability_zone       = "${data.aws_availability_zones.available.names[1]}"
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     name        = "public-b"
     environment = "${var.environment}"
   }
