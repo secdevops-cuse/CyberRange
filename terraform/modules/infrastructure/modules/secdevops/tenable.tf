@@ -19,7 +19,7 @@ resource "aws_instance" "nessus" {
     volume_size           = 120
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-nessus-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
@@ -52,7 +52,7 @@ resource "aws_instance" "was" {
     volume_size           = 250
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-was-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
@@ -86,7 +86,7 @@ resource "aws_instance" "sc" {
     volume_size           = 250
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-sc-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
@@ -119,7 +119,7 @@ resource "aws_instance" "nnm" {
     volume_size           = 120
   }
 
-  tags {
+  tags = {
     Name        = "CyberRange-nnm-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"

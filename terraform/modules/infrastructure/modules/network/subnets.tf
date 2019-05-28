@@ -4,7 +4,7 @@ resource "aws_subnet" "public-a" {
   availability_zone       = "${data.aws_availability_zones.available.names[0]}"
 //  map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     name        = "public-a"
     environment = "${var.environment}"
   }
@@ -34,7 +34,7 @@ resource "aws_subnet" "private-a" {
   cidr_block        = "10.0.2.0/24"
   availability_zone = "${data.aws_availability_zones.available.names[0]}"
 
-  tags {
+  tags = {
     name        = "private-a"
     environment = "${var.environment}"
   }
@@ -49,7 +49,7 @@ resource "aws_subnet" "private-b" {
   cidr_block        = "10.0.4.0/24"
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
 
-  tags {
+  tags = {
     name        = "private-b"
     environment = "${var.environment}"
   }
@@ -65,7 +65,7 @@ resource "aws_subnet" "kali_subnets_ids" {
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     name        = "kali_subnet"
     environment = "${var.environment}"
   }
@@ -81,7 +81,7 @@ resource "aws_subnet" "malware_subnets_ids" {
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     name        = "malware_subnet"
     environment = "${var.environment}"
   }
