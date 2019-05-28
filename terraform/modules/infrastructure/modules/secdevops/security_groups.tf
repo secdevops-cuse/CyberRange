@@ -47,9 +47,9 @@ resource "aws_security_group" "tpot" {
   }
 
   tags = {
-    Name = "T-Pot",
-    Environment             = "${var.environment}"
-    Terraform               = "True"
+    Name        = "T-Pot",
+    Environment = "${var.environment}"
+    Terraform   = "True"
   }
 }
 
@@ -88,9 +88,9 @@ resource "aws_security_group" "fbctf" {
   }
 
   tags = {
-    Name                    = "FB-CTF-${count.index}"
-    Environment             = "${var.environment}"
-    Terraform               = "True"
+    Name          = "FB-CTF"
+    Environment   = "${var.environment}"
+    Terraform     = "True"
   }
 }
 
@@ -138,7 +138,7 @@ resource "aws_security_group" "kali" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name        = "kali-${count.index}"
+    Name        = "kali"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -190,7 +190,7 @@ resource "aws_security_group" "targets" {
     cidr_blocks = ["${var.ip_list}"]
   }
   tags = {
-    Name        = "webgoat-instances"
+    Name        = "webgoat_sg"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -295,6 +295,11 @@ resource "aws_security_group" "windows" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name        = "detectionlab_sg"
+    Environment = "${var.environment}"
+    Terraform   = "True"
+  }
 }
 
 resource "aws_security_group" "malware" {
@@ -318,7 +323,7 @@ resource "aws_security_group" "malware" {
     cidr_blocks = ["66.66.66.66/32"]
   }
   tags = {
-    Name        = "malware-${count.index}"
+    Name        = "malware_sg"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
