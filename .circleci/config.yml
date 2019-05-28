@@ -183,4 +183,4 @@ workflows:
             - plan
           filters:
             branches:
-              only: development
+              only: master
