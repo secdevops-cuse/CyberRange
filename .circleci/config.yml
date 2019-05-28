@@ -94,7 +94,7 @@ apply_job: &apply_job
     - *alpine_setup
     - run:
         name: Delete Terraform Assets
-        when: on_fail
+#        when: on_fail
         command: |
           source $BASH_ENV
           cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
