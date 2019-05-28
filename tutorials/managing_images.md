@@ -63,11 +63,10 @@ simply replace 123412341234 with the appropriate numerical identifier
 ```
 
 
-## Copy images from one region to another...
- 
-When you are logged into one AWS region, you can quickly copy over an image from 
+## Share the AMI's with users:
+    for image in in $(aws ec2 describe-images --owner 588675961644| jq -r '.Images[].ImageId'| egrep -iv "0ba457e31b3666965|0911621222a8c9590|02f2c19a14caca250|0de7687b932832df7"); do echo aws ec2 modify-image-attribute --image-id $image --launch-permission \"Add=[{UserId=01234567890123}]\";  done 
 
-# Copy AMI's to rename them 
+# Copy AMI's and rename them with a custom name 
 `chkami | awk '{print "aws ec2 copy-image --source-image-id " $2 " --source-region us-east-1 --name " $4}'`
 
 ```
