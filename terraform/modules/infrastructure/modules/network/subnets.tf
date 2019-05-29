@@ -47,21 +47,23 @@ resource "aws_subnet" "malware_subnet" {
   }
 }
 
-//resource "aws_subnet" "public-b" {
-//  vpc_id                  = "${aws_vpc.main.id}"
-//  cidr_block              = "10.0.254.0/24"
-//  availability_zone       = "${data.aws_availability_zones.available.names[1]}"
-//  map_public_ip_on_launch = true
-//
-//  tags = {
-//    name        = "not-in-use-public-b"
-//    environment = "${var.environment}"
-//  }
-//
-//  lifecycle {
-//    create_before_destroy = true
-//  }
-//}
+
+
+resource "aws_subnet" "honeypot_subnet" {
+  vpc_id            = "${aws_vpc.main.id}"
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  map_public_ip_on_launch = true
+
+  tags = {
+    name        = "malware_subnet"
+    environment = "${var.environment}"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
 resource "aws_subnet" "private-a" {
   vpc_id            = "${aws_vpc.main.id}"
