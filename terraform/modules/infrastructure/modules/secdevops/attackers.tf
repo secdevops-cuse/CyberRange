@@ -26,16 +26,16 @@ resource "aws_instance" "kali" {
   }
 }
 
-resource "null_resource" "kali" {
-  count = "1"
-
-  connection {
-    type        = "ssh"
-    user        = "ec2-user"
-    private_key = "${file("../../keys/circleci_terraform")}"
-    host        = "${element(aws_instance.kali.*.public_ip, count.index)}"
-  }
-}
+//resource "null_resource" "kali" {
+//  count = "1"
+//
+//  connection {
+//    type        = "ssh"
+//    user        = "ec2-user"
+//    private_key = "${file("../../keys/circleci_terraform")}"
+//    host        = "${element(aws_instance.kali.*.public_ip, count.index)}"
+//  }
+//}
 
 resource "aws_instance" "pT10_commando" {
   count = "${var.docker_ct}"
