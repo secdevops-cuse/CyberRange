@@ -39,11 +39,11 @@ set_terraform_environment: &set_terraform_environment
       cd && touch $BASH_ENV
       apk add bash curl
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
-        echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
+        echo 'export TERRAFORM_ENVIRONMENT=us-east-1' >> $BASH_ENV
       elif [ "${CIRCLE_BRANCH}" == "staging" || "${CIRCLE_BRANCH}" == "feature/kali-setup" ]; then
-        echo 'export TERRAFORM_ENVIRONMENT=staging' >> $BASH_ENV
+        echo 'export TERRAFORM_ENVIRONMENT=us-west-2' >> $BASH_ENV
       else
-        echo 'export TERRAFORM_ENVIRONMENT=development' >> $BASH_ENV
+        echo 'export TERRAFORM_ENVIRONMENT=us-east-1' >> $BASH_ENV
       fi
 
 terraform_init: &terraform_init
