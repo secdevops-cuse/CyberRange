@@ -10,12 +10,20 @@ variable "vpc-cidr-block" {
   description = "the cidr block of the vpc"
 }
 
-variable "public-a-subnet-id" {
-  description = "public subnet a"
+variable "target_subnet_id" {
+  description = "target subnet"
 }
 
-variable "public-b-subnet-id" {
-  description = "public subnet b"
+variable "attacker_subnet_id" {
+  description = "attacker subnet"
+}
+
+variable "malware_subnet_id" {
+  description = "malware subnet"
+}
+
+variable "honeypot_subnet_id" {
+  description = "honeypot subnet"
 }
 
 variable "private-a-subnet-id" {
@@ -27,7 +35,7 @@ variable "private-b-subnet-id" {
 }
 
 variable "ip_list" {
-  default     = "71.115.214.236/32"
+  default     = "71.115.185.126/32"
   description = "private ip"
 }
 
@@ -58,7 +66,7 @@ variable "docker_ct" {
 
 variable "instance_type_tpot" {
   description = "honeypot instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_type_docker" {
@@ -73,22 +81,22 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_type_win" {
   description = "windows instance type"
-  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "tpot_root_vol_size" {
   description = "tpot root volume size"
-  default     = "300"
+  default     = "40"
 }
 
 variable "fbctf_root_vol_size" {
   description = "root / boot volume size"
-  default     = "30"
+  default     = "40"
 }
 
 variable "tpot_user_data" {
@@ -116,7 +124,9 @@ variable "bootstrap_flarevm_userdata" {
   default     = "../../modules/infrastructure/cloud-init/bootstrap.flarevm.yml"
 }
 
-# setup a default user/pass
+# setup a default user/pass for winrm connections
+# vagrant/vagrant
+# IEUser/
 variable "winrm_user" {
   description = "The winrm user we login as"
   default = "terraform"

@@ -260,3 +260,9 @@ data "aws_ami" "win2k19" {
     values = ["hvm"]
   }
 }
+
+data "aws_ami" "remnux" {
+  most_recent      = true
+  name_regex       = ".*remnux.*"
+  owners           = ["588675961644"]
+}

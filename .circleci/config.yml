@@ -3,7 +3,7 @@ version: 2
 references:
 
 base_image: &base_image
-  hashicorp/terraform:0.11.14
+  hashicorp/terraform:latest
 
 working_directory: &working_directory
   ~/CyberRange
@@ -94,7 +94,7 @@ apply_job: &apply_job
     - *alpine_setup
     - run:
         name: Delete Terraform Assets
-        when: on_fail
+#        when: on_fail
         command: |
           source $BASH_ENV
           cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT

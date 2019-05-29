@@ -2,8 +2,8 @@
 # original reference: https://github.com/BlacksInTechnologyOrg/bit-pentest-labs/blob/master/aws/terraform/modules/webgoat/webgoat.tf
 locals {
   cyberRange_subnets_ids = [
-    "${var.public-a-subnet-id}",
-    "${var.public-b-subnet-id}",
+    "${var.target_subnet_id}",
+    "${var.attacker_subnet_id}",
   ]
 }
 
@@ -172,6 +172,25 @@ resource "aws_instance" "cr_myhouse7" {
   }
   tags = {
     Name        = "CyberRange-myhouse7-${count.index}"
+    Environment = "${var.environment}"
+    Terraform   = "True"
+  }
+}
+
+resource "aws_instance" "docker" {
+  count = "${var.docker_ct}"
+
+  ami           = "${data.aws_ami.centos.id}"
+  instance_type = "${var.instance_type_docker}"
+  subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
+  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
+  key_name = "${aws_key_pair.circleci_key.key_name}"
+  user_data = "${file("../../modules/infrastructure/cloud-init/docker.targets.yml")}"
+  root_block_device {
+    delete_on_termination = true
+  }
+  tags = {
+    Name        = "CyberRange-docker-web-apps-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }

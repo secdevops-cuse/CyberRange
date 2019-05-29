@@ -1,7 +1,7 @@
 locals {
   tenable_subnet_ids = [
-    "${var.public-b-subnet-id}",
-    "${var.public-a-subnet-id}",
+    "${var.attacker_subnet_id}",
+    "${var.target_subnet_id}",
   ]
 }
 
