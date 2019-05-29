@@ -13,7 +13,7 @@ resource "aws_route_table" "public-a" {
 }
 
 resource "aws_route_table_association" "public-a" {
-  subnet_id      = "${aws_subnet.public-a.id}"
+  subnet_id      = "${aws_subnet.attacker_subnet.id}"
   route_table_id = "${aws_route_table.public-a.id}"
 }
 
@@ -33,7 +33,7 @@ resource "aws_route_table" "public-b" {
 }
 
 resource "aws_route_table_association" "public-b" {
-  subnet_id      = "${aws_subnet.public-b.id}"
+  subnet_id      = "${aws_subnet.target_subnet.id}"
   route_table_id = "${aws_route_table.public-b.id}"
 }
 

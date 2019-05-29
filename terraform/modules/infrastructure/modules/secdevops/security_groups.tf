@@ -95,8 +95,8 @@ resource "aws_security_group" "fbctf" {
 }
 
 resource "aws_security_group" "kali" {
-  name        = "kali"
-  description = "kali"
+  name        = "attackers"
+  description = "penetration testing assets"
   vpc_id      = "${var.vpc-id}"
 
 
@@ -146,8 +146,8 @@ resource "aws_security_group" "kali" {
 
 #loot aka security group rules
 resource "aws_security_group" "targets" {
-  name        = "windows-linux-targets"
-  description = "Access to webgoat instances"
+  name        = "targets"
+  description = "windows / linux targets"
   vpc_id      = "${var.vpc-id}"
 
   # terminal/ssh rule
