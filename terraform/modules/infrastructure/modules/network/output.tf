@@ -6,12 +6,13 @@ output "vpc-cidr-block" {
   value = "${aws_vpc.main.cidr_block}"
 }
 
-output "public-a-subnet-id" {
-  value = "${aws_subnet.public-a.id}"
+// todo: refactor across secdevops module
+output "target_subnet_id" {
+  value = "${aws_subnet.target_subnet.id}"
 }
 
-output "public-b-subnet-id" {
-  value = "${aws_subnet.public-b.id}"
+output "attacker_subnet_id" {
+  value = "${aws_subnet.attacker_subnet.id}"
 }
 
 output "private-a-subnet-id" {
@@ -20,4 +21,12 @@ output "private-a-subnet-id" {
 
 output "private-b-subnet-id" {
   value = "${aws_subnet.private-b.id}"
+}
+
+output "private-attacker-subnet-id" {
+  value = "${aws_subnet.attacker_subnet.id}"
+}
+
+output "private-malware-subnet-id" {
+  value = "${aws_subnet.malware_subnet.id}"
 }

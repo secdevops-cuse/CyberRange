@@ -1,7 +1,7 @@
 locals {
   fbctf_subnets_ids = [
-    "${var.public-a-subnet-id}",
-    "${var.public-b-subnet-id}",
+    "${var.target_subnet_id}",
+    "${var.attacker_subnet_id}",
   ]
 }
 
@@ -26,7 +26,7 @@ resource "aws_instance" "fbctf" {
   }
 
   tags = {
-    Name = "FB-CTF-${count.index}"
+    Name = "CyberRange-FBCTF-${count.index}"
     Environment = "${var.environment}"
     Terraform = "True"
     Zombie = "True"

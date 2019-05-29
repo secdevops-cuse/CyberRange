@@ -10,11 +10,11 @@ variable "vpc-cidr-block" {
   description = "the cidr block of the vpc"
 }
 
-variable "public-a-subnet-id" {
+variable "target_subnet_id" {
   description = "public subnet a"
 }
 
-variable "public-b-subnet-id" {
+variable "attacker_subnet_id" {
   description = "public subnet b"
 }
 
