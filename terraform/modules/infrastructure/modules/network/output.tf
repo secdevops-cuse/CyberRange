@@ -18,6 +18,7 @@ output "attacker_subnet_id" {
 output "honeypot_subnet_id" {
   value = "${aws_subnet.honeypot_subnet.id}"
 }
+
 output "malware_subnet_id" {
   value = "${aws_subnet.malware_subnet.id}"
 }

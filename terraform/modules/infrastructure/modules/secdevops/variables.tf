@@ -18,6 +18,14 @@ variable "attacker_subnet_id" {
   description = "attacker subnet"
 }
 
+variable "malware_subnet_id" {
+  description = "malware subnet"
+}
+
+variable "honeypot_subnet_id" {
+  description = "honeypot subnet"
+}
+
 variable "private-a-subnet-id" {
   description = "private subnet a"
 }

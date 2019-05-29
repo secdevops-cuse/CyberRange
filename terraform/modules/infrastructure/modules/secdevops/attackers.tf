@@ -51,7 +51,7 @@ resource "aws_instance" "r7vm" {
   ami = "${data.aws_ami.r7.id}"
   instance_type = "${var.instance_type_kali}"
 
-  subnet_id              = "${element(local.scanner_subnet_ids, count.index)}"
+  subnet_id              = "${element(local.pen_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
 
   key_name = "${aws_key_pair.circleci_key.key_name}"
