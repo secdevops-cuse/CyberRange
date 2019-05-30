@@ -1,5 +1,5 @@
 variable "environment" {
-  default = "staging - eu-west-2"
+  default = "staging-eu-west-2"
 }
 
 variable "region" {
