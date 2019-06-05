@@ -5,8 +5,8 @@ resource "aws_security_group" "tpot" {
 
   ingress {
     from_port   = 0
-    to_port     = 64294
-    protocol    = "tcp"
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -315,7 +315,15 @@ resource "aws_security_group" "malware" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # outbound internet access
+  # ssh access
+  ingress {
+    from_port   = 0
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.ip_list}"]
+  }
+
+  # outbound internet access - eliminate everything
   egress {
     from_port   = 1
     to_port     = 1
