@@ -26,29 +26,6 @@ resource "aws_instance" "nessus" {
   }
 }
 
-resource "aws_instance" "was" {
-  count = "${var.kali_ct}"
-
-  ami = "${data.aws_ami.was.id}"
-  instance_type = "${var.instance_type_kali}"
-  subnet_id              = "${element(local.tenable_subnet_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-
-  root_block_device {
-    delete_on_termination = true
-    volume_size           = 250
-  }
-
-  tags = {
-    Name        = "CyberRange-was-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
-
-
-
 resource "aws_instance" "sc" {
   count = "${var.kali_ct}"
 
