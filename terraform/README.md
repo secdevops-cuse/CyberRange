@@ -77,6 +77,8 @@ creating the subnet.
 `nxadmin / nxpassword`
 </br>
 `remnux / malware`
+</br>
+`webuser / w3b$ecret`
 
 ### Ports:
 8000 - Nessus Network Monitor
@@ -84,3 +86,4 @@ creating the subnet.
 8834 - Nessus
 3780 - R7 Insight VM
 3389 - CommandoVM  / Flare VM
+64297 - TPot
