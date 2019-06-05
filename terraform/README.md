@@ -1,8 +1,8 @@
-Development - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/development.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/development)  
+<!--Development - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/development.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/development)  -->
 
 <!--Stage - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/stage.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/stage)-->
 
-<!--Master - [![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/master.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/master)-->
+[![CircleCI](https://circleci.com/gh/cappetta/cyberRange/tree/master.svg?style=svg)](https://circleci.com/gh/cappetta/cyberRange/tree/master)
 
 
 # CyberRange Terraform 
@@ -55,7 +55,7 @@ then let's initialize terraform in the desired aws region
     - infrastructure
         - cloud-init
         - config
-        - modules
+        - assets
         
     - state
  - tutorials            
@@ -68,8 +68,22 @@ specific `map_public_ip_on_launch = true` configuration.  Add this configuration
 creating the subnet.
   
 ### Default Users / Passwords
-`IEUser / Passw0rd!` - win7
+`IEUser / Passw0rd!` - win7 / FlareVM
 <br/>
 `terraform / terraform`
 <br/>
-`administrator / terraform`
+`administrator / terraform` - CommandoVM
+<br/>
+`nxadmin / nxpassword`
+</br>
+`remnux / malware`
+</br>
+`webuser / w3b$ecret`
+
+### Ports:
+8000 - Nessus Network Monitor
+443 - Tenable.SC
+8834 - Nessus
+3780 - R7 Insight VM
+3389 - CommandoVM  / Flare VM
+64297 - TPot

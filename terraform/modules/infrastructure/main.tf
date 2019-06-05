@@ -1,10 +1,10 @@
 module "network" {
-  source = "./modules/network"
+  source = "./assets/network"
   environment = "${var.environment}"
 }
 
 module "secdevops" {
-  source = "./modules/secdevops"
+  source = "./assets/secdevops"
 
   environment = "${var.environment}"
 

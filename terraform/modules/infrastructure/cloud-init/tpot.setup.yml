@@ -5,7 +5,8 @@ runcmd:
   - export TERM=xterm
   - apt update
   - apt install -y git
-  - cd ~ubuntu
-  - git clone https://github.com/dtag-dev-sec/t-pot-autoinstall.git
-  - t-pot-autoinstall/install.sh ubuntu 4 tpotadmin
-  - chown -R ubuntu:ubuntu t-pot-autoinstall
+  - cd ~admin
+  - git clone https://github.com/dtag-dev-sec/tpotce
+  - cd tpotce/iso/installer/
+  - cp tpot.conf.dist tpot.conf
+  - sudo ./install.sh --type=user  --conf=tpot.conf

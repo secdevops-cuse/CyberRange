@@ -35,7 +35,8 @@ variable "private-b-subnet-id" {
 }
 
 variable "ip_list" {
-  default     = "71.115.185.126/32"
+  default     = "188.214.10.182/32"
+//  default     = "194.42.227.56/32"
   description = "private ip"
 }
 

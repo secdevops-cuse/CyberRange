@@ -5,6 +5,15 @@ data "aws_ami" "ubuntu" {
   name_regex       = ".*ubuntu-xenial-16.04-amd64-server-20190501.*"
 }
 
+data "aws_ami" "debianstretch" {
+  most_recent       = true
+  owners            = ["679593333241"]
+
+  filter {
+    name   = "name"
+    values = ["debian-stretch-hvm-x86_64-*"]
+  }
+}
 
 data "aws_ami" "cuckoo-host" {
   most_recent = true
