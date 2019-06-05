@@ -16,7 +16,7 @@ resource "aws_instance" "kali" {
 
   root_block_device {
     delete_on_termination = true
-    volume_size           = 100
+    volume_size           = 120
   }
   tags = {
     Name        = "CyberRange-kali-linux-${count.index}"
@@ -35,7 +35,7 @@ resource "aws_instance" "pT10_commando" {
 
   root_block_device {
     delete_on_termination = true
-    volume_size           = 100
+    volume_size           = 120
   }
   tags = {
     Name        = "CyberRange-commando-pT16-${count.index}"
