@@ -1,14 +1,14 @@
 locals {
   subnets_ids = [
-    "${var.target_subnet_id}",
     "${var.attacker_subnet_id}",
+    "${var.target_subnet_id}",
   ]
 }
 
 resource "aws_instance" "tpot" {
   count = "${var.tpot_ct}"
 
-  ami           = "${data.aws_ami.cuckoo-host.id}"
+  ami           = "${data.aws_ami.debianstretch.id}"
   instance_type = "${var.instance_type_tpot}"
   subnet_id = "${element(local.subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.tpot.id}"]

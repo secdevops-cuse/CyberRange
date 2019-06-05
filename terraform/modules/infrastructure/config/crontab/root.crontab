@@ -1,0 +1,3 @@
+@reboot /usr/bin/vncserver :1
+@reboot systemctl nessusd restart
+@reboot service postgresql restart

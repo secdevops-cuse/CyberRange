@@ -11,7 +11,7 @@ module "staging-state" {
 terraform {
   backend "s3" {
     bucket  = "secdevops-cuse"
-    key     = "development/secdevops-cuse-dev.tfstate"
+    key     = "virginia/secdevops-cuse-dev.tfstate"
     region  = "us-east-1"
     encrypt = true
   }

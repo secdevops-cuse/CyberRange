@@ -1,0 +1,33 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: vncboot
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start VNC Server at boot time
+# Description: Start VNC Server at boot time.
+### END INIT INFO
+
+USER=root
+HOME=/root
+export USER HOME
+
+case "$1" in
+ start)
+   echo "Starting VNC Server"
+   /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -localhost -nolisten tcp
+   ;;
+
+ stop)
+   echo "Stopping VNC Server"
+   /usr/bin/vncserver -kill :1
+   ;;
+
+ *)
+   echo "Usage: /etc/init.d/vncboot {start|stop}"
+   exit 1
+   ;;
+esac
+
+exit 0
