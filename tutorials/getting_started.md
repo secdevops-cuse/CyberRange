@@ -76,13 +76,13 @@ This primarily outlines a windows desktop setup.
 
 ## Getting Started
 - Clone the repo
-- go into the environment directory: `cd terraform/environments/staging/`
-	- this is the main directory you will perform terraform commands from
+- go into the environment directory: `cd terraform/environments/eu-west-2`
 	- update the region in the following files:
 		- terraform.tfvars
 		- variables.tf
 		- main.tf
-	- update the s3 bucket name on Line 13 of `main.tf`
+	    - s3 bucket name in `main.tf`
+	    - IP address of the system in `secdevops/variables.tf` 
 - initialize the terraform project with `terraform init`
 	```
 	$ terraform init

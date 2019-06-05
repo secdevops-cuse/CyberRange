@@ -16,9 +16,8 @@ resource "aws_instance" "kali" {
 
   root_block_device {
     delete_on_termination = true
-    volume_size           = 120
+    volume_size           = 100
   }
-
   tags = {
     Name        = "CyberRange-kali-linux-${count.index}"
     Environment = "${var.environment}"
@@ -33,10 +32,10 @@ resource "aws_instance" "pT10_commando" {
   subnet_id              = "${element(local.pen_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data               = "${file("../../modules/infrastructure/cloud-init/bootstrap.commando.yml")}"
+
   root_block_device {
     delete_on_termination = true
-    volume_size           = 150
+    volume_size           = 100
   }
   tags = {
     Name        = "CyberRange-commando-pT16-${count.index}"
@@ -53,14 +52,11 @@ resource "aws_instance" "r7vm" {
 
   subnet_id              = "${element(local.pen_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
-
   key_name = "${aws_key_pair.circleci_key.key_name}"
-
-  user_data = "${file("../../modules/infrastructure/cloud-init/kali.yml")}"
 
   root_block_device {
     delete_on_termination = true
-    volume_size           = 120
+    volume_size           = 100
   }
 
   tags = {
