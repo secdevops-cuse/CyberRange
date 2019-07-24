@@ -2,8 +2,13 @@
 data "aws_ami" "ubuntu" {
   most_recent = true
   owners = ["099720109477"]
-  name_regex       = ".*ubuntu-xenial-16.04-amd64-server-20190501.*"
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+  }
 }
+
 
 data "aws_ami" "debianstretch" {
   most_recent       = true
@@ -180,20 +185,6 @@ name_regex       = ".*win2010.*"
 owners           = ["588675961644"]
 }
 
-data "aws_ami" "win2k3" {
-  most_recent = true
-  owners = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["*2003-R2_SP2-English-32Bit*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
 
 data "aws_ami" "win2k8" {
   most_recent = true
