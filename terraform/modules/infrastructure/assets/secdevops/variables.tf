@@ -1,3 +1,8 @@
+variable "ip_list" {
+  description = "Lock this environment down to your IP"
+    default     = "71.115.195.211/32"
+}
+
 variable "environment" {
   description = "the environment the deployment is running as"
 }
@@ -34,16 +39,6 @@ variable "private-b-subnet-id" {
   description = "private subnet b"
 }
 
-variable "ip_list" {
-  default     = "188.214.10.182/32"
-//  default     = "194.42.227.56/32"
-  description = "private ip"
-}
-
-variable "count" {
-  description = "default # of assets to create"
-  default     = 1
-}
 
 variable "tpot_ct" {
   description = "# of tpot assets to create"
@@ -67,12 +62,12 @@ variable "docker_ct" {
 
 variable "instance_type_tpot" {
   description = "honeypot instance type"
-  default     = "t2.micro"
+  default     = "t2.large"
 }
 
 variable "instance_type_docker" {
   description = "docker instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "instance_type" {
@@ -82,12 +77,12 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.micro"
+  default     = "t2.large"
 }
 
 variable "instance_type_win" {
   description = "windows instance type"
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "tpot_root_vol_size" {
@@ -126,8 +121,6 @@ variable "bootstrap_flarevm_userdata" {
 }
 
 # setup a default user/pass for winrm connections
-# vagrant/vagrant
-# IEUser/
 variable "winrm_user" {
   description = "The winrm user we login as"
   default = "terraform"
