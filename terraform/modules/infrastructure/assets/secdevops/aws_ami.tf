@@ -192,7 +192,7 @@ data "aws_ami" "win2k8" {
 
   filter {
     name   = "name"
-    values = ["*2008-R2_SP1-English-64Bit-SQL_2008_R2_SP3_Express*"]
+    values = ["*Microsoft Windows Server 2008 SP2 Datacenter 64-bit*"]
   }
 
   filter {
