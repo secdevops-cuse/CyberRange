@@ -56,7 +56,7 @@ This primarily outlines a windows desktop setup.
                 - confirm 2 files now exist, same name but 1 without the .pub extension
         - Initialize terraform:
             - execute: 
-                - `cd $env.HOMEPATH\Desktop\CyberRange\terraform\environments\development`
+                - `cd $env.HOMEPATH\Desktop\CyberRange\terraform\environments\eu-west-2`
                 - `terraform.exe init`
             - confirm the msg `Terraform has been successfully initialized!` exists in the output
             
