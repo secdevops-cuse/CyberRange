@@ -16,7 +16,7 @@ resource "aws_instance" "kali" {
 
   root_block_device {
     delete_on_termination = true
-    volume_size           = 120
+    volume_size           = 160
   }
   tags = {
     Name        = "CyberRange-kali-linux-${count.index}"
@@ -30,12 +30,12 @@ resource "aws_instance" "pT10_commando" {
   ami = "${data.aws_ami.commando.id}"
   instance_type = "${var.instance_type_win}"
   subnet_id              = "${element(local.pen_subnet_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.kali.id}"]
+  vpc_security_group_ids = ["${aws_security_group.windows.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
 
   root_block_device {
     delete_on_termination = true
-    volume_size           = 120
+    volume_size           = 160
   }
   tags = {
     Name        = "CyberRange-commando-pT16-${count.index}"
