@@ -10,9 +10,13 @@ module "staging-state" {
 
 terraform {
   backend "s3" {
-    bucket  = "secdevops-cuse-london"
-    key     = "london/secdevops-cuse.tfstate"
-    region  = "eu-west-2"
+    bucket  = var.bucket
+    key     = var.bucketkey
+    region  = var.region
+    #todo: remove after testing
+//    bucket  = "secdevops-cuse-london"
+//    key     = "london/secdevops-cuse.tfstate"
+//    region  = "eu-west-2"
     encrypt = true
   }
 }
