@@ -1,0 +1,3 @@
+#cloud-config
+runcmd:
+  - sudo /etc/init.d/ssh start
