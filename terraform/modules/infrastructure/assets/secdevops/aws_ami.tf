@@ -115,7 +115,13 @@ data "aws_ami" "flare" {
 
 data "aws_ami" "commando" {
   most_recent      = true
-  name_regex       = ".*commando.*"
+  name_regex       = ".*commandovm.*"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "commandov2" {
+  most_recent      = true
+  name_regex       = ".*commando.*v2.*kali.*"
   owners           = ["588675961644"]
 }
 
@@ -264,5 +270,11 @@ data "aws_ami" "win2k19" {
 data "aws_ami" "remnux" {
   most_recent      = true
   name_regex       = ".*remnux.*"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "tpot" {
+  most_recent      = true
+  name_regex       = ".*tpot.*"
   owners           = ["588675961644"]
 }

@@ -10,9 +10,9 @@ module "staging-state" {
 
 terraform {
   backend "s3" {
-    bucket  = "secdevops-cuse"
-    key     = "virginia/secdevops-cuse-dev.tfstate"
-    region  = "us-east-1"
+        bucket  = "secdevops-cuse"
+        key     = "virginia/secdevops-cuse-dev.tfstate"
+        region  = "us-east-1"
     encrypt = true
   }
 }

@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "remnux",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/remnux-6.0-ova-public.ova"
+    }
+  }
+]
