@@ -278,3 +278,21 @@ data "aws_ami" "tpot" {
   name_regex       = ".*tpot.*"
   owners           = ["588675961644"]
 }
+
+data "aws_ami" "detection-dc" {
+  most_recent      = true
+  name_regex       = ".*detection-dc.*"
+  owners           = ["505638924199"]
+}
+
+data "aws_ami" "detection-wef" {
+  most_recent      = true
+  name_regex       = ".*detection-wef.*"
+  owners           = ["505638924199"]
+}
+
+data "aws_ami" "detection-win10" {
+  most_recent      = true
+  name_regex       = ".*detection-win10.*"
+  owners           = ["505638924199"]
+}
