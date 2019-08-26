@@ -52,7 +52,6 @@ set-env:
 		exit 1; \
 	 fi
 
-
 _first-baby-step: set-env ## Getting dressed before you go? [ initialize the project ]
 	@echo "$(BOLD)Configuring the terraform backend$(RESET)"
 	@cd ./terraform/environments/$(REGION) &&	terraform init \
@@ -82,7 +81,6 @@ apply: ## I'm a Ninja (Grabs swords and runs into the battle)! [ Create Everythi
 		-input=false \
 		-refresh=true
 
-
 _offensive-setup: ## It is best to become one with your sword as you sharpen it...
 	@cd ./terraform/environments/$(REGION) && time terraform apply \
 		-lock=true \
@@ -97,7 +95,6 @@ _offensive-setup: ## It is best to become one with your sword as you sharpen it.
 		--target=module.staging-infrastructure.module.network.aws_route_table_association.private-a \
 		--target=module.staging-infrastructure.module.network.aws_route_table_association.public-a \
 		--target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
-
 
 honeypot: ## We attract more bees with honey than with lemons [ Create T-Pot Honeypot ]
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
@@ -144,7 +141,6 @@ destroy-basics: ## Destroy em! [ Eliminte the Basic Metasploitable Targets ]
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.ami_ms3_2k12[0] \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_nix[0]
 
-
 destroy-force: ## Tasmanian Devil-Style        [ Destroy everything now ]
 	@time terraform destroy -force \
 		-lock=true \
@@ -160,11 +156,18 @@ debug: ## Complain & this is what I need [ show useful output / symptoms ]
 showvms: ## aws alias w/ jq to show stopped ec2 instances
     @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
 
-showvms: ## aws alias w/ jq to show stopped ec2 instances
-    @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
-
-
-debug: ## Complain & this is what I need [ show useful output / symptoms ]
+debug: ## Issue? shareme [ show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
 
+checkTargets: ## Using inspect let's confirm the attacker assets are setup
+ 	@time inspec exec ./terraform/inspec/cyberRange.desired.state.rb  -t aws://
+
+checkSetup: ## Using inspect let's confirm the networking assets are setup
+	@time inspec exec ./terraform/inspec/cyberRange.targets.created.rb  -t aws://
+
+checkNetworking: ## Using inspect let's confirm the networking assets are setup
+	@time inspec exec ./terraform/inspec/cyberRange.targets.subnet.rb  -t aws://
+
+checkAttackers: ## Using inspect let's confirm the attacker assets are setup
+	@time inspec exec ./terraform/inspec/cyberRange.attackers.rb  -t aws://
 
