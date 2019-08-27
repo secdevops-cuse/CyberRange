@@ -52,7 +52,7 @@ set-env:
 		exit 1; \
 	 fi
 
-_first-baby-step: set-env ## Getting dressed before you go? [ initialize the project ]
+_initialize: set-env ## Getting dressed before you go? [ initialize the project ]
 	@echo "$(BOLD)Configuring the terraform backend$(RESET)"
 	@cd ./terraform/environments/$(REGION) &&	terraform init \
 		-input=false \

@@ -1,5 +1,5 @@
 locals {
-  cyberRange_detectionq_subnets_ids = [
+  cyberRange_detection_subnets_ids = [
     "${var.target_subnet_id}",
     "${var.attacker_subnet_id}",
   ]

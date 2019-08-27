@@ -1,6 +1,7 @@
 module "network" {
   source = "./assets/network"
   environment = "${var.environment}"
+  cidr = "${var.cidr}"
 }
 
 module "secdevops" {
