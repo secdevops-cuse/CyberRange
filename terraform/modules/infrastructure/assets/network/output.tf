@@ -5,6 +5,9 @@ output "vpc-id" {
 output "vpc-cidr-block" {
   value = "${aws_vpc.main.cidr_block}"
 }
+output "cidr" {
+  value = "${aws_vpc.main.cidr_block}"
+}
 
 // todo: refactor across secdevops module
 output "target_subnet_id" {
