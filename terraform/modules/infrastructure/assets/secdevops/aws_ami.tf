@@ -107,28 +107,9 @@ data "aws_ami" "win7" {
   owners           = ["588675961644"]
 }
 
-data "aws_ami" "flare" {
-  most_recent      = true
-  name_regex       = "^flarevm-win7$"
-  owners           = ["588675961644"]
-}
-
-data "aws_ami" "commando" {
-  most_recent      = true
-  name_regex       = ".*commandovm.*"
-  owners           = ["588675961644"]
-}
-
-data "aws_ami" "commandov2" {
-  most_recent      = true
-  name_regex       = ".*commando.*v2.*kali.*"
-  owners           = ["588675961644"]
-}
-
 data "aws_ami" "win8" {
   most_recent      = true
   name_regex       = ".*Win8.*"
-  owners           = ["588675961644"]
 }
 
 data "aws_ami" "seed_ubuntu1604" {
@@ -295,4 +276,23 @@ data "aws_ami" "detection-win10" {
   most_recent      = true
   name_regex       = ".*detectionlab-win10.*"
   owners           = ["505638924199"]
+}
+
+
+data "aws_ami" "flare" {
+  most_recent      = true
+  name_regex       = "^flarevm-win7$"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "commando" {
+  most_recent      = true
+  name_regex       = "^.*commandoVM.*$"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "commandov2" {
+  most_recent      = true
+  name_regex       = "^.*commando.*v2.*kali.*$"
+  owners           = ["588675961644"]
 }
