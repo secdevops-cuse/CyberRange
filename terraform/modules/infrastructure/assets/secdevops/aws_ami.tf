@@ -110,6 +110,7 @@ data "aws_ami" "win7" {
 data "aws_ami" "win8" {
   most_recent      = true
   name_regex       = ".*Win8.*"
+  owners           = ["588675961644"]
 }
 
 data "aws_ami" "seed_ubuntu1604" {
