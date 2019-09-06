@@ -80,6 +80,11 @@ variable "instance_type_kali" {
   default     = "t2.large"
 }
 
+variable "instance_type_commandov2" {
+  description = "commando v2 instance type"
+  default     = "i3.large"
+}
+
 variable "instance_type_win" {
   description = "windows instance type"
   default     = "t2.medium"
@@ -87,7 +92,7 @@ variable "instance_type_win" {
 
 variable "tpot_root_vol_size" {
   description = "tpot root volume size"
-  default     = "40"
+  default     = "200"
 }
 
 variable "fbctf_root_vol_size" {

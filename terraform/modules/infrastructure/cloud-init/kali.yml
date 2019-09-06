@@ -7,7 +7,7 @@ runcmd:
   - ntpd -gq
   - service ntp start
   - apt install -y git tightvncserver autocutsel curl gnupg apt-transport-https
-  - /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -localhost -nolisten tcp
+  - /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -pixelformat rgb565
   - curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
   - echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/powershell.list
   - echo "deb http://ftp.us.debian.org/debian stretch main "/etc/apt/sources.list
@@ -23,6 +23,10 @@ runcmd:
     git clone https://github.com/jesusprubio/awesome-nodejs-pentest.git && \
     git clone https://github.com/AdrianVollmer/PowerHub.git && \
     git clone https://github.com/xapax/oscp.git recon_enum && \
+    git clone git@github.com:secdevops-cuse/docker-hacklab.git && \
+    #getting test ssl script
+    curl -L https://testssl.sh --output /usr/bin/testssl && \
+    chmod +x /usr/bin/testssl && \
     mkdir scripts && \
     wget https://www.securitysift.com/download/linuxprivchecker.py && \
     wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz && \

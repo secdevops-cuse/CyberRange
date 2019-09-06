@@ -4,12 +4,13 @@ These AMI's are currently available in us-east-1 and eu-west-2.
 
 First let's start off with some basics & pre-requisites:
 - To gain access to the Cloud Images, the Amazon AMI's, I need to
-share them with your account. Simply use the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
-Note: it is a manual process
-- an AWS account, 
-- install the awscli and perform `aws configure` to setup `~/.aws/credentials`
-- create an S3 bucket 
-- have the following software: terraform, git, remote desktop client, ssh - see directly below.
+share them with your account. Simply use the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
+after you create / obtain your aws account number. 
+ 
+You will also need to install the awscli and perform `aws configure` to setup `~/.aws/credentials`
+Once done you will need to create an S3 bucket 
+Please ensure you have the following software: terraform, git, jq, a remote desktop client, ssh
+
 
 ### Initializing your desktop
 This primarily outlines a windows desktop setup.   
@@ -24,12 +25,13 @@ This primarily outlines a windows desktop setup.
         - terraform
         - awscli
         - git
-        - e.g.: `choco.exe install -y terraform awscli git`
+        - jq
+        - e.g.: `choco.exe install -y terraform awscli git jq`
         
     - Create AWS free trial
         - view your account
         - obtain your account number
-        - obtain the access key
+        - obtain the access key / secret access key & perform the awscli configure step
         - Sign-up for the CyberRange to gain access to the amazon images:```
 
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
@@ -76,12 +78,12 @@ This primarily outlines a windows desktop setup.
 
 ## Getting Started
 - Clone the repo
-- go into the environment directory: `cd terraform/environments/eu-west-2`
+- go into the environment directory: `cd terraform/environments/<region>`
 	- update the region in the following files:
 		- terraform.tfvars
 		- variables.tf
 		- main.tf
-	    - s3 bucket name in `main.tf`
+	    - change the s3 bucket name in `terraform/environments/<region>/main.tf`
 	    - IP address of the system in `secdevops/variables.tf` 
 - initialize the terraform project with `terraform init`
 	```

@@ -13,7 +13,7 @@ end
 describe aws_ec2_instance(name: 'commando-pT16-0') do
   it { should exist }
   it { should be_running }
-  port(3389) { should be_listening }
+  # port(3389) { should be_listening }
 end
 
 

@@ -107,18 +107,6 @@ data "aws_ami" "win7" {
   owners           = ["588675961644"]
 }
 
-data "aws_ami" "flare" {
-  most_recent      = true
-  name_regex       = "^flarevm-win7$"
-  owners           = ["588675961644"]
-}
-
-data "aws_ami" "commando" {
-  most_recent      = true
-  name_regex       = ".*commando.*"
-  owners           = ["588675961644"]
-}
-
 data "aws_ami" "win8" {
   most_recent      = true
   name_regex       = ".*Win8.*"
@@ -264,5 +252,48 @@ data "aws_ami" "win2k19" {
 data "aws_ami" "remnux" {
   most_recent      = true
   name_regex       = ".*remnux.*"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "tpot" {
+  most_recent      = true
+  name_regex       = ".*tpot.*"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "detection-dc" {
+  most_recent      = true
+  name_regex       = ".*detection_lab_dc.*"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "detection-wef" {
+  most_recent      = true
+  name_regex       = ".*detection_lab_wef.*"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "detection-win10" {
+  most_recent      = true
+  name_regex       = ".*detection_lab_win10.*"
+  owners           = ["588675961644"]
+}
+
+
+data "aws_ami" "flare" {
+  most_recent      = true
+  name_regex       = "^flarevm-win7$"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "commando" {
+  most_recent      = true
+  name_regex       = "(.*commandovm.*|.*commandoVM.*)"
+  owners           = ["588675961644"]
+}
+
+data "aws_ami" "commandov2" {
+  most_recent      = true
+  name_regex       = "^.*commando.*kali.*$"
   owners           = ["588675961644"]
 }
