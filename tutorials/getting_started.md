@@ -31,7 +31,7 @@ This primarily outlines a windows desktop setup.
     - Create AWS free trial
         - view your account
         - obtain your account number
-        - obtain the access key / secret access key & perform the awscli configure
+        - obtain the access key / secret access key & perform the awscli configure step
         - Sign-up for the CyberRange to gain access to the amazon images:```
 
 [Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
