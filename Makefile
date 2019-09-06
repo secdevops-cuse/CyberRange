@@ -81,7 +81,7 @@ apply: ## I'm a Ninja (Grabs swords and runs into the battle)! [ Create Everythi
 		-input=false \
 		-refresh=true
 
-_offensive-setup: ## It is best to become one with your sword as you sharpen it...
+offensive-setup: ## It is best to become one with your sword as you sharpen it...
 	@cd ./terraform/environments/$(REGION) && time terraform apply \
 		-lock=true \
 		-input=false \
@@ -135,6 +135,9 @@ target-basics: ## Learn the fundamentals [ Create Metasploitable Targets ]
 detectionLab: ## Setup Detection Lab
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true -input=false -refresh=true --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-dc[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-wef[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-win10[0] --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a --target=module.staging-infrastructure.module.network.aws_route_table.private-a --target=module.staging-infrastructure.module.network.aws_route_table.public-a --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a --target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
 
+destroy-detectionLab: ## Destroy Detection Lab
+	@cd ./terraform/environments/$(REGION) && time terraform destroy -force -lock=true -input=false -refresh=true --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-dc[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-wef[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-win10[0] --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a --target=module.staging-infrastructure.module.network.aws_route_table.private-a --target=module.staging-infrastructure.module.network.aws_route_table.public-a --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a --target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
+
 destroy-basics: ## Destroy em! [ Eliminte the Basic Metasploitable Targets ]
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
 		-lock=true \
@@ -171,3 +174,5 @@ checkNetworking: ## inspec test asset networking
 checkAttackers: ## inspec test attacker assets setup
 	@time inspec exec ./terraform/inspec/cyberRange.attackers.rb  -t aws://
 
+output: ## Show the output of terraform
+	@cd ./terraform/environments/$(REGION) && time terraform output
