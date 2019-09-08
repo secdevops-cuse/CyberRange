@@ -70,20 +70,20 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 	@echo "$(BOLD)Switching to workspace $(WORKSPACE)$(RESET)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
 
-plan: ## Hold on, what exactly are you creating here [ usage: make plan REGION=us-east-1 ]
+plan: ## Show terraform plan output
 	@cd ./terraform/environments/$(REGION) && time terraform plan \
 		-lock=true \
 		-input=false \
 		-refresh=true | grep -i "will be created"
 
-range: ## I'm a Ninja (Grab your sword and run into the battle)! [ Create Everything ]
+range: ## Create Everything
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true \
 		-input=false \
 		-refresh=true \
 		&& time inspec exec terraform/inspec/cyberRange.full.instances.rb -t aws://
 
-kali: ## It is best to become one with your sword as you sharpen it...
+kali: ## Create just kali
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true \
 		-input=false \
@@ -91,7 +91,7 @@ kali: ## It is best to become one with your sword as you sharpen it...
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
 		--target=module.staging-infrastructure.module.network.aws_internet_gateway.gw
 
-offensive: ## It is best to become one with your sword as you sharpen it...
+offensive: ## Create Kali & Commando vms
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 	    -lock=true -input=false -refresh=true \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
@@ -104,12 +104,12 @@ offensive: ## It is best to become one with your sword as you sharpen it...
 		--target=module.staging-infrastructure.module.network.aws_route_table_association.public-a \
 		--target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
 
-honeypot: ## We attract more bees with honey than with lemons [ Create T-Pot Honeypot ]
+honeypot: ## Create T-Pot Honeypot
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.tpot[0]
 
-destroy-honeypot: ## We attract more bees with honey than with lemons [ Destroy T-Pot Honeypot ]
+destroy-honeypot: ## Destroy T-Pot Honeypot
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
 		-lock=true -input=false -refresh=true \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.tpot[0]
@@ -156,7 +156,7 @@ destroy-force: ## Tasmanian Devil-Style Tornado [ Destroy everything now ]
 	 @cd ./terraform/environments/$(REGION) && time terraform destroy -force \
 		-lock=true -input=false -refresh=true
 
-purge: ## Terraform doesn't clean up everything all the time
+purge: ## clean up lingering volumes
 	@time for id in $(aws ec2 describe-volumes --filters Name=status,Values=available | jq -r '.Volumes[] | .VolumeId' ); do echo aws ec2 delete-volume --volume-id $id; done
 
 showvms: ## aws alias w/ jq to show stopped ec2 instances
@@ -164,9 +164,6 @@ showvms: ## aws alias w/ jq to show stopped ec2 instances
 
 debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
-
-checkInit: ## inspec test assets initialization
-	@time inspec exec ./terraform/inspec/cyberRange.targets.rb  -t aws://
 
 checkRange: ## run automated inspec tests
 	@inspec exec ./terraform/inspec/cyberRange.defenders.rb -t aws:// > /tmp/inspec.result && \
@@ -183,3 +180,22 @@ checkRange: ## run automated inspec tests
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
+
+cmds: ## show verbose cmd syntax
+	@echo  "\t\Just the make commands listed below require \`make <cmdName> REGION=<region>\` \n \
+	    \t"--------------------------------------------------------------------------------------------------" \n \
+       defenders                      Create the Detection Lab \n \
+       destroy-defenders              Destroy Detection Lab \n \
+       destroy-force                  Destroy everything \n \
+       destroy-honeypot               Destroy T-Pot Honeypot \n \
+       destroy-simple                 Destroy em! [ Eliminte the Basic Metasploitable Targets ] \n \
+       honeypot                       Create T-Pot Honeypot  \n \
+       init                           Initialize the terraform project \n \
+       kali                           Create Kali only \n \
+       offensive                      Create Kali & Commando \n \
+       output                         Show the output of terraform \n \
+       plan                           Show the terraform plan output \n \
+       purge                          Purge lingering volumes \n \
+       range                          Create Everything  \n \
+       showvms                        aws alias w/ jq to show stopped ec2 instances  \n \
+       target-simple                  Create Metasploitable Targets"
