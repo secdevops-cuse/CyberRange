@@ -1,15 +1,3 @@
-
-
-describe aws_subnets() do
-  it { should exist }
-  its('cidr_blocks') {should_not cmp []} #{ should be_in ['10.0.1.0/24','10.0.2.0/24','10.0.3.0/24','10.0.4.0/24', '10.0.5.0/24'] }
-  its('cidr_blocks') { should include '10.0.1.0/24'}
-  its('cidr_blocks') { should include '10.0.2.0/24'}
-  its('cidr_blocks') { should include '10.0.3.0/24'}
-  its('cidr_blocks') { should include '10.0.4.0/24'}
-  its('cidr_blocks') { should include '10.0.5.0/24'}
-end
-
 describe aws_ec2_instance(name: "CyberRange-win2012_RTM-0") do it { should exist }; end
 describe aws_ec2_instance(name: "CyberRange-hackinos-0") do it { should exist }; end
 describe aws_ec2_instance(name: "CyberRange-Stapler-0") do it { should exist }; end

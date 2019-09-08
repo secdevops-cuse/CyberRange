@@ -76,13 +76,22 @@ plan: ## Hold on, what exactly are you creating here [ usage: make plan REGION=u
 		-refresh=true | grep -i "will be created"
 
 apply: ## I'm a Ninja (Grabs swords and runs into the battle)! [ Create Everything ]
-	@cd ./terraform/environments/$(REGION) && time terraform apply \
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true \
 		-input=false \
-		-refresh=true
+		-refresh=true \
+		&& time inspec exec terraform/inspec/cyberRange.full.instances.rb -t aws://
 
-offensive-setup: ## It is best to become one with your sword as you sharpen it...
-	@cd ./terraform/environments/$(REGION) && time terraform apply \
+kali: ## It is best to become one with your sword as you sharpen it...
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true \
+		-input=false \
+		-refresh=true \
+		--target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
+		--target=module.staging-infrastructure.module.network.aws_internet_gateway.gw
+
+offensive: ## It is best to become one with your sword as you sharpen it...
+	@cd ./terraform/environments/$(REGION) && time terraform plan \
 		-lock=true \
 		-input=false \
 		-refresh=true \
@@ -133,7 +142,19 @@ target-basics: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
 
 detectionLab: ## Setup Detection Lab
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true -input=false -refresh=true --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-dc[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-wef[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-win10[0] --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a --target=module.staging-infrastructure.module.network.aws_route_table.private-a --target=module.staging-infrastructure.module.network.aws_route_table.public-a --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a --target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
+	    -input=false -refresh=true \
+	    --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-dc[0] \
+	    --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-wef[0] \
+	    --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-win10[0] \
+	    --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-logger[0] \
+	    --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a --target=module.staging-infrastructure.module.network.aws_route_table.private-a --target=module.staging-infrastructure.module.network.aws_route_table.public-a --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a --target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
+
+detectionLog: ## Setup Detection Lab
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
+	    -input=false -refresh=true \
+	    --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-logger-fullbuild[0] \
+	    --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a --target=module.staging-infrastructure.module.network.aws_route_table.private-a --target=module.staging-infrastructure.module.network.aws_route_table.public-a --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a --target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
 
 destroy-detectionLab: ## Destroy Detection Lab
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force -lock=true -input=false -refresh=true --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-dc[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-wef[0] --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-win10[0] --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a --target=module.staging-infrastructure.module.network.aws_route_table.private-a --target=module.staging-infrastructure.module.network.aws_route_table.public-a --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a --target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
@@ -148,7 +169,7 @@ destroy-basics: ## Destroy em! [ Eliminte the Basic Metasploitable Targets ]
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_nix[0]
 
 destroy-force: ## Tasmanian Devil-Style Tornado [ Destroy everything now ]
-	@time terraform destroy -force \
+	 @cd ./terraform/environments/$(REGION) && time terraform destroy -force \
 		-lock=true \
 		-input=false \
 		-refresh=true
@@ -159,17 +180,17 @@ purge: ## Terraform doesn't clean up everything all the time
 showvms: ## aws alias w/ jq to show stopped ec2 instances
     @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
 
-debug: ## Issue? shareme [ show useful output / symptoms ]
+debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
 
-checkTargets: ## Using inspect let's confirm the attacker assets are setup
- 	@time inspec exec ./terraform/inspec/cyberRange.desired.state.rb  -t aws://
-
 checkInit: ## inspec test assets initialization
-	@time inspec exec ./terraform/inspec/cyberRange.targets.created.rb  -t aws://
+	@time inspec exec ./terraform/inspec/cyberRange.targets.rb  -t aws://
+
+checkRange: ## inspec test assets initialization
+	@inspec exec terraform/inspec/cyberRange.full.instances.rb -t aws:// > /tmp/inspec.results && inspec exec terraform/inspec/cyberRange.network.sg.rb -t aws:// >> /tmp/inspec.results && grep -i summary /tmp/inspec.results
 
 checkNetworking: ## inspec test asset networking
-	@time inspec exec ./terraform/inspec/cyberRange.targets.subnet.rb  -t aws://
+	@time inspec exec ./terraform/inspec/cyberRange.network.rb  -t aws://
 
 checkAttackers: ## inspec test attacker assets setup
 	@time inspec exec ./terraform/inspec/cyberRange.attackers.rb  -t aws://
