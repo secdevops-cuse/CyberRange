@@ -3,6 +3,12 @@ variable "ip_list" {
     default     = "71.115.195.211/32"
 }
 
+variable "external_dns_servers" {
+  description = "Configure lab to allow external DNS resolution"
+  type        = list(string)
+default     = ["8.8.8.8"]
+}
+
 variable "environment" {
   description = "the environment the deployment is running as"
 }
@@ -62,12 +68,14 @@ variable "docker_ct" {
 
 variable "instance_type_tpot" {
   description = "honeypot instance type"
-  default     = "t2.large"
+//  default     = "t2.large"
+  default     = "t2.micro"
 }
 
 variable "instance_type_docker" {
   description = "docker instance type"
-  default     = "t2.medium"
+//  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_type" {
@@ -77,7 +85,8 @@ variable "instance_type" {
 
 variable "instance_type_kali" {
   description = "kali instance type"
-  default     = "t2.large"
+//  default     = "t2.large"
+  default     = "t2.micro"
 }
 
 variable "instance_type_commandov2" {
@@ -87,7 +96,8 @@ variable "instance_type_commandov2" {
 
 variable "instance_type_win" {
   description = "windows instance type"
-  default     = "t2.medium"
+//  default     = "t2.medium"
+  default     = "t2.micro"
 }
 
 variable "tpot_root_vol_size" {
