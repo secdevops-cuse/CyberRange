@@ -97,7 +97,8 @@ data "aws_ami" "skytower" {
 
 data "aws_ami" "kali" {
   most_recent      = true
-  name_regex       = ".*kali-2019.1.*"
+//  name_regex       = ".*kali-2019.1.*"
+  name_regex       = ".*kali-2019.4 v2.*"
   owners           = ["588675961644"]
 }
 
@@ -276,6 +277,22 @@ data "aws_ami" "detection-wef" {
 data "aws_ami" "detection-win10" {
   most_recent      = true
   name_regex       = ".*detection_lab_win10.*"
+  owners           = ["588675961644"]
+}
+
+# Use Data Sources to resolve the AMI-ID for the Ubuntu 16.04 AMI
+data "aws_ami" "logger_ubuntu" {
+  owners = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20180912"]
+  }
+}
+
+data "aws_ami" "logger_ami" {
+  most_recent      = true
+  name_regex       = ".*dl-logger.*"
   owners           = ["588675961644"]
 }
 
