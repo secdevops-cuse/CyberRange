@@ -1,4 +1,4 @@
-![alt text](https://github.com/cappetta/CyberRange/blob/feature/kali-setup/cyberRangev2.png "Cyber Range")
+![alt text](https://github.com/cappetta/CyberRange/blob/master/cyberRangev2.png "Cyber Range")
 [![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 # Overview: 
