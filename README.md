@@ -18,14 +18,6 @@ Use my secure [FormAssembly](https://www.formassembly.com) form -> [CyberRange S
 [Read the Getting Started Guide](tutorials/getting_started.md)
 <br/>
 
-# SEED Funding / Training Programs
-[AWS Educate](https://aws.amazon.com/education/awseducate/) - Free cloud training for students w/ edu address <br/>
-[AWS EdStart](https://aws.amazon.com/education/edstart/) - $500 in AWS Credits for startup's <br/>
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning. <br/>
-[Graduate Research Fellowship Program (GRFP)](https://www.nsf.gov/pubs/2019/nsf19590/nsf19590.htm) - SU's Master of Cyber Security program requires a bit more funding, this is opensource - win,win,win.<br/>  
-[America's Seed Fund](https://seedfund.nsf.gov/) - a creative outlet  
-
-
 ## Range History
 ### Release Notes: 
  
@@ -98,12 +90,18 @@ creating strategic hubs of Cyber Security Center-of-Excellence Partnerships wher
 between enterprise experience & academic learning is addressed by focusing on 
 people, products, and process. 
 
-### Protect your AWS keys
-Once you start developing and using git to commit changes to a project
-you will need to protect your AWS keys.  Use [Git-Secrets](https://github.com/cappetta/SecDevOps-Toolkit/blob/master/SecDevOps-Toolkit.wiki/git-secrets.md)
+## SEED Funding / Training Programs
+[AWS Educate](https://aws.amazon.com/education/awseducate/) - Free cloud training for students w/ edu address <br/>
+[AWS EdStart](https://aws.amazon.com/education/edstart/) - $500 in AWS Credits for startup's <br/>
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning. <br/>
+[Graduate Research Fellowship Program (GRFP)](https://www.nsf.gov/pubs/2019/nsf19590/nsf19590.htm) - SU's Master of Cyber Security program requires a bit more funding, this is opensource - win,win,win.<br/>  
+[America's Seed Fund](https://seedfund.nsf.gov/) - a creative outlet  
 
-### Other Environments to Perform Cyber Research in
-Naturally folks will ask, what other learning environments exist.  There are many so consider:
- - www.hackthebox.eu
- - www.hacking-lab.com
- - www.vulnhub.com
+
+### Credits
+ - Chris Long - Detection Lab
+ - Omar Santos - websploit & docker scripts
+ - FireEye - CommandoVM & FlareVM
+ - All Github projects
+ - Kali Maintainers
+ - Tenable Nessus Engineers
