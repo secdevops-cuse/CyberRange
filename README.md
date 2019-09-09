@@ -90,19 +90,12 @@ This project covers 7 gigantically broad domains of technical knowledge.
 7. Development - Infrastructure / Web Applications
 
 # Mission Statement
-
+ 
 The ultimate expectation is to emulate the quality, format, and presentation of 
-the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/).
-
-
-### Purpose
-It enables researchers to setup assets quickly, maintain manifests of common
-setups, and deploy locally or to the AWS cloud with the flip of a configuration
-setup.
-
-This is simply an AWS-based solution for a PenTester.  The goal is to
-provide a sterile cloud penTesting environment with the attacker machine
-and multiple targets within minutes.
+the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/) while 
+creating strategic hubs of Cyber Security Center-of-Excellence Partnerships where the gap
+between enterprise experience & academic learning is addressed by focusing on 
+people, products, and process. 
 
 ### Protect your AWS keys
 Once you start developing and using git to commit changes to a project
