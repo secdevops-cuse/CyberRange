@@ -18,8 +18,12 @@ Use my secure [FormAssembly](https://www.formassembly.com) form -> [CyberRange S
 [Read the Getting Started Guide](tutorials/getting_started.md)
 <br/>
 
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.  
-
+# SEED Funding / Training Programs
+[AWS Educate](https://aws.amazon.com/education/awseducate/) - Free cloud training for students w/ edu address
+[AWS EdStart](https://aws.amazon.com/education/edstart/) - $500 in AWS Credits for startup's
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.
+[Graduate Research Fellowship Program (GRFP)](https://www.nsf.gov/pubs/2019/nsf19590/nsf19590.htm) - SU's Master of Cyber Security program requires a bit more funding, this is opensource - win,win,win.  
+[America's Seed Fund](https://seedfund.nsf.gov/) - a creative outlet  
 
 
 ## Range History
