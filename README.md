@@ -4,22 +4,26 @@
 # Overview: 
 This CyberRange project represents the first open-source Cyber Range blueprint in the world.
 
-This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence  
- tooling in a private research lab using the AWS Cloud. This project contains vulnerable systems, open-source tools, . It simply provides a researcher with a disposable offensive / defensive 
-AWS-based environment in less than 10 minutes.
+This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence tooling in a private research lab using the AWS Cloud. This project contains vulnerable systems, open-source tools.
+
+It simply provides a researcher with a disposable offensive / defensive AWS-based environment in less than 10 minutes.
 
 
 # Get Started
 To gain access you must send me your AWS account number so I can share the 30+ Amazon Machine Images (AMIs).  
 
-Simply - Fill out the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
+Use my secure [FormAssembly](https://www.formassembly.com) form -> [CyberRange Sign-Up Form](https://www.tfaforms.com/4729221) 
 
 
 [Read the Getting Started Guide](tutorials/getting_started.md)
 <br/>
 
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.  
-
+# SEED Funding / Training Programs
+[AWS Educate](https://aws.amazon.com/education/awseducate/) - Free cloud training for students w/ edu address
+[AWS EdStart](https://aws.amazon.com/education/edstart/) - $500 in AWS Credits for startup's
+[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning.
+[Graduate Research Fellowship Program (GRFP)](https://www.nsf.gov/pubs/2019/nsf19590/nsf19590.htm) - SU's Master of Cyber Security program requires a bit more funding, this is opensource - win,win,win.  
+[America's Seed Fund](https://seedfund.nsf.gov/) - a creative outlet  
 
 
 ## Range History
@@ -35,20 +39,17 @@ Simply - Fill out the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
      php-webshells, PowerHub, PowerSploit, snmpwn, vulhub, ScoutSuite, prowler, 
      pacbot, terraform-aws-secure-baseline, gitleaks, my-arsenal-of-aws-security-tools   
 
-[v2 PR\#57](https://github.com/secdevops-cuse/CyberRange/pull/57)
-[v2 PR\#58](https://github.com/secdevops-cuse/CyberRange/pull/58)
-[v2 PR\#59](https://github.com/secdevops-cuse/CyberRange/pull/59)
-
-[v1](https://github.com/secdevops-cuse/CyberRange/pull/3/files) - initial release on Feb 18th, 2019  
+            
+[v1](https://github.com/secdevops-cuse/CyberRange/pull/3/files) - initially released on Feb 18th, 2019  
     CircleCi integration w/ testing, aws inspector automated setup, FB CTF, kali, docker,
     webgoat, dvwa, 8 vulnerable AMIs, + more over the next 8 months.
 
 This project was conceptualized and drafted on a MDF board screwed into the side of a wall in my garage in 2014. 
 It sysmbolizes an early interest in the most emerging trends within technology.  
 
-The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.
-Having an Ops background, tooling enables us to do more, quicker, faster, and with less.  I've Collected the best-in-class tools,
-solutions, and bootstrap frameworks to create an integrated solution capable of enormous growth.
+The [v0](https://github.com/cappetta/CyberCloud/commit/3c35a92d1a2192f3ea24db178eb9f940a8cf1a56) - initial released on June 3, 2015 - a depreciated OpenStack protoype [CyberCloud](https://github.com/cappetta/CyberCloud) using vagrant.
+
+v2 is simply a collection of the best-in-class tools, most emerging toolsets, and bootstrap frameworks to create an integrated solution capable of enormous growth.
 
 ## Range Technology  
 - Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
