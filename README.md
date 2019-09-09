@@ -4,15 +4,15 @@
 # Overview: 
 This CyberRange project represents the first open-source Cyber Range blueprint in the world.
 
-This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence  
- tooling in a private research lab using the AWS Cloud. This project contains vulnerable systems, open-source tools, . It simply provides a researcher with a disposable offensive / defensive 
-AWS-based environment in less than 10 minutes.
+This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence tooling in a private research lab using the AWS Cloud. This project contains vulnerable systems, open-source tools.
+
+It simply provides a researcher with a disposable offensive / defensive AWS-based environment in less than 10 minutes.
 
 
 # Get Started
 To gain access you must send me your AWS account number so I can share the 30+ Amazon Machine Images (AMIs).  
 
-Simply - Fill out the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
+Use my secure [FormAssembly](https://www.formassembly.com) form -> [CyberRange Sign-Up Form](https://www.tfaforms.com/4729221) 
 
 
 [Read the Getting Started Guide](tutorials/getting_started.md)
@@ -90,19 +90,12 @@ This project covers 7 gigantically broad domains of technical knowledge.
 7. Development - Infrastructure / Web Applications
 
 # Mission Statement
-
+ 
 The ultimate expectation is to emulate the quality, format, and presentation of 
-the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/).
-
-
-### Purpose
-It enables researchers to setup assets quickly, maintain manifests of common
-setups, and deploy locally or to the AWS cloud with the flip of a configuration
-setup.
-
-This is simply an AWS-based solution for a PenTester.  The goal is to
-provide a sterile cloud penTesting environment with the attacker machine
-and multiple targets within minutes.
+the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/) while 
+creating strategic hubs of Cyber Security Center-of-Excellence Partnerships where the gap
+between enterprise experience & academic learning is addressed by focusing on 
+people, products, and process. 
 
 ### Protect your AWS keys
 Once you start developing and using git to commit changes to a project
