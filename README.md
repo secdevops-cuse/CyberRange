@@ -35,20 +35,17 @@ Use my secure [FormAssembly](https://www.formassembly.com) form -> [CyberRange S
      php-webshells, PowerHub, PowerSploit, snmpwn, vulhub, ScoutSuite, prowler, 
      pacbot, terraform-aws-secure-baseline, gitleaks, my-arsenal-of-aws-security-tools   
 
-[v2 PR\#57](https://github.com/secdevops-cuse/CyberRange/pull/57)
-[v2 PR\#58](https://github.com/secdevops-cuse/CyberRange/pull/58)
-[v2 PR\#59](https://github.com/secdevops-cuse/CyberRange/pull/59)
-
-[v1](https://github.com/secdevops-cuse/CyberRange/pull/3/files) - initial release on Feb 18th, 2019  
+            
+[v1](https://github.com/secdevops-cuse/CyberRange/pull/3/files) - initially released on Feb 18th, 2019  
     CircleCi integration w/ testing, aws inspector automated setup, FB CTF, kali, docker,
     webgoat, dvwa, 8 vulnerable AMIs, + more over the next 8 months.
 
 This project was conceptualized and drafted on a MDF board screwed into the side of a wall in my garage in 2014. 
 It sysmbolizes an early interest in the most emerging trends within technology.  
 
-The first iteration is a now depreciated OpenStack-based [CyberCloud](https://github.com/cappetta/CyberCloud) project with vagrant.
-Having an Ops background, tooling enables us to do more, quicker, faster, and with less.  I've Collected the best-in-class tools,
-solutions, and bootstrap frameworks to create an integrated solution capable of enormous growth.
+The [v0](https://github.com/cappetta/CyberCloud/commit/3c35a92d1a2192f3ea24db178eb9f940a8cf1a56) - initial released on June 3, 2015 - a depreciated OpenStack protoype [CyberCloud](https://github.com/cappetta/CyberCloud) using vagrant.
+
+v2 is simply a collection of the best-in-class tools, most emerging toolsets, and bootstrap frameworks to create an integrated solution capable of enormous growth.
 
 ## Range Technology  
 - Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
