@@ -132,6 +132,8 @@ target-simple: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_2k8[0] \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.ami_ms3_2k12[0] \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_nix[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.commando[0] \
 		--target=module.staging-infrastructure.module.network.aws_internet_gateway.gw \
 		--target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a \
 		--target=module.staging-infrastructure.module.network.aws_route_table.private-a \
