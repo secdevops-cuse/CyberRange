@@ -2,25 +2,47 @@
 This will guide you through the setup of the Range in a supported AWS region. 
 These AMI's are currently available in us-east-1 and eu-west-2.
 
-First let's start off with some basics & pre-requisites:
+First let's review the pre-requisites:
+
 - To gain access to the Cloud Images, the Amazon AMI's, I need to
-share them with your account. Simply use the [Alpha Sign-Up Form](https://www.tfaforms.com/4729221) 
-after you create / obtain your aws account number. 
+share them with your AWS account. 
+
+If you have an AWS account, go right to the secure [CyberRange Registration Form](https://www.tfaforms.com/4729221)
+
+If you are a new AWS user, [click here to sign-up for a free-trial](https://aws.amazon.com/free/start-your-free-trial/).
+
+I believe research / learning should be low-cost and provide an enormous impact - so grab some AWS Credits off eBay to cushion your account.
  
 You will also need to install the awscli and perform `aws configure` to setup `~/.aws/credentials`
 Once done you will need to create an S3 bucket 
 Please ensure you have the following software: terraform, git, jq, a remote desktop client, ssh
 
 
+## Quick-Start Guide
+The makefile has been created in hopes of providing users with a simple menu-driven approach towards setting up the Cyber Range.  There are a few basic pre-req's 
+
+- Clone the repo
+- go into all environment directories: `cd terraform/environments/<region>`
+	- Then update the region in the following files:
+		- terraform.tfvars
+		- variables.tf
+		- main.tf
+	    - change the s3 bucket name in `terraform/environments/<region>/main.tf`
+	    - Update the IP address of your system in ip_list of `secdevops/variables.tf` 
+- initialize the terraform project with `terraform init`
+- change directory into the project root, then perform the following make commands: 
+    - `make 
+
 ### Initializing your desktop
 This primarily outlines a windows desktop setup.   
- - Linux / Mac: use your package manager for the software install steps.  If you can't figure out the conversion
-    then `try harder`.
+ 
+ - Linux / Mac: use your package manager for the software packages: `terraform, awscli, git, jq`.   
+
  - Windows Specific Instructions:
     - [install chocolatey](https://chocolatey.org/docs/installation) 
         - search for powershell (right-click and open as admin) 
         - copy/paste: `Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))`
-        
+
     - use `choco.exe` to install software:
         - terraform
         - awscli
@@ -32,9 +54,6 @@ This primarily outlines a windows desktop setup.
         - view your account
         - obtain your account number
         - obtain the access key / secret access key & perform the awscli configure step
-        - Sign-up for the CyberRange to gain access to the amazon images:```
-
-[Alpha Sign-Up Form](https://www.tfaforms.com/4729221)
 
 ```
     - In powershell:
