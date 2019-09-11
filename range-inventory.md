@@ -4,9 +4,23 @@
 
 the `user/pass` for the win7/8 box is `IEUser/Passw0rd!`
 some of the other systems are `vagrant/vagrant` &/or `terraform/terraform`
+the t-pot webuser: `
+                myCONF_WEB_USER='webuser'
+                myCONF_WEB_PW='w3b$ecret'
+                tsec/tsec
+                   `
+detection lab credentials are documented on their github: `https://github.com/clong/DetectionLab#lab-information`
+    - splunk: `admin:changeme`
+    - fleet: `admin:admin123#`
+```
+    Domain Name: windomain.local
+    Admininstrator login: vagrant:vagrant
+    Fleet login: https://192.168.38.105:8412 - admin:admin123#
+    Splunk login: https://192.168.38.105:8000 - admin:changeme
+    MS ATA login: https://192.168.38.103 - wef\vagrant:vagrant
+```
 
-detection lab credentials are documented on their github: 
-
+The passwords to the rest of the instances should be figured out via research, hacking, bruteforce attempts, etc.
 
 # Available AMI's 
 to see all the available systems / images - you must be registered to use the range.  

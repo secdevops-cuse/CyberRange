@@ -109,6 +109,18 @@ honeypot: ## Create T-Pot Honeypot
 		-lock=true -input=false -refresh=true \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.tpot[0]
 
+myhouse: ## Create myhouse / kali test environment
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_myhouse7[0] \
+		--target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
+        --target=module.staging-infrastructure.module.network.aws_internet_gateway.gw \
+        --target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a \
+        --target=module.staging-infrastructure.module.network.aws_route_table.private-a \
+        --target=module.staging-infrastructure.module.network.aws_route_table.public-a \
+        --target=module.staging-infrastructure.module.network.aws_route_table_association.private-a \
+        --target=module.staging-infrastructure.module.network.aws_route_table_association.public-a
+
 destroy-honeypot: ## Destroy T-Pot Honeypot
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
 		-lock=true -input=false -refresh=true \
@@ -120,6 +132,8 @@ target-simple: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_2k8[0] \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.ami_ms3_2k12[0] \
 		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_nix[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.commando[0] \
 		--target=module.staging-infrastructure.module.network.aws_internet_gateway.gw \
 		--target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a \
 		--target=module.staging-infrastructure.module.network.aws_route_table.private-a \
@@ -161,6 +175,9 @@ purge: ## clean up lingering volumes
 
 showvms: ## aws alias w/ jq to show stopped ec2 instances
     @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
+
+ips: ## aws alias w/ jq to show running assets & public ips
+    @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=running"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value), .PublicIpAddress]|@csv'
 
 debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
