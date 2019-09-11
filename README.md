@@ -14,8 +14,7 @@ To gain access you must send me your AWS account number so I can share the 30+ A
 
 Use my secure [FormAssembly](https://www.formassembly.com) form -> [CyberRange Sign-Up Form](https://www.tfaforms.com/4729221) 
 
-
-[Read the Getting Started Guide](tutorials/getting_started.md)
+Then - [Read the Getting Started Guide](tutorials/getting_started.md)
 <br/>
 
 ## Range History
