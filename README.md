@@ -1,12 +1,17 @@
-![alt text](https://github.com/cappetta/CyberRange/blob/master/CyberRangev2.png "Cyber Range")
+![alt text](img/cyberRange_logo_v2.png "Cyber Range")
 [![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 # Overview: 
 This CyberRange project represents the first open-source Cyber Range blueprint in the world.
 
-This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence tooling in a private research lab using the AWS Cloud. This project contains vulnerable systems, open-source tools.
+This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence tooling in a private research lab using the AWS Cloud. 
 
-It simply provides a researcher with a disposable offensive / defensive AWS-based environment in less than 10 minutes.
+This project contains vulnerable systems and a toolkit of the most powerful open-source / community edition tools known to Penetration testers.
+
+It simply provides a researcher with a disposable offensive / defensive AWS-based environment in less than 5 minutes.
+
+![What does it create](img/CyberRange-architecture-v2.png)
+![how long does it take](img/how-long-does-it-take.png)
 
 
 # Get Started
@@ -19,10 +24,15 @@ Then - [Read the Getting Started Guide](tutorials/getting_started.md)
 
 ## Range History
 ### Release Notes: 
+ [view the changelog](changelog.md)
+
+
+
+<b>v2</b> - released on Sept 6, 2019
+    v2 is simply a collection of the best-in-class tools, most emerging toolsets, and bootstrap frameworks to create an integrated solution capable of enormous growth.
  
-<b>v2</b> - released on Sept 6, 2019 
-    <br/>- features include: makefile, inspec tests, detection lab integration, commandoVM v2, 
-     kali 2019.4 w/ xx opensource github tools: CyberRange, DetectionLab, IntruderPayloads, 
+     features include: makefile, inspec tests, detection lab integration, commandoVM v2, 
+     kali 2019.4 w/ the following opensource github tools: CyberRange, DetectionLab, IntruderPayloads, 
      aws-credential-compromise-detection, aws-nuke, blast-radius, cloudgoat, cloudmapper, packer-windows, 
      pacu, security-monkey-terraform, security_monkey, sites-using-cloudflare, 
      net-creds, Reconnoitre, shell_generator.sh, msploitego, awesome-nodejs-pentest, 
@@ -30,32 +40,8 @@ Then - [Read the Getting Started Guide](tutorials/getting_started.md)
      php-webshells, PowerHub, PowerSploit, snmpwn, vulhub, ScoutSuite, prowler, 
      pacbot, terraform-aws-secure-baseline, gitleaks, my-arsenal-of-aws-security-tools   
 
-            
-[v1](https://github.com/secdevops-cuse/CyberRange/pull/3/files) - initially released on Feb 18th, 2019  
-    CircleCi integration w/ testing, aws inspector automated setup, FB CTF, kali, docker,
-    webgoat, dvwa, 8 vulnerable AMIs, + more over the next 8 months.
-
-This project was conceptualized and drafted on a MDF board screwed into the side of a wall in my garage in 2014. 
-It sysmbolizes an early interest in the most emerging trends within technology.  
-
-The [v0](https://github.com/cappetta/CyberCloud/commit/3c35a92d1a2192f3ea24db178eb9f940a8cf1a56) - initial released on June 3, 2015 - a depreciated OpenStack protoype [CyberCloud](https://github.com/cappetta/CyberCloud) using vagrant.
-
-v2 is simply a collection of the best-in-class tools, most emerging toolsets, and bootstrap frameworks to create an integrated solution capable of enormous growth.
 
 ## Range Technology  
-- Terraform is a tool that performs at a much better scale and contains more functionality.  This project is based off the [fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
-framework.
-- Docker is another standard virtualization platform
-- Kali is the go-to system of penetration testers
-- Metasplotiable 2/3 & other open-source vuln vms provide foundational stability and future growth.
-- Commando-VM is a newly released windows-based penetration testing VM
-- DetectionLab is a bootstrap framework by Chris Long which is actively being integrated into this project
-- Inspec provides a way to test the state of your environment, application, system, processes, configurations, plus more.
-- Vagrant is an awesome tool for smaller virtual environments both locally and in the cloud - checkout 
-[SecDevOps Toolkit - vagrant](https://github.com/cappetta/SecDevOps-Toolkit/tree/master/vagrant) for advanced yaml setups for 
-multi-instance scenarios.
-- Plus Much more... 
-
 CyberRange combines best practices with emerging technologies.
  - Amazon Web Services
  - Kali/Nessus/Burpsuite
@@ -63,15 +49,26 @@ CyberRange combines best practices with emerging technologies.
  - OpenSourced Vulnerable VM's [See Asset Inventory](asset-inventory.md)
  - using a CI/CD tool to verify builds [CircleCI](https://circleci.com/)
 
+- Terraform 
+- Docker / docker-compose 
+- Kali
+- Metasplotiable 2/3 & other open-source vuln vms on VulnHub
+- Commando-VM - a windows-based penetration testing VM
+- DetectionLab
+- Inspec - to test the state of your environment, application, system, processes, configurations, etc.
+- Vagrant currently in-prototyping
+- Plus Many more things to setup, configure, and experiment with. 
+
+
 ## Domains of knowledge
 This open-source research lab provides a bootstrap learning platform for 
-Technologists studying any one of the "Big-3" technology sectors.  
+Technologists studying any one of the "Big-3" technology skills.  
 
 1. Cyber Security
 2. Cloud Computing
 3. DevOps
  
-This project covers 7 gigantically broad domains of technical knowledge.
+This project supports 7 gigantically broad domains of technical knowledge.
 
 1. Offensive Security
 2. SecDevOps
@@ -86,7 +83,7 @@ This project covers 7 gigantically broad domains of technical knowledge.
 The ultimate expectation is to emulate the quality, format, and presentation of 
 the [Syracuse University Cyber SEED Labs](http://www.cis.syr.edu/~wedu/seed/Labs_16.04/) while 
 creating strategic hubs of Cyber Security Center-of-Excellence Partnerships where the gap
-between enterprise experience & academic learning is addressed by focusing on 
+between enterprise experience & academic learning is addressed by focusing training paths on 
 people, products, and process. 
 
 ## SEED Funding / Training Programs
@@ -104,3 +101,4 @@ people, products, and process.
  - All Github projects
  - Kali Maintainers
  - Tenable Nessus Engineers
+ - This project is a fork of [a well-architected terraform AWS framework -> fedekau/terraform-with-circleci-example](https://github.com/fedekau/terraform-with-circleci-example)
