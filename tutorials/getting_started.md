@@ -31,7 +31,8 @@ The makefile has been created in hopes of providing users with a simple menu-dri
 	    - Update the IP address of your system in ip_list of `secdevops/variables.tf` 
 - initialize the terraform project with `terraform init`
 - change directory into the project root, then perform the following make commands: 
-    - `make 
+    - `make plan` - review the output for failures, there should be none.
+    - `make target-simple` - this will create a kali/commandoVM set of offensive assets, 
 
 ### Initializing your desktop
 This primarily outlines a windows desktop setup.   

@@ -38,3 +38,4 @@ git clone https://github.com/tmobile/pacbot.git
 git clone https://github.com/nozaq/terraform-aws-secure-baseline.git
 git clone https://github.com/zricethezav/gitleaks.git
 git clone https://github.com/toniblyx/my-arsenal-of-aws-security-tools.git
+git clone https://github.com/cylance/CyBot

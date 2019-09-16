@@ -16,8 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-
 .ONESHELL:
 .SHELL := /usr/bin/bash
 .PHONY: apply destroy-backend destroy destroy-target plan-destroy plan plan-target prep
@@ -69,6 +67,10 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 	    -backend-config="acl=private"
 	@echo "$(BOLD)Switching to workspace $(WORKSPACE)$(RESET)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
+
+show: ## print out a list of all Cyber Range AMI's that are available to me
+	@./tools/show.amis.sh
+
 
 plan: ## Show terraform plan output
 	@cd ./terraform/environments/$(REGION) && time terraform plan \
@@ -197,22 +199,3 @@ checkRange: ## run automated inspec tests
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
-
-cmds: ## show verbose cmd syntax
-	@echo  "\t\Just the make commands listed below require \`make <cmdName> REGION=<region>\` \n \
-	    \t"--------------------------------------------------------------------------------------------------" \n \
-       defenders                      Create the Detection Lab \n \
-       destroy-defenders              Destroy Detection Lab \n \
-       destroy-force                  Destroy everything \n \
-       destroy-honeypot               Destroy T-Pot Honeypot \n \
-       destroy-simple                 Destroy em! [ Eliminte the Basic Metasploitable Targets ] \n \
-       honeypot                       Create T-Pot Honeypot  \n \
-       init                           Initialize the terraform project \n \
-       kali                           Create Kali only \n \
-       offensive                      Create Kali & Commando \n \
-       output                         Show the output of terraform \n \
-       plan                           Show the terraform plan output \n \
-       purge                          Purge lingering volumes \n \
-       range                          Create Everything  \n \
-       showvms                        aws alias w/ jq to show stopped ec2 instances  \n \
-       target-simple                  Create Metasploitable Targets"
