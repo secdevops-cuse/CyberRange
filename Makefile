@@ -16,8 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-
 .ONESHELL:
 .SHELL := /usr/bin/bash
 .PHONY: apply destroy-backend destroy destroy-target plan-destroy plan plan-target prep
@@ -69,6 +67,11 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 	    -backend-config="acl=private"
 	@echo "$(BOLD)Switching to workspace $(WORKSPACE)$(RESET)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
+
+show: ## print out a list of all Cyber Range AMI's that are available to me
+	@./tools/show.amis.sh
+ips: ## aws alias w/ jq to show running assets & public ips
+	@./tools/show.ips.sh | tr "," "\t" | sed 's/"//g'
 
 plan: ## Show terraform plan output
 	@cd ./terraform/environments/$(REGION) && time terraform plan \
@@ -176,8 +179,6 @@ purge: ## clean up lingering volumes
 showvms: ## aws alias w/ jq to show stopped ec2 instances
     @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
 
-ips: ## aws alias w/ jq to show running assets & public ips
-    @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=running"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value), .PublicIpAddress]|@csv'
 
 debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
@@ -192,27 +193,7 @@ checkRange: ## run automated inspec tests
                  inspec exec ./terraform/inspec/cyberRange.network.sg.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.offensive.kali.system.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && \
-                 egrep -i "error|fail|successful" /tmp/inspec.result
+                 inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
-
-cmds: ## show verbose cmd syntax
-	@echo  "\t\Just the make commands listed below require \`make <cmdName> REGION=<region>\` \n \
-	    \t"--------------------------------------------------------------------------------------------------" \n \
-       defenders                      Create the Detection Lab \n \
-       destroy-defenders              Destroy Detection Lab \n \
-       destroy-force                  Destroy everything \n \
-       destroy-honeypot               Destroy T-Pot Honeypot \n \
-       destroy-simple                 Destroy em! [ Eliminte the Basic Metasploitable Targets ] \n \
-       honeypot                       Create T-Pot Honeypot  \n \
-       init                           Initialize the terraform project \n \
-       kali                           Create Kali only \n \
-       offensive                      Create Kali & Commando \n \
-       output                         Show the output of terraform \n \
-       plan                           Show the terraform plan output \n \
-       purge                          Purge lingering volumes \n \
-       range                          Create Everything  \n \
-       showvms                        aws alias w/ jq to show stopped ec2 instances  \n \
-       target-simple                  Create Metasploitable Targets"
