@@ -70,7 +70,8 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 
 show: ## print out a list of all Cyber Range AMI's that are available to me
 	@./tools/show.amis.sh
-
+ips: ## aws alias w/ jq to show running assets & public ips
+	@./tools/show.ips.sh | tr "," "\t" | sed 's/"//g'
 
 plan: ## Show terraform plan output
 	@cd ./terraform/environments/$(REGION) && time terraform plan \
@@ -178,8 +179,6 @@ purge: ## clean up lingering volumes
 showvms: ## aws alias w/ jq to show stopped ec2 instances
     @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
 
-ips: ## aws alias w/ jq to show running assets & public ips
-    @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=running"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value), .PublicIpAddress]|@csv'
 
 debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
@@ -194,8 +193,7 @@ checkRange: ## run automated inspec tests
                  inspec exec ./terraform/inspec/cyberRange.network.sg.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.offensive.kali.system.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && \
-                 egrep -i "error|fail|successful" /tmp/inspec.result
+                 inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
