@@ -14,7 +14,9 @@ int main(int argc, char **argv, char **env)
     if (cmd==NULL) exit(1);
     sprintf(cmd,"%s/malicious",env[i]);
     setuid(0);
-    system(cmd);
+//    system(cmd);
+// # lab 1.10 execve is better
+    execve(cmd,"%s/malicious",env[i]);
   }
   i++;
   }
