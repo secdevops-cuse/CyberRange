@@ -48,15 +48,11 @@ CyberRange combines best practices with emerging technologies.
  - Terraform
  - OpenSourced Vulnerable VM's [See Asset Inventory](asset-inventory.md)
  - using a CI/CD tool to verify builds [CircleCI](https://circleci.com/)
-
-- Terraform 
 - Docker / docker-compose 
-- Kali
 - Metasplotiable 2/3 & other open-source vuln vms on VulnHub
 - Commando-VM - a windows-based penetration testing VM
 - DetectionLab
 - Inspec - to test the state of your environment, application, system, processes, configurations, etc.
-- Vagrant currently in-prototyping
 - Plus Many more things to setup, configure, and experiment with. 
 
 

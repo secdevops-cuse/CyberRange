@@ -18,7 +18,7 @@ resource "aws_instance" "cr_skytower" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-Skytower-${count.index}"
+    Name        = "Skytower-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -35,7 +35,7 @@ resource "aws_instance" "cr_stapler" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-Stapler-${count.index}"
+    Name        = "Stapler-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -52,7 +52,7 @@ resource "aws_instance" "cr_vulnos" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-Vulnos-${count.index}"
+    Name        = "Vulnos-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -69,7 +69,7 @@ resource "aws_instance" "cr_sickos" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-Sickos-${count.index}"
+    Name        = "Sickos-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -86,7 +86,7 @@ resource "aws_instance" "cr_mrrobot" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-MrRobot-${count.index}"
+    Name        = "MrRobot-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -103,24 +103,7 @@ resource "aws_instance" "cr_fristileaks" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-fristileaks-${count.index}"
-    Environment = "${var.environment}"
-    Terraform   = "True"
-  }
-}
-
-resource "aws_instance" "cr_ms3_nix" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.ms3_nix.id}"
-  instance_type = "${var.instance_type_docker}"
-  subnet_id              = "${element(local.cyberRange_subnets_ids, count.index)}"
-  vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  root_block_device {
-    delete_on_termination = true
-  }
-  tags = {
-    Name        = "CyberRange-ms3_nix-${count.index}"
+    Name        = "fristileaks-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -137,7 +120,7 @@ resource "aws_instance" "cr_hackinos" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-hackinos-${count.index}"
+    Name        = "hackinos-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -154,7 +137,7 @@ resource "aws_instance" "cr_bulldog" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-bulldog-${count.index}"
+    Name        = "bulldog-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -171,7 +154,7 @@ resource "aws_instance" "cr_myhouse7" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-myhouse7-${count.index}"
+    Name        = "myhouse7-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -190,7 +173,7 @@ resource "aws_instance" "docker" {
     delete_on_termination = true
   }
   tags = {
-    Name        = "CyberRange-docker-via-cloudinit-${count.index}"
+    Name        = "docker-via-cloudinit-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }

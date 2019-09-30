@@ -1,13 +1,19 @@
 #cloud-config
+timezone: EST
+# forked version of : https://github.com/dtag-dev-sec/tpotce/blob/master/cloud/terraform/cloud-init.yaml
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+packages:
+  - git
+  - htop
+  - ntp
+
 runcmd:
-  - sudo apt-get install ntp
-  - sudo service ntp stop
   - sudo ntpd -gq
   - sudo service ntp start
-  - sudo apt-get update
-  - sudo apt-get install git
-  - git clone https://github.com/facebook/fbctf
-  - cd fbctf
-  - ./extra/provision.sh -m dev -s $PWD
-  - source ./extra/lib.sh
-  - set_password ctfadmin ctf ctf fbctf $PWD
+  - git clone https://github.com/facebook/fbctf /root/fbctf
+  - cd /root/fbctf
+  - . ./extra/lib.sh
+  - quick_setup install dev
