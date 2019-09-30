@@ -22,7 +22,7 @@ resource "aws_instance" "tpot-full-build" {
   }
 
   tags = {
-    Name = "CyberRange-Tpot-${count.index}"
+    Name = "Tpot-${count.index}"
     Environment = "${var.environment}"
     Terraform = "True"
   }
@@ -45,7 +45,7 @@ resource "aws_instance" "tpot" {
   }
 
   tags = {
-    Name = "CyberRange-Tpot-${count.index}"
+    Name = "Tpot-${count.index}"
     Environment = "${var.environment}"
     Terraform = "True"
   }

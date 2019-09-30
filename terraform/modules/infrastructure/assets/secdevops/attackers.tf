@@ -19,7 +19,7 @@ resource "aws_instance" "kali" {
     volume_size           = 160
   }
   tags = {
-    Name        = "CyberRange-kali-linux-${count.index}"
+    Name        = "kali-linux-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -38,7 +38,7 @@ resource "aws_instance" "commando" {
     volume_size           = 160
   }
   tags = {
-    Name        = "CyberRange-commando-pT16-${count.index}"
+    Name        = "commando-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -60,7 +60,7 @@ resource "aws_instance" "r7vm" {
   }
 
   tags = {
-    Name        = "CyberRange-r7-${count.index}"
+    Name        = "r7-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -78,7 +78,7 @@ resource "aws_instance" "commandov2" {
     volume_size           = 160
   }
   tags = {
-    Name        = "CyberRange-commando-v2-${count.index}"
+    Name        = "commando-v2-${count.index}"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
