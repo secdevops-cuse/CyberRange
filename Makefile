@@ -145,6 +145,31 @@ target-simple: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.staging-infrastructure.module.network.aws_route_table_association.public-a \
 		--target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
 
+
+lab: ## Learn the fundamentals [ Create Metasploitable Targets ]
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_2k8[0] \
+		--target=module.staging-infrastructure.module.secdevops.aws_instance.ami_ms3_2k12[0] \
+		--target=module.staging-infrastructure.module.secdevops.aws_instance.cr_ms3_nix[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.kali[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.commando[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-dc[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-wef[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-win10[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.dl-logger[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.tpot[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.docker[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.fbctf[0] \
+        --target=module.staging-infrastructure.module.secdevops.aws_instance.flarevm-win7[0] \
+		--target=module.staging-infrastructure.module.network.aws_internet_gateway.gw \
+		--target=module.staging-infrastructure.module.network.aws_nat_gateway.nat-a \
+		--target=module.staging-infrastructure.module.network.aws_route_table.private-a \
+		--target=module.staging-infrastructure.module.network.aws_route_table.public-a \
+		--target=module.staging-infrastructure.module.network.aws_route_table_association.private-a \
+		--target=module.staging-infrastructure.module.network.aws_route_table_association.public-a \
+		--target=module.staging-infrastructure.module.secdevops.aws_security_group.kali
+
 defenders: ## Setup Detection Lab
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
 	    -lock=true -input=false -refresh=true \
@@ -192,8 +217,11 @@ checkRange: ## run automated inspec tests
                  inspec exec ./terraform/inspec/cyberRange.network.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.network.sg.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.offensive.kali.system.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result && \
+                 inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result &&  \
                  inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
+
+checkLab: ## inspec the lab
+	@inspec exec ./terraform/inspec/cyberRange.lab.rb -t aws://
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output

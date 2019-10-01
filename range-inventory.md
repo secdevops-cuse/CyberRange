@@ -4,20 +4,30 @@
 
 the `user/pass` for the win7/8 box is `IEUser/Passw0rd!`
 some of the other systems are `vagrant/vagrant` &/or `terraform/terraform`
-the t-pot webuser: `
-                myCONF_WEB_USER='webuser'
-                myCONF_WEB_PW='w3b$ecret'
-                tsec/tsec
-                   `
-detection lab credentials are documented on their github: `https://github.com/clong/DetectionLab#lab-information`
+
+### tpot
+web ui: <ip>:64297
+ssh: <ip>:64295
+the t-pot webuser: 
+`
+myCONF_WEB_USER='webuser'
+myCONF_WEB_PW='w3b$ecret'
+tsec/tsec
+`
+
+### FBCTF
+`admin/password`
+
+### detection lab
+credentials are documented on Chris Long's github: `https://github.com/clong/DetectionLab#lab-information`
     - splunk: `admin:changeme`
     - fleet: `admin:admin123#`
 ```
     Domain Name: windomain.local
     Admininstrator login: vagrant:vagrant
-    Fleet login: https://192.168.38.105:8412 - admin:admin123#
-    Splunk login: https://192.168.38.105:8000 - admin:changeme
-    MS ATA login: https://192.168.38.103 - wef\vagrant:vagrant
+    (dl.log) Fleet login: https://192.168.38.105:8412 - admin:admin123#
+    (dl.log) Splunk login: https://192.168.38.105:8000 - admin:changeme
+    (dl.wef) MS ATA login: https://192.168.38.103 - wef\vagrant:vagrant
 ```
 
 The passwords to the rest of the instances should be figured out via research, hacking, bruteforce attempts, etc.

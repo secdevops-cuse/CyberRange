@@ -9,7 +9,7 @@ locals {
 resource "aws_instance" "dl-wef" {
   count = "${var.docker_ct}"
   ami           = "${data.aws_ami.detection-wef.id}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.instance_type_tpot}"
   subnet_id              = "${element(local.cyberRange_detection_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.windows.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
@@ -28,7 +28,7 @@ resource "aws_instance" "dl-wef" {
 resource "aws_instance" "dl-dc" {
   count = "${var.docker_ct}"
   ami           = "${data.aws_ami.detection-dc.id}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.instance_type_tpot}"
   subnet_id              = "${element(local.cyberRange_detection_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.windows.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
@@ -46,7 +46,7 @@ resource "aws_instance" "dl-dc" {
 resource "aws_instance" "dl-win10" {
   count = "${var.docker_ct}"
   ami           = "${data.aws_ami.detection-dc.id}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.instance_type_tpot}"
   subnet_id              = "${element(local.cyberRange_detection_subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.windows.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
@@ -64,11 +64,11 @@ resource "aws_instance" "dl-win10" {
 
 resource "aws_instance" "dl-logger" {
   count = "${var.docker_ct}"
-  instance_type = "${var.instance_type}"
+  instance_type = "${var.instance_type_tpot}"
   ami           = "${data.aws_ami.logger_ami.image_id}"
 
   tags = {
-    Name = "CyberRange-detection_lab_logger"
+    Name = "dl.logger"
   }
 
   subnet_id              = "${element(local.cyberRange_detection_subnets_ids, count.index)}"

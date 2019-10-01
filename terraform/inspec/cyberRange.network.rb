@@ -10,6 +10,3 @@ describe aws_subnets() do
   its('cidr_blocks') { should include '192.168.43.0/24'}
 end
 
-describe aws_vpc('vpc-87654321') do
-  its('cidr_block') { should cmp '192.168.0.0/16' }
-end
