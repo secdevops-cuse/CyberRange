@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **env)
   {
     cmd=malloc(strlen(env[i])+20);
     if (cmd==NULL) exit(1);
-    sprintf(cmd,"%s/.malicious",env[i]);
+    sprintf(cmd,"%s/before.malicious",env[i]);
     setuid(0);
 //    system(cmd);
 // # lab 1.10 execve is better, enhancing it...
