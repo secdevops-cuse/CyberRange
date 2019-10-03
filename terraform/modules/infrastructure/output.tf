@@ -1,4 +1,4 @@
-output "kali-ips" {
+output "kali" {
   value = "${module.secdevops.kali-ip}"
 }
 
@@ -15,15 +15,15 @@ output "dl-dc-ip" {
 }
 
 
-output "vpc-id" {
-  value = ["${module.network.vpc-id}"]
+output "vpc" {
+  value = "${module.network.vpc-id}"
 }
 
-output "attacker_secgroup_id" {
-  value = ["${module.secdevops.attacker_secgrp}"]
+output "attacker_secgroup" {
+  value = module.secdevops.attacker_secgrp
 }
 
 output "attacker_subnet" {
-  value = ["${module.network.attacker_subnet_id}"]
+  value = "${module.network.attacker_subnet_id}"
 }
 
