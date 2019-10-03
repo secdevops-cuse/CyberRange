@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 # ref_url: https://github.com/DevNIX/Vagrant-dependency-manager
-# require File.dirname(__FILE__)+"/vagrant_customizations/dependency_manager"
-# check_plugins ["vagrant-docker-compose", "vagrant-awsinfo", "vagrant-docker-login", "vagrant-aws", "vagrant-share", "vagrant-winrm-syncedfolders"]
+require File.dirname(__FILE__)+"/vagrant_customizations/dependency_manager"
+check_plugins ["vagrant-docker-compose", "vagrant-awsinfo", "vagrant-docker-login", "vagrant-aws", "vagrant-share", "vagrant-winrm-syncedfolders"]
 
 require 'yaml'
 asset = YAML.load_file("./yaml/aws.yaml")
