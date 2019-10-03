@@ -1,0 +1,10 @@
+# vagrant.creds.yaml
+# @author: cappetta
+---
+private_key_path:   "../terraform/keys/xxxx"
+aws_keypair_name:   "xx"
+region: "us-east-1"
+vpc_id: "vpc-xxxx"
+secgroup_id: "sg-xxxx"
+secgroup_name: "sg-xxxx"
+subnet_id: "subnet-xxxx"
