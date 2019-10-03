@@ -4,3 +4,4 @@ aws.yaml
 .pem
 keys
 notes/
+.vagrant/
