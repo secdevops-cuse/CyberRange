@@ -234,6 +234,18 @@ checkRange: ## run automated inspec tests
                  inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result &&  \
                  inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
 
+createUser: ## create the aws test users/oranization...
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
+            -lock=true -input=false -refresh=true \
+     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
+     		--target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
+     		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat
+
+deleteTest: ## create the aws test users/oranization...
+	@cd ./terraform/environments/$(REGION) && time terraform destroy -force
+     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat
+
+
 checkLab: ## inspec the lab
 	@inspec exec ./terraform/inspec/cyberRange.lab.rb -t aws://
 
