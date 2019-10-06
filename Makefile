@@ -269,5 +269,5 @@ createUser: ## create the aws test users/oranization...
      		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat
 
 deleteUser: ## create the aws test users/oranization...
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force
+	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
      		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat
