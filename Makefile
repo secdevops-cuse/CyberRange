@@ -123,6 +123,7 @@ myhouse: ## Create myhouse / kali test environment
         --target=module.range-infra.module.network.aws_route_table.public-a \
         --target=module.range-infra.module.network.aws_route_table_association.private-a \
         --target=module.range-infra.module.network.aws_route_table_association.public-a
+        --target=module.range-infra.module.network.aws_route_table_association.public-a
 
 destroy-honeypot: ## Destroy T-Pot Honeypot
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
@@ -196,6 +197,14 @@ lab: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.range-infra.module.network.aws_route_table_association.public-a \
 		--target=module.range-infra.module.secdevops.aws_security_group.kali
 
+destroy-docker: ## rebuild docker
+	@cd ./terraform/environments/$(REGION) && time terraform destroy -force -lock=true -input=false -refresh=true \
+        --target=module.range-infra.module.secdevops.aws_instance.docker[0]
+
+docker: ## rebuild docker
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true -input=false -refresh=true \
+        --target=module.range-infra.module.secdevops.aws_instance.docker[0]
+
 defenders: ## Setup Detection Lab
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
 	    -lock=true -input=false -refresh=true \
@@ -251,3 +260,14 @@ checkLab: ## inspec the lab
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
+
+createUser: ## create the aws test users/oranization...
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
+            -lock=true -input=false -refresh=true \
+     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
+     		--target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
+     		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat
+
+deleteUser: ## create the aws test users/oranization...
+	@cd ./terraform/environments/$(REGION) && time terraform destroy -force
+     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat
