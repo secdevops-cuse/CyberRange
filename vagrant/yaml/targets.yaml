@@ -1,0 +1,76 @@
+# vagrant.yaml
+# @author: cappetta
+---
+- name: ms3-2k12
+  ami: ami-0acdddc2e69b42c88
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: ms3-nix
+  ami: ami-0089cbafb1f8adfd3
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: ms3-win2k8
+  ami: ami-026e514bf33427cd9
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: myhouse
+  ami: ami-0510f880a3b4d593d
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name: hack-in-os
+  ami: ami-0076d23f5c7586932
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name: sickOs
+  ami: ami-01cd86b05a8a961d9
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name: mrrobot
+  ami: ami-06a13bbe84d060849
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name: SkyTower
+  ami: ami-09dff86e07320bfac
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name:  bulldog
+  ami: ami-0b4e2d2caa872b0c4
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name: fristiLeaks
+  ami: ami-0cc50bd05db4a0f06
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name:   vulnOS
+  ami: ami-0e2f9ad8782fadc20
+  user: admin
+  isWin: true
+  type: t2.medium
+
+- name:  stapler
+  ami: ami-0f38c4f2f60aa7618
+  user: admin
+  isWin: true
+  type: t2.medium
+
+
