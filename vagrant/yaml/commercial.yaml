@@ -1,63 +1,31 @@
-# vagrant.yaml
 # @author: cappetta
 ---
-- name: ms3-2k12
-  ami: ami-0acdddc2e69b42c88
+- name: Tenable-Core-WAS
+  ami: ami-0099c0f41c595df4a
   user: vagrant
   isWin: true
   type: t2.medium
 
-- name: ms3-nix
-  ami: ami-0089cbafb1f8adfd3
+- name: r7vm
+  ami: ami-03f3d57fb781a16e5
   user: vagrant
   isWin: true
   type: t2.medium
 
-- name: ms3-win2k8
-  ami: ami-026e514bf33427cd9
+- name: nnm
+  ami: ami-0656c88402239f816
   user: vagrant
   isWin: true
   type: t2.medium
 
-- name: myhouse
-  ami: ami-0510f880a3b4d593d
-  user: admin
+- name: sc
+  ami: ami-07363495eb9a05b6c
+  user: vagrant
   isWin: true
   type: t2.medium
 
-- name: hack-in-os
-  ami: ami-0076d23f5c7586932
-  user: admin
+- name: nessus
+  ami: ami-08a94217de8839a80
+  user: vagrant
   isWin: true
   type: t2.medium
-
- ami-0099c0f41c595df4a - Tenable-Core-WAS-20190308
- ami-01cd86b05a8a961d9 - Sick0s1.2
- ami-01d0140f57149a9da - commando
- ami-026e514bf33427cd9 - metasploitable3-win2k8
- ami-02ed1efe99cfa7a84 - seed-ubuntu-1604
- ami-03f3d57fb781a16e5 - r7vm
- ami-03f745b52dba06fa7 - detection_lab_dc
- ami-0510f880a3b4d593d - myhouse7
- ami-0523e2fdab44036ad - win2010
- ami-059e578f5b5efa387 - remnux
- ami-0656c88402239f816 - Tenable-Core-NNM-20190308
- ami-06a13bbe84d060849 - mrRobot
- ami-07363495eb9a05b6c - Tenable-Core-SecurityCenter-20190308
- ami-08a94217de8839a80 - Tenable-Core-Nessus-20190308
- ami-09dff86e07320bfac - SkyTower
- ami-09f5a44cf69b1ec5c - commandoVM
- ami-0ac0b8dedc6a9d570 - detection_lab_wef
- ami-0acdddc2e69b42c88 - metasploitable3-win2k12
- ami-0b4e2d2caa872b0c4 - bulldog
- ami-0b7332a6babc8157d - kali-alpha-v2
- ami-0c31d9752b88a41ab - Win8
- ami-0c913737543f9095a - tpot
- ami-0cc50bd05db4a0f06 - FristiLeaks_1.3
- ami-0d5577dc6ea7188a4 - flarevm-win7
- ami-0e13b2fb6e590fc77 - kali-2019.1
- ami-0e2568717cc857ada - Win7
- ami-0e2f9ad8782fadc20 - VulnOSv2
- ami-0f38c4f2f60aa7618 - Stapler
- ami-0f640d757e59a64df - kali-2019.4
- ami-0f96624ce2b4c6858 - detection_lab_win10
