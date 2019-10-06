@@ -145,6 +145,18 @@ target-simple: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.range-infra.module.network.aws_route_table_association.public-a \
 		--target=module.range-infra.module.secdevops.aws_security_group.kali
 
+pot: ## Create the T-Pot Asset [ Full-Build ]
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+		--target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0] \
+        --target=module.range-infra.module.network.aws_internet_gateway.gw \
+        --target=module.range-infra.module.network.aws_nat_gateway.nat-a \
+        --target=module.range-infra.module.network.aws_route_table.private-a \
+        --target=module.range-infra.module.network.aws_route_table.public-a \
+        --target=module.range-infra.module.network.aws_route_table_association.private-a \
+        --target=module.range-infra.module.network.aws_route_table_association.public-a \
+        --target=module.range-infra.module.secdevops.aws_security_group.kali
+
 network: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
@@ -233,27 +245,6 @@ checkRange: ## run automated inspec tests
                  inspec exec ./terraform/inspec/cyberRange.offensive.kali.system.rb -t aws:// >> /tmp/inspec.result && \
                  inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result &&  \
                  inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
-
-user: ## create the aws test users/oranization...
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
-            -lock=true -input=false -refresh=true \
-     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
-     		--target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
-     		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat \
-     		--target=module.range-infra.module.secdevops.aws_organizations_account.cyberRange \
-     		--target=module.organizational-units.null_resource.organizational_units \
-     		--target=module.organization_access_role.null_resource.organization_access_role
-
-userd: ## create the aws test users/oranization...
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force
-     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
-            --target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
-            --target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat \
-            --target=module.range-infra.module.secdevops.aws_organizations_account.account \
-            --target=module.organizational-units.null_resource.organizational_units
-
-
-
 
 checkLab: ## inspec the lab
 	@inspec exec ./terraform/inspec/cyberRange.lab.rb -t aws://
