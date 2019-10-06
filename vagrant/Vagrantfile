@@ -35,9 +35,6 @@ Vagrant.configure("2") do |config|
           aws.subnet_id = asset["subnet_id"]
         end
 
-        # if asset["vpc_id"]
-        #   aws.tenancy = asset['vpc_id']
-        # end
 
         # VPC's can have specific security groups
         if asset['secgroup_name']
