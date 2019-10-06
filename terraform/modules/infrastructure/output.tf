@@ -38,3 +38,7 @@ output "secret_key_id" {
 output "access_key_id" {
   value = "${module.secdevops.access_key_id}"
 }
+
+output "example_pass" {
+  value = "${module.secdevops.example_pass}"
+}

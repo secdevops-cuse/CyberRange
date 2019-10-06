@@ -234,16 +234,25 @@ checkRange: ## run automated inspec tests
                  inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result &&  \
                  inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
 
-createUser: ## create the aws test users/oranization...
+user: ## create the aws test users/oranization...
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
             -lock=true -input=false -refresh=true \
      		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
      		--target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
-     		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat
+     		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat \
+     		--target=module.range-infra.module.secdevops.aws_organizations_account.cyberRange \
+     		--target=module.organizational-units.null_resource.organizational_units \
+     		--target=module.organization_access_role.null_resource.organization_access_role
 
-deleteTest: ## create the aws test users/oranization...
+userd: ## create the aws test users/oranization...
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force
-     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat
+     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
+            --target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
+            --target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat \
+            --target=module.range-infra.module.secdevops.aws_organizations_account.account \
+            --target=module.organizational-units.null_resource.organizational_units
+
+
 
 
 checkLab: ## inspec the lab
