@@ -25,11 +25,3 @@ output "enc" {
 output "access_key_id" {
   value = "${module.range-infra.access_key_id}"
 }
-
-
-//output "ou_id" {
-//  value = "${module.organizational-units.null_resource.organizational_units.id}"
-//}
-output "example_pass" {
-  value = "${module.range-infra.example_pass}"
-}
