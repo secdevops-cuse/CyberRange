@@ -21,3 +21,15 @@ output "dl-dc-ip" {
 output "attacker_secgrp" {
   value = "${aws_security_group.kali.id}"
 }
+
+output "enc_secret" {
+  value = "${aws_iam_access_key.cloudgoat.encrypted_secret}"
+}
+
+output "secret_key_id" {
+  value = "${aws_iam_access_key.cloudgoat.secret}"
+}
+
+output "access_key_id" {
+  value = "${aws_iam_access_key.cloudgoat.id}"
+}

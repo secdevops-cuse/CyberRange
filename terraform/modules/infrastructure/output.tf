@@ -27,3 +27,14 @@ output "attacker_subnet" {
   value = "${module.network.attacker_subnet_id}"
 }
 
+output "secret_key" {
+  value = "${module.secdevops.enc_secret}"
+}
+
+output "secret_key_id" {
+  value = "${module.secdevops.secret_key_id}"
+}
+
+output "access_key_id" {
+  value = "${module.secdevops.access_key_id}"
+}
