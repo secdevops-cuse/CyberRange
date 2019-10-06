@@ -35,7 +35,6 @@ Vagrant.configure("2") do |config|
           aws.subnet_id = asset["subnet_id"]
         end
 
-
         # VPC's can have specific security groups
         if asset['secgroup_name']
           # puts "Debugging:: Sec Group: " + node['secgroup_name'].join(",")
@@ -60,9 +59,9 @@ Vagrant.configure("2") do |config|
         aws.tags = {
             'Name' => node["name"],
         }
-        # unless node['userData'].nil?
-        #   aws.user_data = File.read(node['userData'])
-        # end
+        unless node['userData'].nil?
+          aws.user_data = File.read(node['userData'])
+        end
       end
 
       node_config.vm.post_up_message = "System has provisioned successfully -- please validate the boxes ~cappetta"
