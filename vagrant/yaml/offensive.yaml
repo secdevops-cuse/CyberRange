@@ -1,0 +1,12 @@
+# @author: cappetta
+---
+- name: kali
+  ami: ami-0f640d757e59a64df
+  user: ec2-user
+  type: t2.medium
+
+- name: commando
+  ami: ami-01d0140f57149a9da
+  user: vagrant
+  isWin: true
+  type: t2.medium

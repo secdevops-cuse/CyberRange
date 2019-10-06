@@ -1,0 +1,31 @@
+# @author: cappetta
+---
+- name: Tenable-Core-WAS
+  ami: ami-0099c0f41c595df4a
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: r7vm
+  ami: ami-03f3d57fb781a16e5
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: nnm
+  ami: ami-0656c88402239f816
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: sc
+  ami: ami-07363495eb9a05b6c
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: nessus
+  ami: ami-08a94217de8839a80
+  user: vagrant
+  isWin: true
+  type: t2.medium
