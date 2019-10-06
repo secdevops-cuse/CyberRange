@@ -35,17 +35,21 @@ resource "aws_iam_user_policy" "cloud_goat" {
 EOF
 }
 
-resource "aws_organizations_account" "cyberRange" {
-  name  = "cyberRange"
-  email = "stbiebgf@sharklasers.com"
-  role_name = "OrganizationAccoLuntAccessRole"
-}
+# this creates external and new accounts in AWS.  It sends an invite to create a user as part
+# of an organization.  This caused an AWS support ticket and 2 unreachable accounts
+#todo: keep or scrap
+//resource "aws_organizations_account" "cyberRange" {
+//  name  = "cyberRange"
+//  email = "stbiebgf@sharklasers.com"
+//  role_name = "OrganizationAccoLuntAccessRole"
+//}
 
-resource "aws_iam_user_login_profile" "example" {
-  user    = "${aws_organizations_account.cyberRange.name}"
+//resource "aws_iam_user_login_profile" "example" {
+//  user    = "${aws_organizations_account.cyberRange.name}"
 //  pgp_key = "keybase:some_person_that_exists"
-}
-
-output "example_pass" {
-  value = "${aws_iam_user_login_profile.example.encrypted_password}"
-}
+//}
+//
+//output "example_pass" {
+//  value = "${aws_iam_user_login_profile.example.encrypted_password}"
+//}
+//
