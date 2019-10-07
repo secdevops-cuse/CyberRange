@@ -168,7 +168,7 @@ network: ## make the network, share the output w/ vagrantfile
 		--target=module.range-infra.module.network.aws_route_table_association.private-a \
 		--target=module.range-infra.module.network.aws_route_table_association.public-a \
 		--target=module.range-infra.module.secdevops.aws_security_group.kali \
-		--target=module.range-infra.module.secdevops.aws_key_pair.key
+		--target=module.range-infra.module.secdevops.aws_key_pair.circleci_key
 
 info: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform output
