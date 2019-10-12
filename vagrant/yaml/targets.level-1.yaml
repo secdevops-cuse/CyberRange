@@ -1,0 +1,36 @@
+# @author: cappetta
+---
+- name: kali
+  ami: ami-0f640d757e59a64df
+  user: ec2-user
+  type: t2.medium
+
+- name: commando
+  ami: ami-01d0140f57149a9da
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: ms3-2k12
+  ami: ami-0acdddc2e69b42c88
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: ms3-nix
+  ami: ami-0089cbafb1f8adfd3
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: ms3-win2k8
+  ami: ami-026e514bf33427cd9
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: myhouse
+  ami: ami-0510f880a3b4d593d
+  user: admin
+  isWin: true
+  type: t2.medium

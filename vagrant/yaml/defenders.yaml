@@ -1,0 +1,21 @@
+# @author: cappetta
+---
+- name: dl-logger
+  ami: ami-004c3f5d225c28267
+  user: vagrant
+  type: t2.medium
+
+- name: dl-dc
+  ami: ami-03f745b52dba06fa7
+  user: vagrant
+  type: t2.medium
+
+- name: dl-wef
+  ami: ami-0ac0b8dedc6a9d570
+  user: vagrant
+  type: t2.medium
+
+- name: dl-win10
+  ami: ami-0f96624ce2b4c6858
+  user: vagrant
+  type: t2.medium
