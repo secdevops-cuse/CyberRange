@@ -1,18 +1,17 @@
 locals {
   cyberRange_windows_subnets_ids = [
-    "${var.attacker_subnet_id}",
     "${var.target_subnet_id}",
   ]
 }
 
 
 resource "aws_instance" "win2008" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win2k8.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami           = data.aws_ami.win2k8.id
+  instance_type = var.instance_type
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
+  key_name = aws_key_pair.circleci_key.key_name
   root_block_device {
     delete_on_termination = true
   }
@@ -24,13 +23,13 @@ resource "aws_instance" "win2008" {
 }
 
 resource "aws_instance" "win7" {
-  count         = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win7.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id               = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count         = var.docker_ct
+  ami           = data.aws_ami.win7.id
+  instance_type = var.instance_type
+  subnet_id               = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids  = ["${aws_security_group.targets.id}"]
-  key_name                = "${aws_key_pair.circleci_key.key_name}"
-  user_data               = "${var.win_bootstrap_user_data}"
+  key_name                = aws_key_pair.circleci_key.key_name
+  user_data               = var.win_bootstrap_user_data
   root_block_device {
     delete_on_termination = true
   }
@@ -42,12 +41,12 @@ resource "aws_instance" "win7" {
 }
 
 resource "aws_instance" "win8" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win8.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami           = data.aws_ami.win8.id
+  instance_type = var.instance_type
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
+  key_name = aws_key_pair.circleci_key.key_name
   root_block_device {
     delete_on_termination = true
   }
@@ -59,12 +58,12 @@ resource "aws_instance" "win8" {
 }
 
 resource "aws_instance" "defender_win2k10" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win2k10.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami           = data.aws_ami.win2k10.id
+  instance_type = var.instance_type
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
+  key_name = aws_key_pair.circleci_key.key_name
   root_block_device {
     delete_on_termination = true
   }
@@ -76,12 +75,12 @@ resource "aws_instance" "defender_win2k10" {
 }
 
 resource "aws_instance" "win2012" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win2k12.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami           = data.aws_ami.win2k12.id
+  instance_type = var.instance_type
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
+  key_name = aws_key_pair.circleci_key.key_name
   root_block_device {
     delete_on_termination = true
   }
@@ -93,12 +92,12 @@ resource "aws_instance" "win2012" {
 }
 
 resource "aws_instance" "win2012_RTM" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win2k12_RTM.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami           = data.aws_ami.win2k12_RTM.id
+  instance_type = var.instance_type
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
+  key_name = aws_key_pair.circleci_key.key_name
   root_block_device {
     delete_on_termination = true
   }
@@ -110,13 +109,13 @@ resource "aws_instance" "win2012_RTM" {
 }
 
 resource "aws_instance" "win2016" {
-  count = "${var.docker_ct}"
-  ami = "${data.aws_ami.win2k16.id}"
-  instance_type = "${var.instance_type_win}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami = data.aws_ami.win2k16.id
+  instance_type = var.instance_type_win
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${var.win_bootstrap_user_data}"
+  key_name = aws_key_pair.circleci_key.key_name
+  user_data = var.win_bootstrap_user_data
   root_block_device {
     delete_on_termination = true
   }
@@ -128,12 +127,12 @@ resource "aws_instance" "win2016" {
 }
 
 resource "aws_instance" "win2019" {
-  count = "${var.docker_ct}"
-  ami           = "${data.aws_ami.win2k19.id}"
-  instance_type = "${var.instance_type}"
-  subnet_id              = "${element(local.cyberRange_windows_subnets_ids, count.index)}"
+  count = var.docker_ct
+  ami           = data.aws_ami.win2k19.id
+  instance_type = var.instance_type
+  subnet_id              = element(local.cyberRange_windows_subnets_ids, count.index)
   vpc_security_group_ids = ["${aws_security_group.targets.id}"]
-  key_name = "${aws_key_pair.circleci_key.key_name}"
+  key_name = aws_key_pair.circleci_key.key_name
   root_block_device {
     delete_on_termination = true
   }
