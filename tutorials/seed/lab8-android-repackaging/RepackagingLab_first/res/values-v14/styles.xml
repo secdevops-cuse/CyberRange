@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Platform.AppCompat" parent="@style/Platform.V14.AppCompat" />
+    <style name="Platform.AppCompat.Light" parent="@style/Platform.V14.AppCompat.Light" />
+    <style name="Base.TextAppearance.AppCompat.Button" parent="@style/Base.TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/abc_text_size_button_material</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="TextAppearance.StatusBar.EventContent" parent="@android:style/TextAppearance.StatusBar.EventContent" />
+    <style name="TextAppearance.StatusBar.EventContent.Info" parent="@style/TextAppearance.StatusBar.EventContent" />
+    <style name="TextAppearance.StatusBar.EventContent.Line2" parent="@style/TextAppearance.StatusBar.EventContent">
+        <item name="android:textSize">@dimen/notification_subtext_size</item>
+    </style>
+    <style name="TextAppearance.StatusBar.EventContent.Time" parent="@style/TextAppearance.StatusBar.EventContent" />
+    <style name="TextAppearance.StatusBar.EventContent.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title" />
+    <style name="Platform.V14.AppCompat" parent="@style/Platform.V11.AppCompat">
+        <item name="android:actionModeSelectAllDrawable">?actionModeSelectAllDrawable</item>
+        <item name="android:listPreferredItemPaddingLeft">@dimen/abc_list_item_padding_horizontal_material</item>
+        <item name="android:listPreferredItemPaddingRight">@dimen/abc_list_item_padding_horizontal_material</item>
+    </style>
+    <style name="Platform.V14.AppCompat.Light" parent="@style/Platform.V11.AppCompat.Light">
+        <item name="android:actionModeSelectAllDrawable">?actionModeSelectAllDrawable</item>
+        <item name="android:listPreferredItemPaddingLeft">@dimen/abc_list_item_padding_horizontal_material</item>
+        <item name="android:listPreferredItemPaddingRight">@dimen/abc_list_item_padding_horizontal_material</item>
+    </style>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/parentPanel" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/topPanel" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/title_template" android:paddingLeft="?dialogPreferredPadding" android:paddingTop="@dimen/abc_dialog_padding_top_material" android:paddingRight="?dialogPreferredPadding" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@android:id/icon" android:layout_width="32.0dip" android:layout_height="32.0dip" android:src="@null" android:scaleType="fitCenter" style="@style/RtlOverlay.Widget.AppCompat.DialogTitle.Icon" />
+            <android.support.v7.widget.DialogTitle android:ellipsize="end" android:id="@id/alertTitle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" android:textAlignment="viewStart" style="?attr/android:windowTitleStyle" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout android:id="@id/contentPanel" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="48.0dip" android:layout_weight="1.0">
+        <View android:layout_gravity="top" android:id="@id/scrollIndicatorUp" android:background="?colorControlHighlight" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <android.support.v4.widget.NestedScrollView android:id="@id/scrollView" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:id="@android:id/message" android:paddingLeft="?dialogPreferredPadding" android:paddingTop="@dimen/abc_dialog_padding_top_material" android:paddingRight="?dialogPreferredPadding" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/TextAppearance.AppCompat.Subhead" />
+                <View android:id="@id/textSpacerNoButtons" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="@dimen/abc_dialog_padding_top_material" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+        <View android:layout_gravity="bottom" android:id="@id/scrollIndicatorDown" android:background="?colorControlHighlight" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/customPanel" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="48.0dip" android:layout_weight="1.0">
+        <FrameLayout android:id="@id/custom" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <include layout="@layout/abc_alert_dialog_button_bar_material" />
+</LinearLayout>

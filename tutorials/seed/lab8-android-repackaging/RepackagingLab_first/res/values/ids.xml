@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="action_bar_activity_content" />
+    <item type="id" name="action_bar_spinner" />
+    <item type="id" name="action_menu_divider" />
+    <item type="id" name="action_menu_presenter" />
+    <item type="id" name="home" />
+    <item type="id" name="item_touch_helper_previous_elevation" />
+    <item type="id" name="progress_circular" />
+    <item type="id" name="progress_horizontal" />
+    <item type="id" name="split_action_bar" />
+    <item type="id" name="up" />
+    <item type="id" name="view_offset_helper" />
+    <item type="id" name="action_bar_title">false</item>
+    <item type="id" name="action_bar_subtitle">false</item>
+    <item type="id" name="action_mode_close_button">false</item>
+    <item type="id" name="activity_chooser_view_content">false</item>
+    <item type="id" name="expand_activities_button">false</item>
+    <item type="id" name="image">false</item>
+    <item type="id" name="default_activity_button">false</item>
+    <item type="id" name="list_item">false</item>
+    <item type="id" name="icon">false</item>
+    <item type="id" name="title">false</item>
+    <item type="id" name="buttonPanel">false</item>
+    <item type="id" name="spacer">false</item>
+    <item type="id" name="parentPanel">false</item>
+    <item type="id" name="topPanel">false</item>
+    <item type="id" name="title_template">false</item>
+    <item type="id" name="alertTitle">false</item>
+    <item type="id" name="contentPanel">false</item>
+    <item type="id" name="scrollIndicatorUp">false</item>
+    <item type="id" name="scrollView">false</item>
+    <item type="id" name="textSpacerNoButtons">false</item>
+    <item type="id" name="scrollIndicatorDown">false</item>
+    <item type="id" name="customPanel">false</item>
+    <item type="id" name="custom">false</item>
+    <item type="id" name="expanded_menu">false</item>
+    <item type="id" name="checkbox">false</item>
+    <item type="id" name="shortcut">false</item>
+    <item type="id" name="radio">false</item>
+    <item type="id" name="action_bar_root">false</item>
+    <item type="id" name="action_mode_bar_stub">false</item>
+    <item type="id" name="action_mode_bar">false</item>
+    <item type="id" name="decor_content_parent">false</item>
+    <item type="id" name="action_bar_container">false</item>
+    <item type="id" name="action_bar">false</item>
+    <item type="id" name="action_context_bar">false</item>
+    <item type="id" name="edit_query">false</item>
+    <item type="id" name="search_bar">false</item>
+    <item type="id" name="search_badge">false</item>
+    <item type="id" name="search_button">false</item>
+    <item type="id" name="search_edit_frame">false</item>
+    <item type="id" name="search_mag_icon">false</item>
+    <item type="id" name="search_plate">false</item>
+    <item type="id" name="search_src_text">false</item>
+    <item type="id" name="search_close_btn">false</item>
+    <item type="id" name="submit_area">false</item>
+    <item type="id" name="search_go_btn">false</item>
+    <item type="id" name="search_voice_btn">false</item>
+    <item type="id" name="select_dialog_listview">false</item>
+    <item type="id" name="drawer_layout">false</item>
+    <item type="id" name="nav_view">false</item>
+    <item type="id" name="toolbar">false</item>
+    <item type="id" name="imageView">false</item>
+    <item type="id" name="labDescriptionText1">false</item>
+    <item type="id" name="labDescriptionText2">false</item>
+    <item type="id" name="labDescriptionText3">false</item>
+    <item type="id" name="snackbar_text">false</item>
+    <item type="id" name="snackbar_action">false</item>
+    <item type="id" name="navigation_header_container">false</item>
+    <item type="id" name="design_navigation_view">false</item>
+    <item type="id" name="design_menu_item_text">false</item>
+    <item type="id" name="design_menu_item_action_area_stub">false</item>
+    <item type="id" name="design_menu_item_action_area">false</item>
+    <item type="id" name="textView">false</item>
+    <item type="id" name="action0">false</item>
+    <item type="id" name="cancel_action">false</item>
+    <item type="id" name="status_bar_latest_event_content">false</item>
+    <item type="id" name="media_actions">false</item>
+    <item type="id" name="action_divider">false</item>
+    <item type="id" name="line1">false</item>
+    <item type="id" name="time">false</item>
+    <item type="id" name="chronometer">false</item>
+    <item type="id" name="text2">false</item>
+    <item type="id" name="line3">false</item>
+    <item type="id" name="text">false</item>
+    <item type="id" name="info">false</item>
+    <item type="id" name="end_padder">false</item>
+    <item type="id" name="nav_camara">false</item>
+    <item type="id" name="nav_gallery">false</item>
+    <item type="id" name="nav_slideshow">false</item>
+    <item type="id" name="nav_manage">false</item>
+    <item type="id" name="nav_share">false</item>
+    <item type="id" name="nav_send">false</item>
+    <item type="id" name="action_settings">false</item>
+</resources>

@@ -1,0 +1,22 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: RepackagingLab.apk
+compressionType: false
+doNotCompress:
+- arsc
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo:
+  minSdkVersion: '22'
+  targetSdkVersion: '23'
+sharedLibrary: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.2.2
+versionInfo:
+  versionCode: '1'
+  versionName: '1.0'

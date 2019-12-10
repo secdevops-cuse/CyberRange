@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="dimen" name="abc_dialog_fixed_height_major">60.000004%</item>
+    <item type="dimen" name="abc_dialog_fixed_height_minor">90.0%</item>
+    <item type="dimen" name="abc_dialog_fixed_width_major">50.0%</item>
+    <item type="dimen" name="abc_dialog_fixed_width_minor">69.99999%</item>
+    <item type="dimen" name="abc_dialog_min_width_major">45.000004%</item>
+    <item type="dimen" name="abc_dialog_min_width_minor">72.0%</item>
+    <dimen name="abc_search_view_text_min_width">192.0dip</dimen>
+</resources>
