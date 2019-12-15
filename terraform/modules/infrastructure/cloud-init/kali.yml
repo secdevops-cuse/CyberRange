@@ -1,37 +1,8 @@
 #cloud-config
+packages:
+  - xrdp
 runcmd:
-  - apt-get update
-  - apt update
-  - apt install -y ntp kde-plasma-desktop wget
-  - service ntp stop
-  - ntpd -gq
-  - service ntp start
-  - apt install -y git tightvncserver autocutsel curl gnupg apt-transport-https
-  - /usr/bin/vncserver :1 -geometry 1280x800 -depth 16 -pixelformat rgb565
-  - curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-  - echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/powershell.list
-  - echo "deb http://ftp.us.debian.org/debian stretch main "/etc/apt/sources.list
-  - apt -y install powershell
-  - cd /root & mkdir git && cd git && \
-    git clone https://github.com/PowerShellMafia/PowerSploit.git && \
-    git clone https://github.com/Exploit-install/snmpwn.git && \
-    git clone https://github.com/OWASP/joomscan.git && \
-    git clone https://github.com/JohnTroony/php-webshells && \
-    git clone https://github.com/dowjones/hammer.git && \
-    git clone https://github.com/scottslowe/learning-tools.git && \
-    git clone https://github.com/RhinoSecurityLabs/cloudgoat.git && \
-    git clone https://github.com/jesusprubio/awesome-nodejs-pentest.git && \
-    git clone https://github.com/AdrianVollmer/PowerHub.git && \
-    git clone https://github.com/xapax/oscp.git recon_enum && \
-    git clone git@github.com:secdevops-cuse/docker-hacklab.git && \
-    #getting test ssl script
-    curl -L https://testssl.sh --output /usr/bin/testssl && \
-    chmod +x /usr/bin/testssl && \
-    mkdir scripts && \
-    wget https://www.securitysift.com/download/linuxprivchecker.py && \
-    wget http://pentestmonkey.net/tools/unix-privesc-check/unix-privesc-check-1.4.tar.gz && \
-    wget https://storage.googleapis.com/google-code-archive-source/v2/code.google.com/windows-privesc-check/source-archive.zip && \
-    wget https://www.securitysift.com/download/MS_privesc_and_exploits_table.csv
-  - curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
-      chmod 755 msfinstall && \
-      ./msfinstall
+  - echo "running cloud-init" > /tmp/cloud
+  - systemctl enable xrdp
+  - dpkg -l > /tmp/cloud
+  - echo "finished" > /tmp/cloud
