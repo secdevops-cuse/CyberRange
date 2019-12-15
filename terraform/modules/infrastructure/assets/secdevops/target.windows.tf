@@ -1,7 +1,7 @@
 locals {
   cyberRange_windows_subnets_ids = [
-    "${var.attacker_subnet_id}",
     "${var.target_subnet_id}",
+    "${var.attacker_subnet_id}",
   ]
 }
 
