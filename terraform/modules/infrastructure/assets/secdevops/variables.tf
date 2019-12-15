@@ -1,6 +1,6 @@
 variable "ip_list" {
   description = "Lock this environment down to your IP"
-    default     = "71.115.213.232/32"
+    default     = "this.is.your.ip.in.secdevops-variables-dot-tf/32"
 }
 
 ///////////////////////////////////
@@ -9,13 +9,11 @@ variable "ip_list" {
 variable "instance_type_tpot" {
 description = "honeypot instance type"
 default     = "t2.large"
-//  default     = "t2.micro"
 }
 
 variable "instance_type_docker" {
 description = "docker instance type"
-//  default     = "t2.medium"
-default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "instance_type" {
@@ -25,8 +23,7 @@ default     = "t2.micro"
 
 variable "instance_type_kali" {
 description = "kali instance type"
-//  default     = "t2.large"
-default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "instance_type_commandov2" {
@@ -37,7 +34,6 @@ default     = "i3.large"
 variable "instance_type_win" {
 description = "windows instance type"
   default     = "t2.medium"
-//default     = "t2.micro"
 }
 
 ///////////////////////////////////
@@ -135,8 +131,6 @@ variable "fbctf_root_vol_size" {
   default     = "40"
 }
 
-
-
 # setup a default user/pass for winrm connections
 variable "winrm_user" {
   description = "The winrm user we login as"
@@ -150,13 +144,7 @@ variable "winrm_pass" {
 
 variable "private_key" {
   description = "default private key"
-  default     = "../../keys/circleci_terraform"
-}
-
-//todo: set up billing alarm automatically
-variable "alarms_email" {
-  description = "the email to notify you of excessive aws costs"
-  default     = "your.email@this.com"
+  default     = "../../keys/<YourPrivateKeyPair>"
 }
 
 variable "external_dns_servers" {
