@@ -1,5 +1,9 @@
-output "kali-ips" {
+output "kali-ip" {
   value = "${module.range-infra.kali}"
+}
+
+output "commando-ip" {
+  value = "${module.range-infra.commando}"
 }
 
 output "vpc" {
