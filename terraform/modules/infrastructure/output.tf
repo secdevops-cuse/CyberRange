@@ -2,6 +2,10 @@ output "kali" {
   value = "${module.secdevops.kali-ip}"
 }
 
+output "commando" {
+  value = "${module.secdevops.commando-ip}"
+}
+
 output "dl-wef-ip" {
   value = "${module.secdevops.dl-wef-ip}"
 }
