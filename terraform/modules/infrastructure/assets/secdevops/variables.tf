@@ -1,6 +1,6 @@
 variable "ip_list" {
-  description = "Lock this environment down to your IP"
-    default     = "this.is.your.ip.in.secdevops-variables-dot-tf/32"
+  description = "Protect your research lab, use your your IP"
+    default     = "0.0.0.0/32"
 }
 
 ///////////////////////////////////
