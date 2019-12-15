@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "win10-enterprise",
+    "Format": "ova",
+    "UserBucket": {
+      "S3Bucket": "xxxx",
+      "S3Key": "vulnvms/win10x64-enterprise.ova"
+    }
+  }
+]
