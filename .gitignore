@@ -4,7 +4,8 @@ aws.yaml
 .pem
 keys
 notes/
-.vagrant/
 img/
+.terraform
+.vagrant/
 research/
 screencast/
