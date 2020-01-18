@@ -8,9 +8,10 @@
 //  }
 //}
 
-output "win2008_ebs_vol_id" {
-  value = "${data.aws_ebs_volume.win2008_ebs_volume.id}"
-}
+//todo: fix win2k8
+//output "win2008_ebs_vol_id" {
+//  value = "${data.aws_ebs_volume.win2008_ebs_volume.id}"
+//}
 
 data "aws_ebs_volume" "cr_ms3_2k8" {
   most_recent = true
