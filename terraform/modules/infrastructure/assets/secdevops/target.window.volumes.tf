@@ -1,12 +1,12 @@
-
-data "aws_ebs_volume" "win2008_ebs_volume" {
-  most_recent = true
-
-  filter {
-    name   = "attachment.instance-id"
-    values = ["${aws_instance.win2008[0].id}"]
-  }
-}
+//todo: fix win2k8
+//data "aws_ebs_volume" "win2008_ebs_volume" {
+//  most_recent = true
+//
+//  filter {
+//    name   = "attachment.instance-id"
+//    values = ["${aws_instance.win2008[0].id}"]
+//  }
+//}
 
 output "win2008_ebs_vol_id" {
   value = "${data.aws_ebs_volume.win2008_ebs_volume.id}"

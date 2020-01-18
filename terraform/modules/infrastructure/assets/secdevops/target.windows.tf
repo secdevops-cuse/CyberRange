@@ -5,7 +5,7 @@ locals {
   ]
 }
 
-//
+//todo: fix win2k8
 //resource "aws_instance" "win2008" {
 //  count = "${var.docker_ct}"
 //  ami           = "${data.aws_ami.win2k8.id}"

@@ -200,7 +200,7 @@ name_regex       = ".*win2010.*"
 owners           = ["588675961644"]
 }
 
-
+//todo: fix win2k8
 //data "aws_ami" "win2k8" {
 //  most_recent = true
 //  owners = ["amazon"]
