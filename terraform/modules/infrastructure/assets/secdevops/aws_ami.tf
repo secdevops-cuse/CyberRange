@@ -201,20 +201,20 @@ owners           = ["588675961644"]
 }
 
 
-data "aws_ami" "win2k8" {
-  most_recent = true
-  owners = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["*Windows_Server-2008-SP2-English-64Bit*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
+//data "aws_ami" "win2k8" {
+//  most_recent = true
+//  owners = ["amazon"]
+//
+//  filter {
+//    name   = "name"
+//    values = ["*Windows_Server-2008-SP2-English-64Bit*"]
+//  }
+//
+//  filter {
+//    name   = "virtualization-type"
+//    values = ["hvm"]
+//  }
+//}
 
 data "aws_ami" "win2k12" {
   most_recent = true
