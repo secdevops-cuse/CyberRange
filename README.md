@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
 
 # Overview: 
-![Arsenal](https://github.com/secdevops-cuse/badges/blob/master/arsenal/europe/2019.svg)](https://www.blackhat.com/eu-19/arsenal/schedule/index.html#cyberrange-an-open-source-offensivedefensive-security-lab-in-aws-18229)
+![Arsenal](https://github.com/secdevops-cuse/badges/blob/master/arsenal/europe/2019.svg)<br>
 This CyberRange project represents the first open-source Cyber Range blueprint in the world.
 
 This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence tooling in a private research lab using the AWS Cloud. 
