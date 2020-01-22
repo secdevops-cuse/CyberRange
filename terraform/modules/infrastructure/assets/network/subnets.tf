@@ -18,7 +18,7 @@ resource "aws_subnet" "target_subnet" {
   vpc_id                  = "${aws_vpc.main.id}"
   cidr_block        = "192.168.39.0/24"
   availability_zone       = "${data.aws_availability_zones.available.names[0]}"
-//  map_public_ip_on_launch = true
+  map_public_ip_on_launch = true
 
   tags = {
     name        = "target_subnet"
@@ -52,7 +52,7 @@ resource "aws_subnet" "honeypot_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    name        = "malware_subnet"
+    name        = "honeypot_subnet"
     environment = "${var.environment}"
   }
 

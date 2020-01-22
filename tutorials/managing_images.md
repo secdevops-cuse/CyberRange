@@ -64,10 +64,10 @@ simply replace 123412341234 with the appropriate numerical identifier
 
 
 ## Share the AMI's with users:
-1. create a list of ids in a file, parse with awk -> `awk '{print "{UserId="$1"},"}' userids | tr -d "\n"`
+1. create a list of ids in a file, parse with awk -> `awk '{print "{UserId="$1"},"}' aws_accts | tr -d "\n"`
 2. Iterate through all the AMI's and add each user ->
 ```
-for image in in $(aws ec2 describe-images --owner 588675961644| jq -r '.Images[].ImageId' ); do echo aws ec2 modify-image-attribute --image-id $image --launch-permission \"Add=[{UserId=xxxxxxxx},{UserId=xxxxxxxx}]\";done > /tmp/script; chmod 755 /tmp/script
+for image in in $(aws ec2 describe-images --owner 588675961644| jq -r '.Images[].ImageId' ); do echo aws ec2 modify-image-attribute --image-id $image --launch-permission \"Add=[{UserId=xxxxxxxx}]\";done | grep -iv in > /tmp/script; chmod 755 /tmp/script; /tmp/script
 
 ```
 

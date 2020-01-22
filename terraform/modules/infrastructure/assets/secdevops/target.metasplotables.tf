@@ -1,4 +1,3 @@
-
 resource "aws_instance" "cr_ms3_2k8" {
   count = "${var.docker_ct}"
 

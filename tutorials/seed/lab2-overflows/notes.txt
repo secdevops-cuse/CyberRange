@@ -1,9 +1,0 @@
-notes:
-
-disassemble main 
-disassemble bof
-
-define hook-stop
-x/1i $eip
-x/8wx $esp
-end

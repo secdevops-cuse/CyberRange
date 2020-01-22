@@ -1,3 +1,4 @@
+#@IgnoreInspection BashAddShebang
 # 08/22/2019 - customization by Cappetta
 #        for the SecDevOps Cyber Range: https://github.com/secdevops-cuse/CyberRange
 # Reference : https://github.com/pgporada/terraform-makefile/blob/master/Makefile
@@ -18,8 +19,6 @@
 
 .ONESHELL:
 .SHELL := /usr/bin/bash
-.PHONY: apply destroy-backend destroy destroy-target plan-destroy plan plan-target prep
-# VARS="variables/$(ENV)-$(REGION).tfvars"
 CURRENT_FOLDER=$(shell basename "$$(pwd)")
 S3_BUCKET="secdevops-cuse"
 WORKSPACE="$(ENV)-$(REGION)"
@@ -36,18 +35,17 @@ help:
 set-env:
 	@if [ -z $(ENV) ]; then \
 		echo "$(BOLD)$(RED)ENV was not set$(RESET)"; \
-		ERROR=1; \
+		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`$(RESET)"; \
+		exit 1; \
 	 fi
 	@if [ -z $(REGION) ]; then \
 		echo "$(BOLD)$(RED)REGION was not set$(RESET)"; \
-		ERROR=1; \
+		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`$(RESET)"; \
+		exit 1; \
 	 fi
 	@if [ -z $(AWS_PROFILE) ]; then \
 		echo "$(BOLD)$(RED)AWS_PROFILE was not set.$(RESET)"; \
-		ERROR=1; \
-	 fi
-	@if [ ! -z $${ERROR} ] && [ $${ERROR} -eq 1 ]; then \
-		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make plan\`$(RESET)"; \
+		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`$(RESET)"; \
 		exit 1; \
 	 fi
 
@@ -63,13 +61,14 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 		-backend-config="profile=$(AWS_PROFILE)" \
 		-backend-config="region=$(REGION)" \
 		-backend-config="bucket=$(S3_BUCKET)" \
-		-backend-config="key=virginia/secdevops-cuse-dev-v2.tfstate" \
+		-backend-config="key=$(REGION)/secdevops-cuse.tfstate" \
 	    -backend-config="acl=private"
 	@echo "$(BOLD)Switching to workspace $(WORKSPACE)$(RESET)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
 
 show: ## print out a list of all Cyber Range AMI's that are available to me
 	@./tools/show.amis.sh
+
 ips: ## aws alias w/ jq to show running assets & public ips
 	@./tools/show.ips.sh | tr "," "\t" | sed 's/"//g'
 
@@ -79,84 +78,21 @@ plan: ## Show terraform plan output
 		-input=false \
 		-refresh=true | grep -i "will be created"
 
-range: ## Create Everything
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true \
-		-input=false \
-		-refresh=true \
-		&& time inspec exec terraform/inspec/cyberRange.full.instances.rb -t aws://
-
-kali: ## Create just kali
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true \
-		-input=false \
-		-refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.kali[0] \
-		--target=module.range-infra.module.network.aws_internet_gateway.gw
-
-offensive: ## Create Kali & Commando vms
+offensive: network ## Create Kali & Commando vms then work on the fundamentals [ Create Metasploitable Targets ]
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 	    -lock=true -input=false -refresh=true \
 		--target=module.range-infra.module.secdevops.aws_instance.kali[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.commando[0] \
-		--target=module.range-infra.module.network.aws_internet_gateway.gw \
-		--target=module.range-infra.module.network.aws_nat_gateway.nat-a \
-		--target=module.range-infra.module.network.aws_route_table.private-a \
-		--target=module.range-infra.module.network.aws_route_table.public-a \
-		--target=module.range-infra.module.network.aws_route_table_association.private-a \
-		--target=module.range-infra.module.network.aws_route_table_association.public-a \
-		--target=module.range-infra.module.secdevops.aws_security_group.kali
-
-honeypot: ## Create T-Pot Honeypot
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.tpot[0]
-
-myhouse: ## Create myhouse / kali test environment
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_myhouse7[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.kali[0] \
-        --target=module.range-infra.module.network.aws_internet_gateway.gw \
-        --target=module.range-infra.module.network.aws_nat_gateway.nat-a \
-        --target=module.range-infra.module.network.aws_route_table.private-a \
-        --target=module.range-infra.module.network.aws_route_table.public-a \
-        --target=module.range-infra.module.network.aws_route_table_association.private-a \
-        --target=module.range-infra.module.network.aws_route_table_association.public-a
-        --target=module.range-infra.module.network.aws_route_table_association.public-a
+		--target=module.range-infra.module.secdevops.aws_instance.commando[0]
 
 destroy-honeypot: ## Destroy T-Pot Honeypot
 	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
 		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.tpot[0]
+		--target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0]
 
-target-simple: ## Learn the fundamentals [ Create Metasploitable Targets ]
+honeypot: network ## Create the T-Pot Asset [ Full-Build ]
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_2k8[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.ami_ms3_2k12[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_nix[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.kali[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.commando[0] \
-		--target=module.range-infra.module.network.aws_internet_gateway.gw \
-		--target=module.range-infra.module.network.aws_nat_gateway.nat-a \
-		--target=module.range-infra.module.network.aws_route_table.private-a \
-		--target=module.range-infra.module.network.aws_route_table.public-a \
-		--target=module.range-infra.module.network.aws_route_table_association.private-a \
-		--target=module.range-infra.module.network.aws_route_table_association.public-a \
-		--target=module.range-infra.module.secdevops.aws_security_group.kali
-
-pot: ## Create the T-Pot Asset [ Full-Build ]
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0] \
-        --target=module.range-infra.module.network.aws_internet_gateway.gw \
-        --target=module.range-infra.module.network.aws_nat_gateway.nat-a \
-        --target=module.range-infra.module.network.aws_route_table.private-a \
-        --target=module.range-infra.module.network.aws_route_table.public-a \
-        --target=module.range-infra.module.network.aws_route_table_association.private-a \
-        --target=module.range-infra.module.network.aws_route_table_association.public-a \
-        --target=module.range-infra.module.secdevops.aws_security_group.kali
+		--target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0]
 
 network: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
@@ -168,12 +104,32 @@ network: ## make the network, share the output w/ vagrantfile
 		--target=module.range-infra.module.network.aws_route_table_association.private-a \
 		--target=module.range-infra.module.network.aws_route_table_association.public-a \
 		--target=module.range-infra.module.secdevops.aws_security_group.kali \
+		--target=module.range-infra.module.secdevops.aws_security_group.malware \
+		--target=module.range-infra.module.secdevops.aws_security_group.windows \
+		--target=module.range-infra.module.secdevops.aws_security_group.logger \
+		--target=module.range-infra.module.secdevops.aws_security_group.targets \
+		--target=module.range-infra.module.secdevops.aws_security_group.fbctf \
+		--target=module.range-infra.module.secdevops.aws_security_group.tpot \
 		--target=module.range-infra.module.secdevops.aws_key_pair.circleci_key
 
 info: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform output
 
-lab: ## Learn the fundamentals [ Create Metasploitable Targets ]
+refresh: ## make the network, share the output w/ vagrantfile
+	@cd ./terraform/environments/$(REGION) && time terraform refresh
+
+rebuild:  ## Learn the fundamentals [ Create Core Assets ]
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+        --target=module.range-infra.module.secdevops.aws_instance.commandov2[0]
+
+d:  ## Learn the fundamentals [ Create Core Assets ]
+	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
+		-lock=true -input=false -refresh=true \
+        --target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.fbctf[0]
+
+cyberRange: network defenders ## Learn the fundamentals [ Create Core Assets ]
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
 		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_2k8[0] \
@@ -181,53 +137,26 @@ lab: ## Learn the fundamentals [ Create Metasploitable Targets ]
 		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_nix[0] \
         --target=module.range-infra.module.secdevops.aws_instance.kali[0] \
         --target=module.range-infra.module.secdevops.aws_instance.commando[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.dl-dc[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.dl-wef[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.dl-win10[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.dl-logger[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.tpot[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0] \
         --target=module.range-infra.module.secdevops.aws_instance.docker[0] \
         --target=module.range-infra.module.secdevops.aws_instance.fbctf[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.flarevm-win7[0] \
-		--target=module.range-infra.module.network.aws_internet_gateway.gw \
-		--target=module.range-infra.module.network.aws_nat_gateway.nat-a \
-		--target=module.range-infra.module.network.aws_route_table.private-a \
-		--target=module.range-infra.module.network.aws_route_table.public-a \
-		--target=module.range-infra.module.network.aws_route_table_association.private-a \
-		--target=module.range-infra.module.network.aws_route_table_association.public-a \
-		--target=module.range-infra.module.secdevops.aws_security_group.kali
+        --target=module.range-infra.module.secdevops.aws_instance.flarevm-win7[0]
+	@$(MAKE) --no-print-directory checkLab
 
-destroy-docker: ## rebuild docker
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force -lock=true -input=false -refresh=true \
-        --target=module.range-infra.module.secdevops.aws_instance.docker[0]
-
-docker: ## rebuild docker
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true -input=false -refresh=true \
-        --target=module.range-infra.module.secdevops.aws_instance.docker[0]
-
-defenders: ## Setup Detection Lab
+defenders: network ## Setup Detection Lab
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
 	    -lock=true -input=false -refresh=true \
 	    --target=module.range-infra.module.secdevops.aws_instance.dl-dc[0] \
 	    --target=module.range-infra.module.secdevops.aws_instance.dl-wef[0] \
 	    --target=module.range-infra.module.secdevops.aws_instance.dl-win10[0] \
 	    --target=module.range-infra.module.secdevops.aws_instance.dl-logger[0] \
-	    --target=module.range-infra.module.network.aws_internet_gateway.gw --target=module.range-infra.module.network.aws_nat_gateway.nat-a --target=module.range-infra.module.network.aws_route_table.private-a --target=module.range-infra.module.network.aws_route_table.public-a --target=module.range-infra.module.network.aws_route_table_association.private-a --target=module.range-infra.module.network.aws_route_table_association.public-a --target=module.range-infra.module.secdevops.aws_security_group.kali
-
-destroy-defenders: ## Destroy Detection Lab
-	@cd ./terraform/environments/$(REGION) && \
-	time terraform destroy -force -lock=true -input=false -refresh=true \
-	--target=module.range-infra.module.secdevops.aws_instance.dl-dc[0] \
-	--target=module.range-infra.module.secdevops.aws_instance.dl-wef[0] \
-	--target=module.range-infra.module.secdevops.aws_instance.dl-win10[0] \
-	--target=module.range-infra.module.secdevops.aws_instance.dl-logger[0]
-
-destroy-simple: ## Destroy em! [ Eliminte the Basic Metasploitable Targets ]
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_2k8[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.ami_ms3_2k12[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_nix[0]
+	    --target=module.range-infra.module.network.aws_internet_gateway.gw \
+	    --target=module.range-infra.module.network.aws_nat_gateway.nat-a \
+	    --target=module.range-infra.module.network.aws_route_table.private-a \
+	    --target=module.range-infra.module.network.aws_route_table.public-a \
+	    --target=module.range-infra.module.network.aws_route_table_association.private-a \
+	    --target=module.range-infra.module.network.aws_route_table_association.public-a \
+	    --target=module.range-infra.module.secdevops.aws_security_group.kali
 
 destroy-force: ## Tasmanian Devil-Style Tornado [ Destroy everything now ]
 	 @cd ./terraform/environments/$(REGION) && time terraform destroy -force \
@@ -238,7 +167,6 @@ purge: ## clean up lingering volumes
 
 showvms: ## aws alias w/ jq to show stopped ec2 instances
     @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
-
 
 debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
@@ -260,14 +188,3 @@ checkLab: ## inspec the lab
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
-
-createUser: ## create the aws test users/oranization...
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve -lock=true \
-            -lock=true -input=false -refresh=true \
-     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat \
-     		--target=module.range-infra.module.secdevops.aws_iam_access_key.cloudgoat \
-     		--target=module.range-infra.module.secdevops.aws_iam_user_policy.cloudgoat
-
-deleteUser: ## create the aws test users/oranization...
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
-     		--target=module.range-infra.module.secdevops.aws_iam_user.cloudgoat

@@ -20,6 +20,17 @@ data "aws_ami" "debianstretch" {
   }
 }
 
+data "aws_ami" "debianbuster" {
+  most_recent       = true
+  owners            = ["136693071363"]
+
+  filter {
+    name   = "name"
+    values = ["debian-10-*"]
+  }
+}
+
+
 data "aws_ami" "cuckoo-host" {
   most_recent = true
 
@@ -113,8 +124,7 @@ data "aws_ami" "skytower" {
 
 data "aws_ami" "kali" {
   most_recent      = true
-//  name_regex       = ".*kali-2019.1.*"
-  name_regex       = ".*kali-2019.4 v2.*"
+  name_regex       = ".*kali-2019.4-essentials*"
   owners           = ["588675961644"]
 }
 
@@ -190,21 +200,21 @@ name_regex       = ".*win2010.*"
 owners           = ["588675961644"]
 }
 
-
-data "aws_ami" "win2k8" {
-  most_recent = true
-  owners = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["*Windows_Server-2008-SP2-English-64Bit*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
+//todo: fix win2k8
+//data "aws_ami" "win2k8" {
+//  most_recent = true
+//  owners = ["amazon"]
+//
+//  filter {
+//    name   = "name"
+//    values = ["*Windows_Server-2008-SP2-English-64Bit*"]
+//  }
+//
+//  filter {
+//    name   = "virtualization-type"
+//    values = ["hvm"]
+//  }
+//}
 
 data "aws_ami" "win2k12" {
   most_recent = true
@@ -315,7 +325,7 @@ data "aws_ami" "logger_ami" {
 
 data "aws_ami" "flare" {
   most_recent      = true
-  name_regex       = "^flarevm-win7$"
+  name_regex       = "^flare-commando$"
   owners           = ["588675961644"]
 }
 
@@ -327,6 +337,6 @@ data "aws_ami" "commando" {
 
 data "aws_ami" "commandov2" {
   most_recent      = true
-  name_regex       = "^.*commando.*kali.*$"
+  name_regex       = "^.*commandov2-win10ent.*$"
   owners           = ["588675961644"]
 }

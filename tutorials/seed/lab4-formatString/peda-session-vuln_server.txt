@@ -1,3 +1,0 @@
-break main
-break myprintf
-
