@@ -50,3 +50,4 @@ git clone https://github.com/ShawnDEvans/smbmap.git
 git clone https://github.com/JackOfMostTrades/gadgetinspector.git
 git clone https://github.com/ambionics/phpggc.git
 git clone https://github.com/trimstray/the-book-of-secret-knowledge.git
+git clone https://github.com/1N3/Sn1per.git
