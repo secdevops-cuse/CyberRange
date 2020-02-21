@@ -37,7 +37,7 @@ The makefile has been created in hopes of providing users with a simple menu-dri
 ### Initializing your desktop
 This primarily outlines a windows desktop setup.   
  
- - Linux / Mac: use your package manager for the software packages: `terraform, awscli, git, jq`.   
+ - Linux / Mac: use your package manager for the software packages: `terraform, awscli, git, jq, awk, make`.   
 
  - Windows Specific Instructions:
     - [install chocolatey](https://chocolatey.org/docs/installation) 

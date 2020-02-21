@@ -17,8 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-.ONESHELL:
-.SHELL := /usr/bin/bash
 CURRENT_FOLDER=$(shell basename "$$(pwd)")
 S3_BUCKET="secdevops-cuse"
 WORKSPACE="$(ENV)-$(REGION)"
@@ -29,28 +27,25 @@ YELLOW=$(shell tput setaf 3)
 RESET=$(shell tput sgr0)
 REGION="us-east-1"
 
-help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
 set-env:
 	@if [ -z $(ENV) ]; then \
-		echo "$(BOLD)$(RED)ENV was not set$(RESET)"; \
-		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`$(RESET)"; \
+		echo "ENV was not set"; \
+		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
 	@if [ -z $(REGION) ]; then \
-		echo "$(BOLD)$(RED)REGION was not set$(RESET)"; \
-		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`$(RESET)"; \
+		echo "REGION was not set"; \
+		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
 	@if [ -z $(AWS_PROFILE) ]; then \
-		echo "$(BOLD)$(RED)AWS_PROFILE was not set.$(RESET)"; \
-		echo "$(BOLD)Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`$(RESET)"; \
+		echo "AWS_PROFILE was not set."; \
+		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
 
 init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
-	@echo "$(BOLD)Configuring the terraform backend$(RESET)"
+	@echo "Configuring the terraform backend"
 	@cd ./terraform/environments/$(REGION) &&	terraform init \
 		-input=false \
 		-force-copy \
@@ -63,7 +58,7 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 		-backend-config="bucket=$(S3_BUCKET)" \
 		-backend-config="key=$(REGION)/secdevops-cuse.tfstate" \
 	    -backend-config="acl=private"
-	@echo "$(BOLD)Switching to workspace $(WORKSPACE)$(RESET)"
+	@echo "Switching to workspace $(WORKSPACE)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
 
 show: ## print out a list of all Cyber Range AMI's that are available to me
@@ -165,8 +160,8 @@ destroy-force: ## Tasmanian Devil-Style Tornado [ Destroy everything now ]
 purge: ## clean up lingering volumes
 	@time for id in $(aws ec2 describe-volumes --filters Name=status,Values=available | jq -r '.Volumes[] | .VolumeId' ); do echo aws ec2 delete-volume --volume-id $id; done
 
-showvms: ## aws alias w/ jq to show stopped ec2 instances
-    @time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
+showvms: ## aws alias w/ jq to show stopped ec2 instance
+	@time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
 
 debug: ## Issue? [ collect show useful output / symptoms ]
 	@echo "I'll figure this out once people start complaining"
