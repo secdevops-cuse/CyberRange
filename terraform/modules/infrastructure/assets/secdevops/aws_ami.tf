@@ -152,36 +152,6 @@ name_regex       = ".*hack-in-os.*"
 owners           = ["588675961644"]
 }
 
-data "aws_ami" "r7" {
-most_recent      = true
-name_regex       = ".*r7.*"
-owners           = ["588675961644"]
-}
-
-data "aws_ami" "nessus" {
-most_recent      = true
-name_regex       = ".*Tenable-Core-Nessus-20190308.*"
-owners           = ["588675961644"]
-}
-
-data "aws_ami" "was" {
-most_recent      = true
-name_regex       = ".*Tenable-Core-WAS-20190308.*"
-owners           = ["588675961644"]
-}
-
-data "aws_ami" "nnm" {
-most_recent      = true
-name_regex       = ".*Tenable.*NNM.*"
-owners           = ["588675961644"]
-}
-
-data "aws_ami" "sc" {
-most_recent      = true
-name_regex       = ".*Tenable-Core-SecurityCenter-20190308.*"
-owners           = ["588675961644"]
-}
-
 data "aws_ami" "myhouse7" {
 most_recent      = true
 name_regex       = ".*myhouse7.*"
@@ -200,22 +170,7 @@ name_regex       = ".*win2010.*"
 owners           = ["588675961644"]
 }
 
-//todo: fix win2k8
-//data "aws_ami" "win2k8" {
-//  most_recent = true
-//  owners = ["amazon"]
-//
-//  filter {
-//    name   = "name"
-//    values = ["*Windows_Server-2008-SP2-English-64Bit*"]
-//  }
-//
-//  filter {
-//    name   = "virtualization-type"
-//    values = ["hvm"]
-//  }
-//}
-
+ 
 data "aws_ami" "win2k12" {
   most_recent = true
   owners = ["amazon"]
