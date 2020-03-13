@@ -39,4 +39,9 @@ There are many training guides outlining the services, their purpose, and how-to
 
 This project leverages [Terraform](http://lmgtfy.com/?q=aws+billing+alert) to automate the creation and 
 linking of services & assets in the cloud.  
- 
+
+
+## Usernames / Passwords: 
+win7/8 box is `IEUser/Passw0rd!`
+`vagrant/vagrant`
+`terraform/terraform`

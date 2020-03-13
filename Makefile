@@ -27,6 +27,9 @@ YELLOW=$(shell tput setaf 3)
 RESET=$(shell tput sgr0)
 REGION="us-east-1"
 
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
 set-env:
 	@if [ -z $(ENV) ]; then \
 		echo "ENV was not set"; \
@@ -67,28 +70,6 @@ show: ## print out a list of all Cyber Range AMI's that are available to me
 ips: ## aws alias w/ jq to show running assets & public ips
 	@./tools/show.ips.sh | tr "," "\t" | sed 's/"//g'
 
-plan: ## Show terraform plan output
-	@cd ./terraform/environments/$(REGION) && time terraform plan \
-		-lock=true \
-		-input=false \
-		-refresh=true | grep -i "will be created"
-
-offensive: network ## Create Kali & Commando vms then work on the fundamentals [ Create Metasploitable Targets ]
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-	    -lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.kali[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.commando[0]
-
-destroy-honeypot: ## Destroy T-Pot Honeypot
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0]
-
-honeypot: network ## Create the T-Pot Asset [ Full-Build ]
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0]
-
 network: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
@@ -110,21 +91,7 @@ network: ## make the network, share the output w/ vagrantfile
 info: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform output
 
-refresh: ## make the network, share the output w/ vagrantfile
-	@cd ./terraform/environments/$(REGION) && time terraform refresh
-
-rebuild:  ## Learn the fundamentals [ Create Core Assets ]
-	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true -input=false -refresh=true \
-        --target=module.range-infra.module.secdevops.aws_instance.commandov2[0]
-
-d:  ## Learn the fundamentals [ Create Core Assets ]
-	@cd ./terraform/environments/$(REGION) && time terraform destroy -force \
-		-lock=true -input=false -refresh=true \
-        --target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.fbctf[0]
-
-cyberRange: network defenders ## Learn the fundamentals [ Create Core Assets ]
+cyberRange: network defenders ## Create the Range
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
 		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_2k8[0] \
@@ -163,20 +130,18 @@ purge: ## clean up lingering volumes
 showvms: ## aws alias w/ jq to show stopped ec2 instance
 	@time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
 
-debug: ## Issue? [ collect show useful output / symptoms ]
-	@echo "I'll figure this out once people start complaining"
 
 checkRange: ## run automated inspec tests
-	@inspec exec ./terraform/inspec/cyberRange.defenders.rb -t aws:// > /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.desired.state.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.full.instances.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.honeynet.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.malware.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.network.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.network.sg.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.offensive.kali.system.rb -t aws:// >> /tmp/inspec.result && \
-                 inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// >> /tmp/inspec.result &&  \
-                 inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// >> /tmp/inspec.result && cat /tmp/inspec.result\
+	@inspec exec ./terraform/inspec/cyberRange.defenders.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.desired.state.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.full.instances.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.honeynet.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.malware.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.network.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.network.sg.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.offensive.kali.system.rb -t aws:// && \
+                 inspec exec ./terraform/inspec/cyberRange.offensive.rb -t aws:// &&  \
+                 inspec exec ./terraform/inspec/cyberRange.targets.rb -t aws:// && cat /tmp/inspec.result\
 
 checkLab: ## inspec the lab
 	@inspec exec ./terraform/inspec/cyberRange.lab.rb -t aws://
