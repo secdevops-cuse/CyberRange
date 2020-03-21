@@ -117,13 +117,6 @@ resource "aws_security_group" "kali" {
     protocol    = "-1"
     cidr_blocks = ["${var.ip_list}"]
   }
-  # Allow all traffic from the attackers and target subnets
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
-  }
 
   tags = {
     Name        = "kali"
@@ -160,14 +153,6 @@ resource "aws_security_group" "targets" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["${var.ip_list}"]
-  }
-
-  # Allow all traffic from the attackers and target subnets
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
   }
 
 
@@ -223,15 +208,6 @@ resource "aws_security_group" "logger" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # Allow all traffic from the attackers and target subnets
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
-  }
-
-
   # outbound internet access
   egress {
     from_port   = 0
@@ -239,6 +215,13 @@ resource "aws_security_group" "logger" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name        = "logger_securityGroup"
+    Environment = "${var.environment}"
+    Terraform   = "True"
+  }
+
 }
 
 // import from https://github.com/clong/DetectionLab
@@ -269,14 +252,6 @@ resource "aws_security_group" "windows" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["${var.ip_list}"]
-  }
-
-  # Allow all traffic from the attackers and target subnets
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
   }
 
   # outbound internet access
@@ -314,7 +289,7 @@ resource "aws_security_group" "malware" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # outbound internet access - eliminate everything
+  # outbound internet access - eliminate almost everything
   egress {
     from_port   = 1
     to_port     = 1

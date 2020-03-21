@@ -54,7 +54,7 @@ init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 		-force-copy \
 		-lock=true \
 		-upgrade \
-		-verify-plugins=true \
+		-verify-plugins=true # \
 		-backend=true \
 		-backend-config="profile=$(AWS_PROFILE)" \
 		-backend-config="region=$(REGION)" \
@@ -70,7 +70,7 @@ show: ## print out a list of all Cyber Range AMI's that are available to me
 ips: ## aws alias w/ jq to show running assets & public ips
 	@./tools/show.ips.sh | tr "," "\t" | sed 's/"//g'
 
-network: ## make the network, share the output w/ vagrantfile
+network: sg ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
 		--target=module.range-infra.module.network.aws_internet_gateway.gw \
@@ -79,13 +79,6 @@ network: ## make the network, share the output w/ vagrantfile
 		--target=module.range-infra.module.network.aws_route_table.public-a \
 		--target=module.range-infra.module.network.aws_route_table_association.private-a \
 		--target=module.range-infra.module.network.aws_route_table_association.public-a \
-		--target=module.range-infra.module.secdevops.aws_security_group.kali \
-		--target=module.range-infra.module.secdevops.aws_security_group.malware \
-		--target=module.range-infra.module.secdevops.aws_security_group.windows \
-		--target=module.range-infra.module.secdevops.aws_security_group.logger \
-		--target=module.range-infra.module.secdevops.aws_security_group.targets \
-		--target=module.range-infra.module.secdevops.aws_security_group.fbctf \
-		--target=module.range-infra.module.secdevops.aws_security_group.tpot \
 		--target=module.range-infra.module.secdevops.aws_key_pair.circleci_key
 
 info: ## make the network, share the output w/ vagrantfile
@@ -93,16 +86,7 @@ info: ## make the network, share the output w/ vagrantfile
 
 cyberRange: network defenders ## Create the Range
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
-		-lock=true -input=false -refresh=true \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_2k8[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.ami_ms3_2k12[0] \
-		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_nix[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.kali[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.commando[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.tpot-full-build[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.docker[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.fbctf[0] \
-        --target=module.range-infra.module.secdevops.aws_instance.flarevm-win7[0]
+		-lock=true -input=false -refresh=true
 	@$(MAKE) --no-print-directory checkLab
 
 defenders: network ## Setup Detection Lab
@@ -148,3 +132,20 @@ checkLab: ## inspec the lab
 
 output: ## Show the output of terraform
 	@cd ./terraform/environments/$(REGION) && time terraform output
+
+sg: ## make the network, share the output w/ vagrantfile
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+		--target=module.range-infra.module.secdevops.aws_security_group.kali \
+		--target=module.range-infra.module.secdevops.aws_security_group.malware \
+		--target=module.range-infra.module.secdevops.aws_security_group.windows \
+		--target=module.range-infra.module.secdevops.aws_security_group.logger \
+		--target=module.range-infra.module.secdevops.aws_security_group.targets \
+		--target=module.range-infra.module.secdevops.aws_security_group.fbctf \
+		--target=module.range-infra.module.secdevops.aws_security_group.tpot \
+		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_all_between_attacker_and_logger \
+		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_all_between_target_and_logger \
+		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_malware_to_malware \
+		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_all_between_target_and_attacker \
+		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_all_between_attacker_and_target \
+		--target=module.range-infra.module.secdevops.aws_key_pair.circleci_key
