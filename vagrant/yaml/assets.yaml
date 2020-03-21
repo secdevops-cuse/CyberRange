@@ -1,0 +1,49 @@
+# @author: cappetta
+---
+- name: kali
+  ami: ami-0414ea8409c5281f1
+  user: ec2-user
+  type: t2.medium
+
+- name: magento
+  ami: ami-053249ec4f783194d
+  user: bitnami
+  type: t2.medium
+
+- name: commando
+  ami: ami-01d0140f57149a9da
+  user: vagrant
+  isWin: true
+  type: t2.medium
+
+- name: ms3-2k12
+  ami: ami-0acdddc2e69b42c88
+  user: vagrant
+  isWin: true
+
+- name: ms3-nix
+  ami: ami-0089cbafb1f8adfd3
+  user: vagrant
+
+- name: ms3-win2k8
+  ami: ami-026e514bf33427cd9
+  user: vagrant
+  isWin: true
+
+- name: myhouse
+  ami: ami-0510f880a3b4d593d
+  user: admin
+
+- name: tpot
+  ami: ami-0dedf6a6502877301
+  user: admin
+  type: t2.large
+  port: 64295
+  userData: "../terraform/modules/infrastructure/cloud-init/tpot.setup.yml"
+
+- name: flarevm
+  ami: ami-07ab2c972579f71af
+  user: vagrant
+  type: t2.medium
+  isWin: true
+

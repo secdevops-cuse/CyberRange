@@ -6,7 +6,7 @@
 # check_plugins ["vagrant-docker-compose", "vagrant-awsinfo", "vagrant-docker-login", "vagrant-aws", "vagrant-share", "vagrant-winrm-syncedfolders"]
 
 require 'yaml'
-asset = YAML.load_file("./yaml/aws.yaml")
+network = YAML.load_file("./yaml/aws.yaml")
 assets = YAML.load_file("./yaml/assets.yaml")
 
 Vagrant.configure("2") do |config|
@@ -14,15 +14,15 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
 
   assets.each do |asset|
-    config.vm.define asset["name"] do |asset_config|
-      asset_config.vm.provider :aws do |aws, override|
-        profile = Aws::SharedCredentials.new(:profile_name => "default")
+    config.vm.define asset["name"] do |node_config|
+      node_config.vm.provider :aws do |aws, override|
+        profile = Aws::SharedCredentials.new(:profile_name => "test")
         aws.access_key_id = profile.credentials.access_key_id
         aws.secret_access_key = profile.credentials.secret_access_key
 
-        override.ssh.private_key_path = asset['private_key_path']
-        aws.keypair_name = asset['aws_keypair_name']
-        aws.region = asset["region"]
+        override.ssh.private_key_path = network['private_key_path']
+        aws.keypair_name = network['aws_keypair_name']
+        aws.region = network["region"]
 
         aws.elastic_ip = true
         aws.associate_public_ip = true
@@ -31,12 +31,12 @@ Vagrant.configure("2") do |config|
         aws.ami = asset["ami"]
 
         # VPC's, subnets & security groups are required
-        if asset["subnet_id"]
-          aws.subnet_id = asset["subnet_id"]
+        if network["subnet_id"]
+          aws.subnet_id = network["subnet_id"]
         end
 
-        if asset['secgroup_id']
-          aws.security_groups = asset['secgroup_id']
+        if network['secgroup_id']
+          aws.security_groups = network['secgroup_id']
         end
 
         # If default user defined otherwise ec2-user
@@ -52,25 +52,26 @@ Vagrant.configure("2") do |config|
           aws.instance_type = "t2.micro"
         end
         if asset["isWin"]
-          asset_config.vm.communicator = "winrm"
+          node_config.vm.communicator = "winrm"
           type = "nfs"
         else
           type = "rsync"
         end
-        asset_config.vm.synced_folder ".", "/vagrantshared" , type: type
+        node_config.vm.synced_folder ".", "/vagrantshared" , type: type
         aws.tags = {
             'Name' => asset["name"],
         }
 
-
-        aws.block_device_mapping = [{ 'DeviceName' => '/dev/xvda', 'Ebs.VolumeSize' => 250 }]
+        if asset["expand"]
+          aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 50  }]
+        end
 
         unless asset['userData'].nil?
           aws.user_data = File.read(asset['userData'])
         end
       end
 
-      asset_config.vm.post_up_message = "System has provisioned successfully -- please validate the boxes ~cappetta"
+      node_config.vm.post_up_message = "System has provisioned successfully -- please validate the boxes ~cappetta"
     end
 
 
