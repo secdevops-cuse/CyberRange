@@ -66,12 +66,12 @@ resource "aws_security_group" "fbctf" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # Allow all traffic from the private subnet
+  # Allow all traffic from the attacker subnet
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["192.168.38.0/24"]
   }
 
   egress {
@@ -110,27 +110,21 @@ resource "aws_security_group" "kali" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # just open up everything else
+  # just open up everything else to the researchers IP
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["${var.ip_list}"]
   }
-  # Allow all traffic from the private subnet
+  # Allow all traffic from the attackers and target subnets
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
   }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
   tags = {
     Name        = "kali"
     Environment = "${var.environment}"
@@ -138,7 +132,7 @@ resource "aws_security_group" "kali" {
   }
 }
 
-#loot aka security group rules
+#
 resource "aws_security_group" "targets" {
   name        = "targets"
   description = "windows / linux targets"
@@ -168,13 +162,14 @@ resource "aws_security_group" "targets" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # Allow all traffic from the private subnet
+  # Allow all traffic from the attackers and target subnets
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
   }
+
 
   # outbound rules
   egress {
@@ -184,7 +179,7 @@ resource "aws_security_group" "targets" {
     cidr_blocks = ["${var.ip_list}"]
   }
   tags = {
-    Name        = "webgoat_sg"
+    Name        = "targets_securityGroup"
     Environment = "${var.environment}"
     Terraform   = "True"
   }
@@ -228,13 +223,14 @@ resource "aws_security_group" "logger" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # Allow all traffic from the private subnet
+  # Allow all traffic from the attackers and target subnets
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
   }
+
 
   # outbound internet access
   egress {
@@ -244,6 +240,7 @@ resource "aws_security_group" "logger" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
 // import from https://github.com/clong/DetectionLab
 resource "aws_security_group" "windows" {
   name        = "windows_security_group"
@@ -274,12 +271,12 @@ resource "aws_security_group" "windows" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  # Allow all traffic from the private subnet
+  # Allow all traffic from the attackers and target subnets
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["192.168.38.0/24", "192.168.39.0/24"]
   }
 
   # outbound internet access

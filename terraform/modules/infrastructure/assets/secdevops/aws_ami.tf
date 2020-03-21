@@ -26,7 +26,7 @@ data "aws_ami" "debianbuster" {
 
   filter {
     name   = "name"
-    values = ["debian-10-*"]
+    values = ["debian-10-amd64-*"]
   }
 }
 
@@ -170,7 +170,7 @@ name_regex       = ".*win2010.*"
 owners           = ["588675961644"]
 }
 
- 
+
 data "aws_ami" "win2k12" {
   most_recent = true
   owners = ["amazon"]
@@ -231,11 +231,11 @@ data "aws_ami" "win2k19" {
   }
 }
 
-data "aws_ami" "remnux" {
-  most_recent      = true
-  name_regex       = ".*remnux.*"
-  owners           = ["588675961644"]
-}
+//data "aws_ami" "remnux" {
+//  most_recent      = true
+//  name_regex       = ".*remnux.*"
+//  owners           = ["588675961644"]
+//}
 
 data "aws_ami" "tpot" {
   most_recent      = true
