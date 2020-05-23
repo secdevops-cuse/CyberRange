@@ -76,7 +76,7 @@ apply_job: &apply_job
     - attach_workspace:
         at: *working_directory
     - run:
-        name: terraform apply
+        name: terraform apply test
         command: |
           source $BASH_ENV
           cd ~/CyberRange/terraform/keys
