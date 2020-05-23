@@ -39,8 +39,6 @@ set_terraform_environment: &set_terraform_environment
       cd && touch $BASH_ENV
       apk add bash curl
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
-        echo 'export TERRAFORM_ENVIRONMENT=eu-west-2' >> $BASH_ENV
-      elif [ "${CIRCLE_BRANCH}" == "hackupstate_2019" || "${CIRCLE_BRANCH}" == "feature/kali-setup" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=us-east-1' >> $BASH_ENV
       else
         echo 'export TERRAFORM_ENVIRONMENT=us-east-1' >> $BASH_ENV
@@ -86,6 +84,7 @@ apply_job: &apply_job
           echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
           echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
           chmod 700 circleci_terraform
+#          todo: update cicd job w/ makefile
           cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
           terraform apply --auto-approve
           terraform output -json > /tmp/output.json
@@ -178,9 +177,10 @@ workflows:
       - plan:
           requires:
             - build
+#    todo: apply plan
       - apply:
           requires:
             - plan
           filters:
             branches:
-              only: development
+              only: master
