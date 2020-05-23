@@ -84,7 +84,6 @@ apply_job: &apply_job
           echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
           echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
           chmod 700 circleci_terraform
-#          todo: update cicd job w/ makefile
           cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
           terraform apply --auto-approve
           terraform output -json > /tmp/output.json
@@ -177,7 +176,6 @@ workflows:
       - plan:
           requires:
             - build
-#    todo: apply plan
       - apply:
           requires:
             - plan
