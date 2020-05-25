@@ -58,7 +58,7 @@ alpine_setup: &alpine_setup
     command: |
       apk update
       apk upgrade
-      apk add curl wget bash git
+      apk add curl wget bash git make
       apk add ruby ruby-bundler
       apk add ruby ruby-dev make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
       pip install awscli
