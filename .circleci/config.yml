@@ -3,7 +3,7 @@ version: 2
 references:
 
 base_image: &base_image
-  hashicorp/terraform:latest
+  hashicorp/terraform:11.14
 
 working_directory: &working_directory
   ~/CyberRange
