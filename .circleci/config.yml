@@ -97,21 +97,13 @@ apply_job: &apply_job
           source $BASH_ENV
           cd ~/CyberRange/
           make destroy-force
-    - slack/status:
-              channel: cicd
-              mentions: 'cappetta'
-              webhook: '${SLACK_WEBHOOK}'
 
 jobs:
 
   build:
     <<: *default_config
     steps:
-      - slack/notify:
-                channel: cicd
-                color: '#42e2f4'
-                message: A $CIRCLE_JOB job has started with the latest to master\n\n Compare URL -> $CIRCLE_COMPARE_URL
-                webhook: '${SLACK_WEBHOOK}'
+
       - checkout
       - *set_terraform_environment
       - run:
@@ -169,10 +161,6 @@ jobs:
           root: *working_directory
           paths:
             - ./terraform/terraform.plan
-      - slack/status:
-                channel: cicd
-                mentions: 'cappetta'
-                webhook: '${SLACK_WEBHOOK}'
 
   apply:
     <<: *apply_job
