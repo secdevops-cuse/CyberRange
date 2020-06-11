@@ -48,19 +48,13 @@ set-env:
 #	 fi
 
 init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
-	@echo "Configuring the terraform backend"
+	@echo "Initializing terraform"
 	@cd ./terraform/environments/$(REGION) &&	terraform init \
 		-input=false \
 		-force-copy \
 		-lock=true \
 		-upgrade \
-		-verify-plugins=true # \
-		-backend=true \
-		-backend-config="profile=$(AWS_PROFILE)" \
-		-backend-config="region=$(REGION)" \
-		-backend-config="bucket=$(S3_BUCKET)" \
-		-backend-config="key=$(REGION)/secdevops-cuse.tfstate" \
-	    -backend-config="acl=private"
+		-verify-plugins=true
 	@echo "Switching to workspace $(WORKSPACE)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
 
