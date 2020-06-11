@@ -88,7 +88,7 @@ apply_job: &apply_job
           chmod 700 circleci_terraform
           cd ~/CyberRange/
           make
-          make init
+          ENV=circleci REGION=eu-west-2 make init
           make network
           make checkLab
     - *alpine_setup
