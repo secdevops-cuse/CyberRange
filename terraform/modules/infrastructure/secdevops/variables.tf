@@ -8,7 +8,7 @@ variable "ip_list" {
 ///////////////////////////////////
 variable "instance_type_tpot" {
 description = "honeypot instance type"
-default     = "c3.xlarge"
+default     = "t2.xlarge"
 }
 
 variable "instance_type_docker" {
@@ -74,6 +74,10 @@ variable "vpc-id" {
 }
 
 variable "vpc-cidr-block" {
+  description = "the cidr block of the vpc"
+}
+
+variable "cidr" {
   description = "the cidr block of the vpc"
 }
 

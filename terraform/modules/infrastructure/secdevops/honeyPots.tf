@@ -8,7 +8,8 @@ locals {
 resource "aws_instance" "tpot-full-build" {
   count = "${var.tpot_ct}"
 
-  ami           = "${data.aws_ami.debianstretch.id}"
+//  ami           = "${data.aws_ami.debianstretch.id}"
+  ami           = "${data.aws_ami.debianbuster.id}"
   instance_type = "${var.instance_type_tpot}"
   subnet_id = "${element(local.subnets_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.tpot.id}"]

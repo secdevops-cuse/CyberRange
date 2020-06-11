@@ -41,11 +41,11 @@ set-env:
 		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
-	@if [ -z $(AWS_PROFILE) ]; then \
-		echo "AWS_PROFILE was not set."; \
-		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
-		exit 1; \
-	 fi
+#	@if [ -z $(AWS_PROFILE) ]; then \
+#		echo "AWS_PROFILE was not set."; \
+#		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
+#		exit 1; \
+#	 fi
 
 init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 	@echo "Configuring the terraform backend"
@@ -84,7 +84,7 @@ network: sg ## make the network, share the output w/ vagrantfile
 info: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform output
 
-cyberRange: network defenders ## Create the Range
+cyberRange: network sg defenders ## Create the Range
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true
 	@$(MAKE) --no-print-directory checkLab
@@ -109,7 +109,10 @@ destroy-force: ## Tasmanian Devil-Style Tornado [ Destroy everything now ]
 		-lock=true -input=false -refresh=true
 
 purge: ## clean up lingering volumes
-	@time for id in $(aws ec2 describe-volumes --filters Name=status,Values=available | jq -r '.Volumes[] | .VolumeId' ); do echo aws ec2 delete-volume --volume-id $id; done
+	@time for id in $(aws ec2 describe-volumes --filters Name=status,Values=available |
+	jq -r '.Volumes[] | .VolumeId' ); do
+	echo aws ec2 delete-volume --volume-id $id;
+	done
 
 showvms: ## aws alias w/ jq to show stopped ec2 instance
 	@time aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped"   |  jq -r   '.Reservations[] | .Instances[] | [.InstanceId, (.Tags[]|select(.Key=="Name")|.Value)]|@csv'
@@ -149,3 +152,9 @@ sg: ## make the network, share the output w/ vagrantfile
 		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_all_between_target_and_attacker \
 		--target=module.range-infra.module.secdevops.aws_security_group_rule.allow_all_between_attacker_and_target \
 		--target=module.range-infra.module.secdevops.aws_key_pair.circleci_key
+
+
+pot: ## make the network, share the output w/ vagrantfile
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+		--target=module.range-infra.module.secdevops.aws_instance.tpot[0]

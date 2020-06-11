@@ -1,6 +1,7 @@
 <script>netsh advfirewall set allprofiles state off & echo 'Firewall is disabled' & winrm set winrm/config/service @{AllowUnencrypted="true"} & winrm set winrm/config/client @{AllowUnencrypted="true"} & echo 'set winrm allow unencrypted' & winrm set winrm/config/service/auth @{Basic="true"} & winrm set winrm/config/client/auth @{Basic="true"} & echo 'set  basic auth' & winrm set winrm/config/listener?Address=*+Transport=HTTP @{Port="5985"} & net stop winrm & sc config winrm start= auto & net start winrm & echo 'print final winrm config' & winrm get winrm/config
 </script>
 <powershell>
+    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fireeye/flare-vm/master/install.ps1'))
     $start = Get-Date
 
 # setup basic terraform user
@@ -16,6 +17,7 @@
 
 # create user, set admin password
     net user /add $user $password;
+    net user vagrant vagrant;
     net localgroup Administrators /add $user;
     net user Administrator $password;
 

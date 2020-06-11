@@ -10,15 +10,16 @@ data "aws_ami" "ubuntu" {
 }
 
 
-data "aws_ami" "debianstretch" {
-  most_recent       = true
-  owners            = ["679593333241"]
-
-  filter {
-    name   = "name"
-    values = ["debian-stretch-hvm-x86_64-*"]
-  }
-}
+//data "aws_ami" "debianstretch" {
+//  most_recent       = true
+//  owners            = ["679593333241"]
+//
+//  filter {
+//    name   = "name"
+////    values = ["debian-stretch-hvm-x86_64-*"]
+//    values = ["debian-stretch-*"]
+//  }
+//}
 
 data "aws_ami" "debianbuster" {
   most_recent       = true
@@ -62,11 +63,11 @@ data "aws_ami" "ubuntu1604" {
 }
 
 
-data "aws_ami" "centos" {
-  most_recent = true
-  owners = ["679593333241"]
-  name_regex       = ".*CentOS Linux 7 x86_64 HVM EBS.*"
-}
+//data "aws_ami" "centos" {
+//  most_recent = true
+//  owners = ["679593333241"]
+//  name_regex       = ".*CentOS Linux 7 x86_64 HVM EBS.*"
+//}
 
 data "aws_ami" "fristileaks" {
   most_recent      = true

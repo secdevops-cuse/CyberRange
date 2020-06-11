@@ -8,8 +8,8 @@ module "staging-state" {
   environment = "${var.environment}"
 }
 
-
-module "staging-infrastructure" {
+module "range-infra" {
   source      = "../../modules/infrastructure"
-  environment = "${var.environment}"
+  environment = var.environment
+  cidr = var.cidr
 }

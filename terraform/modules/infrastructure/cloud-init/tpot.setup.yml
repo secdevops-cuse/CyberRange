@@ -24,3 +24,9 @@ write_files:
     owner: root:root
     path: /root/tpot.conf
     permissions: '0600'
+  - path: /etc/sysctl.d/60-enable-ipv6.conf
+    owner: root
+    content: |
+    net.ipv6.conf.all.disable_ipv6=0
+    net.ipv6.conf.default.disable_ipv6=0
+    net.ipv6.conf.lo.disable_ipv6=0
