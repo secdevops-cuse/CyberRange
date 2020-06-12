@@ -1,5 +1,7 @@
-### Release Notes: 
- [view the changelog](changelog.md)
+### Release Notes:
+ <!--todo: automate-->
+[view the changelog](changelog.md)
+<b>v2.5</b> - baseline of CICD and updated features.
 <b>v2</b> - released on Sept 6, 2019 
     <br/>- features include: makefile, inspec tests, detection lab integration, commandoVM v2, 
      kali 2019.4 w/ xx opensource github tools: CyberRange, DetectionLab, IntruderPayloads, 

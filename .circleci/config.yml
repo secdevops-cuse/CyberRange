@@ -74,6 +74,7 @@ apply_job: &apply_job
   <<: *default_config
   steps:
     - *restore_repo
+    - *alpine_setup
     - *set_terraform_environment
     - *terraform_init
     - attach_workspace:
@@ -90,9 +91,8 @@ apply_job: &apply_job
           cd ~/CyberRange/
           make
           ENV=circleci REGION=eu-west-2 make init
-          make network
-          make checkLab
-    - *alpine_setup
+#          make network
+#          make checkLab
     - run:
         name: Delete Terraform Assets
 #        when: on_fail
@@ -182,8 +182,6 @@ workflows:
           requires:
             - build
       - apply:
-          requires:
-            - plan
           filters:
             branches:
               only: master
