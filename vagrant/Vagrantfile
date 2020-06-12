@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
         aws.keypair_name = network['aws_keypair_name']
         aws.region = network["region"]
 
-        aws.elastic_ip = true
+        # aws.elastic_ip = true
         aws.associate_public_ip = true
         aws.ssh_host_attribute = :public_ip_address
 
