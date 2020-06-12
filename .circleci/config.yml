@@ -99,6 +99,7 @@ apply_job: &apply_job
           source $BASH_ENV
           cd ~/CyberRange/
           make destroy-force
+        when: always
 
 jobs:
 
