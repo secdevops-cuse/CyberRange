@@ -33,12 +33,12 @@ help:
 set-env:
 	@if [ -z $(ENV) ]; then \
 		echo "ENV was not set"; \
-		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
+		echo "Example usage: \`ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
 	@if [ -z $(REGION) ]; then \
 		echo "REGION was not set"; \
-		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
+		echo "Example usage: \`ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
 #	@if [ -z $(AWS_PROFILE) ]; then \

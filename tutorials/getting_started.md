@@ -4,18 +4,22 @@ These AMI's are currently available in us-east-1 and eu-west-2.
 
 First let's review the pre-requisites:
 
-- To gain access to the Cloud Images, the Amazon AMI's, I need to
-share them with your AWS account. 
+- To gain access to the Cloud Images, the Amazon AMI's, I need to share them with your AWS account. 
 
-If you have an AWS account, go right to the secure [CyberRange Registration Form](https://www.tfaforms.com/4729221)
+If you have an AWS account, go right to the registration form [CyberRange Registration Form](https://www.tfaforms.com/4729221)
 
 If you are a new AWS user, [click here to sign-up for a free-trial](https://aws.amazon.com/free/start-your-free-trial/).
 
-I believe research / learning should be low-cost and provide an enormous impact - so grab some AWS Credits off eBay to cushion your account.
+I believe research / learning should be low-cost and provide an enormous impact in one's ability to continuously improve.  If you are like me 
+you will want to grab some AWS Credits off eBay to cushion your account.  
  
-You will also need to install the awscli and perform `aws configure` to setup `~/.aws/credentials`
-Once done you will need to create an S3 bucket 
-Please ensure you have the following software: terraform, git, jq, a remote desktop client, ssh
+## Initial setup
+* You will also need to install the awscli and perform `aws configure` to setup `~/.aws/credentials`
+** Once done you will need to create an S3 bucket if you want to enable the remote storage of your state.  This is an advanced terraform usecase.
+ 
+* Please ensure you have the following software: terraform, git, jq, a remote desktop client, ssh
+
+* You will also need to expand a few services quota's in your AWS account, see: https://github.com/secdevops-cuse/CyberRange/issues/73
 
 
 ## Quick-Start Guide

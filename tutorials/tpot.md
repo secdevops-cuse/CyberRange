@@ -21,3 +21,5 @@ web: `https://IP:64297/tpotweb.html`
 #### cliff-notes: 
 Changing the user password, first param <user>, second <passwd>: 
 e.g. `htpasswd -b -c /etc/nginx/nginxpasswd tpot admin`
+
+looking at data files `find . -name "*json" -mmin -30 -ls`
