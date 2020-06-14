@@ -1,7 +1,5 @@
 version: 2.1
 
-
-
 references:
 
 base_image: &base_image
@@ -61,8 +59,7 @@ alpine_setup: &alpine_setup
       apk update
       apk upgrade
       apk add curl wget bash git make
-      apk add ruby ruby-bundler
-      apk add ruby ruby-dev make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
+      apk add ruby ruby-dev ruby-bundler make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
       curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
       pip install awscli
       apk --purge -v del py-pip
@@ -107,7 +104,6 @@ jobs:
   build:
     <<: *default_config
     steps:
-
       - checkout
       - *set_terraform_environment
       - run:
