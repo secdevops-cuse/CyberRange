@@ -60,7 +60,6 @@ alpine_setup: &alpine_setup
       apk upgrade
       apk add curl wget bash git make
       apk add ruby ruby-dev ruby-bundler make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
-      curl https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
       pip install awscli
       apk --purge -v del py-pip
       rm -rf /var/cache/apk/*
