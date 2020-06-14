@@ -60,7 +60,7 @@ alpine_setup: &alpine_setup
       apk upgrade
       apk add curl wget bash git make
       apk add ruby ruby-dev ruby-bundler make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
-      curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+      curl https://omnitruck.chef.io/install.sh | bash -s -- -P inspec
       pip install awscli
       apk --purge -v del py-pip
       rm -rf /var/cache/apk/*
@@ -94,7 +94,6 @@ apply_job: &apply_job
         name: Delete Terraform Assets
 #        when: on_fail
         command: |
-          source $BASH_ENV
           cd ~/CyberRange/
           make destroy-force
         when: always
