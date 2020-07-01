@@ -57,7 +57,7 @@ plan: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 	@echo "Testing terraform plan"
 	@echo "Switching to workspace $(WORKSPACE)"
 	@terraform workspace select $(WORKSPACE) || terraform workspace new $(WORKSPACE)
-	@cd ./terraform/environments/$(REGION) &&	terraform plan -out=/tmp/terraform.plan
+	@cd ./terraform/environments/$(REGION) &&	terraform plan -out=../../terraform.plan
 
 show: ## print out a list of all Cyber Range AMI's that are available to me
 	@./tools/show.amis.sh
