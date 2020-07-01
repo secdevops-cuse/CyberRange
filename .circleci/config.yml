@@ -139,7 +139,7 @@ jobs:
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
             chmod 700 circleci_terraform
             cd /opt/AWSCyberRange
-            ENV=circleci REGION=eu-west-2 make init -out=../../terraform.plan
+            ENV=circleci REGION=eu-west-2 make init -out=./terraform/terraform.plan
       - persist_to_workspace:
           root: *working_directory
           paths:
