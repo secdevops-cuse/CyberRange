@@ -145,17 +145,14 @@ jobs:
             - ./terraform/terraform.plan
   apply:
     <<: *apply_job
-
-  apply-with-approval:
-    <<: *apply_job
-
-  post-status:
-    <<: *default_config
     steps:
       - slack/status:
                 channel: cicd
                 mentions: 'cappetta'
                 webhook: '${SLACK_WEBHOOK}'
+
+  apply-with-approval:
+    <<: *apply_job
 
 workflows:
   version: 2
@@ -171,9 +168,5 @@ workflows:
           filters:
             branches:
               only: master
-      - post-status:
-          requires:
-            - build
-            - plan
-            - apply
+
 
