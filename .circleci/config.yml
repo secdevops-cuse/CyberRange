@@ -55,11 +55,7 @@ terraform_init: &terraform_init
 apply_job: &apply_job
   <<: *default_config
   steps:
-    - slack/notify:
-              channel: cicd
-              color: '#42e2f4'
-              message: A $CIRCLE_JOB job has started with the latest to master\n\n Compare URL -> $CIRCLE_COMPARE_URL
-              webhook: '${SLACK_WEBHOOK}'
+
     - *restore_repo
     - *set_terraform_environment
     - *terraform_init
@@ -83,16 +79,18 @@ apply_job: &apply_job
           cd /opt/AWSCyberRange
           make destroy-force
         when: always
-    - slack/status:
-              channel: cicd
-              mentions: 'cappetta'
-              webhook: '${SLACK_WEBHOOK}'
+
 
 jobs:
 
   build:
     <<: *default_config
     steps:
+      - slack/notify:
+                channel: cicd
+                color: '#42e2f4'
+                message: A $CIRCLE_JOB job has started with the latest to master\n\n Compare URL -> $CIRCLE_COMPARE_URL
+                webhook: '${SLACK_WEBHOOK}'
       - checkout
       - *set_terraform_environment
       - run:
@@ -148,13 +146,18 @@ jobs:
           root: *working_directory
           paths:
             - ./terraform/terraform.plan
-
   apply:
     <<: *apply_job
 
   apply-with-approval:
     <<: *apply_job
 
+  post-status:
+    steps:
+      - slack/status:
+                channel: cicd
+                mentions: 'cappetta'
+                webhook: '${SLACK_WEBHOOK}'
 
 workflows:
   version: 2
