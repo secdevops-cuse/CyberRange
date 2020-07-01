@@ -25,6 +25,7 @@ RED=$(shell tput setaf 1)
 GREEN=$(shell tput setaf 2)
 YELLOW=$(shell tput setaf 3)
 RESET=$(shell tput sgr0)
+SHELL=bash
 
 
 help:
