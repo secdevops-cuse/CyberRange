@@ -3,13 +3,13 @@ version: 2.1
 references:
 
 base_image: &base_image
-  hashicorp/terraform:0.12.13
+  awscyberrange/commandcenter:latest
 
 working_directory: &working_directory
-  ~/CyberRange
+  /opt/AWSCyberRange
 
 gitclone_dir: &gitclone_dir
-  ~/CyberRange
+  /opt/AWSCyberRange
 
 default_config: &default_config
   docker:
@@ -49,28 +49,12 @@ terraform_init: &terraform_init
     name: terraform init
     command: |
       source $BASH_ENV
-      cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
-      terraform init
-
-alpine_setup: &alpine_setup
-  run:
-    name: alpine_setup
-    command: |
-      apk update
-      apk upgrade
-      apk add curl wget bash git make
-      apk add ruby ruby-dev ruby-bundler make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
-      pip install awscli
-      apk --purge -v del py-pip
-      rm -rf /var/cache/apk/*
-
-
+      ENV=circleci REGION=eu-west-2 make init
 
 apply_job: &apply_job
   <<: *default_config
   steps:
     - *restore_repo
-    - *alpine_setup
     - *set_terraform_environment
     - *terraform_init
     - attach_workspace:
@@ -79,21 +63,18 @@ apply_job: &apply_job
         name: terraform apply test
         command: |
           source $BASH_ENV
-          cd ~/CyberRange/terraform/keys
+          cd /opt/AWSCyberRange/terraform/keys
           echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
           echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
           echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
           chmod 700 circleci_terraform
-          cd ~/CyberRange/
+          cd /opt/AWSCyberRange
           make
-          ENV=circleci REGION=eu-west-2 make init
-#          make network
-#          make checkLab
     - run:
         name: Delete Terraform Assets
 #        when: on_fail
         command: |
-          cd ~/CyberRange/
+          cd /opt/AWSCyberRange
           make destroy-force
         when: always
 
@@ -120,7 +101,7 @@ jobs:
           name: terraform format (fmt) check # 2
           command: |
             source $BASH_ENV
-            cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
+            cd /opt/AWSCyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
             if [ $(terraform fmt | grep -v .terraform | tee fmt_result.txt | wc -l) -gt 1 ]; then
               echo "Format of this terraform files is not appropiate:"
               echo
@@ -145,12 +126,12 @@ jobs:
           name: terraform plan
           command: |
             source $BASH_ENV
-            cd ~/CyberRange/terraform/keys
+            cd /opt/AWSCyberRange/terraform/keys
             echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
             echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
             chmod 700 circleci_terraform
-            cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
+            cd /opt/AWSCyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
             terraform init
             terraform plan -out=../../terraform.plan
             apk add python python-dev py-pip

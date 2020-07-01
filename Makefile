@@ -41,11 +41,6 @@ set-env:
 		echo "Example usage: \`ENV=demo REGION=us-east-1 make init\`"; \
 		exit 1; \
 	 fi
-#	@if [ -z $(AWS_PROFILE) ]; then \
-#		echo "AWS_PROFILE was not set."; \
-#		echo "Example usage: \`AWS_PROFILE=whatever ENV=demo REGION=us-east-1 make init\`"; \
-#		exit 1; \
-#	 fi
 
 init: set-env ## initialize the project [ usage: make init REGION=us-east-1 ]
 	@echo "Initializing terraform"
