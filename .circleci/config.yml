@@ -116,7 +116,6 @@ jobs:
               cat fmt_result.txt
               rm fmt_result.txt
               git checkout -- .
-
               echo
               echo "Please run terraform fmt"
 
@@ -139,9 +138,8 @@ jobs:
             echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
             chmod 700 circleci_terraform
-            cd /opt/AWSCyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
-            terraform init
-            terraform plan -out=../../terraform.plan
+            cd /opt/AWSCyberRange
+            ENV=circleci REGION=eu-west-2 make init -out=../../terraform.plan
       - persist_to_workspace:
           root: *working_directory
           paths:
