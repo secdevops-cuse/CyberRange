@@ -171,14 +171,6 @@ workflows:
           filters:
             branches:
               only: master
-      - nightly:
-          triggers:
-            - schedule:
-                cron: "0 6 * * *"
-                filters:
-                  branches:
-                    only:
-                      - master
       - post-status:
           requires:
             - build
