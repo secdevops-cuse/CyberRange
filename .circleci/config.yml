@@ -55,7 +55,6 @@ terraform_init: &terraform_init
 apply_job: &apply_job
   <<: *default_config
   steps:
-
     - *restore_repo
     - *set_terraform_environment
     - *terraform_init
@@ -172,4 +171,17 @@ workflows:
           filters:
             branches:
               only: master
-      - post-status
+      - nightly:
+          triggers:
+            - schedule:
+                cron: "0 6 * * *"
+                filters:
+                  branches:
+                    only:
+                      - master
+      - post-status:
+          requires:
+            - build
+            - plan
+            - apply
+
