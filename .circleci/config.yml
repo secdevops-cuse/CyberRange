@@ -151,6 +151,7 @@ jobs:
     <<: *apply_job
 
   post-status:
+    <<: *default_config
     steps:
       - slack/status:
                 channel: cicd
