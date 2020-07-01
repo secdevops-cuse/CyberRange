@@ -143,7 +143,7 @@ jobs:
       - persist_to_workspace:
           root: *working_directory
           paths:
-            - ./terraform/terraform.plan
+            - /tmp/terraform.plan
   apply:
     <<: *apply_job
 
