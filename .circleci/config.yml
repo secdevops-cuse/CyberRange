@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@3.4.2
 
 references:
 
@@ -37,7 +39,6 @@ set_terraform_environment: &set_terraform_environment
     name: set terraform environment
     command: |
       cd && touch $BASH_ENV
-      apk add bash curl make
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=eu-west-2' >> $BASH_ENV
       else
@@ -54,6 +55,11 @@ terraform_init: &terraform_init
 apply_job: &apply_job
   <<: *default_config
   steps:
+    - slack/notify:
+              channel: cicd
+              color: '#42e2f4'
+              message: A $CIRCLE_JOB job has started with the latest to master\n\n Compare URL -> $CIRCLE_COMPARE_URL
+              webhook: '${SLACK_WEBHOOK}'
     - *restore_repo
     - *set_terraform_environment
     - *terraform_init
@@ -77,6 +83,10 @@ apply_job: &apply_job
           cd /opt/AWSCyberRange
           make destroy-force
         when: always
+    - slack/status:
+              channel: cicd
+              mentions: 'cappetta'
+              webhook: '${SLACK_WEBHOOK}'
 
 jobs:
 
@@ -134,8 +144,6 @@ jobs:
             cd /opt/AWSCyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
             terraform init
             terraform plan -out=../../terraform.plan
-            apk add python python-dev py-pip
-            pip install awscli
       - persist_to_workspace:
           root: *working_directory
           paths:
