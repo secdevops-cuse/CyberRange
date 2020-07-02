@@ -91,7 +91,7 @@ jobs:
   test:
     <<: *default_config
     steps:
-        - compare-url/reconstruct
+        - circle-compare-url/reconstruct
         - circle-compare-url/use:
             step-name: Compare URL Create Step
             attach-workspace: true
