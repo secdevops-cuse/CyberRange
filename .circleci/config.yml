@@ -145,8 +145,6 @@ jobs:
             - ./terraform/terraform.plan
   apply:
     <<: *apply_job
-    steps:
-
 
   apply-with-approval:
     <<: *apply_job
