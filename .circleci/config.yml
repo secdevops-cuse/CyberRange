@@ -28,6 +28,7 @@ jobs:
             name: print environment vars
             command: |
               export CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)
+              env
         - slack/notify:
                   channel: cicd
                   color: '#42e2f4'
