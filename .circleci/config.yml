@@ -185,10 +185,10 @@ workflows:
   development_build:
     jobs:
       - test
-      - build
-      - plan:
-          requires:
-            - build
+#      - build
+#      - plan:
+#          requires:
+#            - build
 #      - apply:
 #          requires:
 #            - plan
