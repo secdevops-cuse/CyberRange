@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+  compare-url: iynere/compare-url@1.2.0
 
 references:
 
@@ -87,6 +88,18 @@ apply_job: &apply_job
               webhook: '${SLACK_WEBHOOK}'
 
 jobs:
+  test:
+    steps:
+        - compare-url/reconstruct
+        - slack/notify:
+                  channel: cicd
+                  color: '#42e2f4'
+                  message: A $CIRCLE_JOB job has started to test \n\n Compare URL -> $CIRCLE_COMPARE_URL
+                  webhook: '${SLACK_WEBHOOK}'
+        - slack/status:
+                  channel: cicd
+                  mentions: 'cappetta'
+                  webhook: '${SLACK_WEBHOOK}'
 
   build:
     <<: *default_config
@@ -171,6 +184,7 @@ workflows:
   version: 2
   development_build:
     jobs:
+      - test
       - build
       - plan:
           requires:
