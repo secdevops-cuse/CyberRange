@@ -24,10 +24,14 @@ jobs:
         - circle-compare-url/use:
             step-name: Compare URL Create Step
             attach-workspace: true
+        - run:
+            name: print environment vars
+            command: |
+              env
         - slack/notify:
                   channel: cicd
                   color: '#42e2f4'
-                  message: A $CIRCLE_JOB job has started to test \n\n Compare URL -> $CIRCLE_COMPARE_URL
+                  message: A $CIRCLE_JOB job has started to test \n\n Compare URL -> $COMMIT_RANGE
                   webhook: '${SLACK_WEBHOOK}'
         - slack/status:
                   channel: cicd
