@@ -6,6 +6,9 @@ orbs:
 base_image: &base_image
   awscyberrange/commandcenter:latest
 
+working_directory: &working_directory
+  /opt/AWSCyberRange
+
 default_config: &default_config
   docker:
     - image: *base_image
