@@ -92,6 +92,9 @@ jobs:
     <<: *default_config
     steps:
         - compare-url/reconstruct
+        - circle-compare-url/use:
+            step-name: Compare URL Create Step
+            attach-workspace: true
         - slack/notify:
                   channel: cicd
                   color: '#42e2f4'
