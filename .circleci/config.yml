@@ -73,11 +73,15 @@ apply_job: &apply_job
           make
     - run:
         name: Delete Terraform Assets
-#        when: on_fail
         command: |
           cd /opt/AWSCyberRange
           make destroy-force
         when: always
+    - slack/status:
+        channel: cicd
+        mentions: 'cappetta'
+        webhook: '${SLACK_WEBHOOK}'
+
 
 
 jobs:
@@ -163,9 +167,5 @@ workflows:
           filters:
             branches:
               only: master
-      - slack/status:
-          channel: cicd
-          mentions: 'cappetta'
-          webhook: '${SLACK_WEBHOOK}'
 
 
