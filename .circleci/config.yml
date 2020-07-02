@@ -71,10 +71,6 @@ apply_job: &apply_job
           chmod 700 circleci_terraform
           cd /opt/AWSCyberRange
           make
-    - slack/status:
-              channel: cicd
-              mentions: 'cappetta'
-              webhook: '${SLACK_WEBHOOK}'
     - run:
         name: Delete Terraform Assets
         command: |
