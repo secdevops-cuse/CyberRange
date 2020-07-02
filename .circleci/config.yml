@@ -81,9 +81,10 @@ apply_job: &apply_job
           cd /opt/AWSCyberRange
           make destroy-force
         when: always
-
-
-
+    - slack/notify:
+            message: "CICD Pipeline build has completed, reivew the status" # Optional: Enter your own message
+            mentions: "cappetta" # Optional: Enter the Slack IDs of any user or group (sub_team) to be mentioned
+            color: "#42e2f4" # Optional: Assign custom colors for each notification
 
 jobs:
 
