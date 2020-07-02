@@ -146,10 +146,7 @@ jobs:
   apply:
     <<: *apply_job
     steps:
-      - slack/status:
-                channel: cicd
-                mentions: 'cappetta'
-                webhook: '${SLACK_WEBHOOK}'
+
 
   apply-with-approval:
     <<: *apply_job
@@ -168,5 +165,9 @@ workflows:
           filters:
             branches:
               only: master
+      - slack/status:
+          channel: cicd
+          mentions: 'cappetta'
+          webhook: '${SLACK_WEBHOOK}'
 
 
