@@ -163,9 +163,9 @@ workflows:
       - plan:
           requires:
             - build
-      - apply:
-          requires:
-            - plan
-          filters:
-            branches:
-              only: master
+#      - apply:
+#          requires:
+#            - plan
+#          filters:
+#            branches:
+#              only: master
