@@ -96,6 +96,10 @@ jobs:
                 color: '#42e2f4'
                 message: A $CIRCLE_JOB job has started with the latest to master\n\n Compare URL -> $CIRCLE_COMPARE_URL
                 webhook: '${SLACK_WEBHOOK}'
+      - slack/status:
+                channel: cicd
+                mentions: 'cappetta'
+                webhook: '${SLACK_WEBHOOK}'
       - checkout
       - *set_terraform_environment
       - run:
@@ -131,6 +135,10 @@ jobs:
   plan:
     <<: *default_config
     steps:
+      - slack/status:
+                channel: cicd
+                mentions: 'cappetta'
+                webhook: '${SLACK_WEBHOOK}'
       - *restore_repo
       - *set_terraform_environment
       - *terraform_init
