@@ -3,6 +3,13 @@ orbs:
   slack: circleci/slack@3.4.2
   circle-compare-url: iynere/compare-url@1.2.0
 
+default_config: &default_config
+  docker:
+    - image: *base_image
+  working_directory: *working_directory
+  environment:
+    BASH_ENV: /root/.bashrc
+
 jobs:
   test:
     <<: *default_config
