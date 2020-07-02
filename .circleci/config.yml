@@ -31,7 +31,7 @@ jobs:
         - slack/notify:
                   channel: cicd
                   color: '#42e2f4'
-                  message: A $CIRCLE_JOB job has started to test \n\n Compare URL -> $COMMIT_RANGE
+                  message: A $CIRCLE_JOB job has started to test \n\n Compare URL -> $CIRCLE_COMPARE_URL
                   webhook: '${SLACK_WEBHOOK}'
         - slack/status:
                   channel: cicd
