@@ -168,3 +168,26 @@ pot: ## make the network, share the output w/ vagrantfile
 	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
 		-lock=true -input=false -refresh=true \
 		--target=module.range-infra.module.secdevops.aws_instance.tpot[0]
+
+lab: ## Learn the fundamentals [ Create Metasploitable Targets ]
+	@cd ./terraform/environments/$(REGION) && time terraform apply --auto-approve \
+		-lock=true -input=false -refresh=true \
+		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_2k8[0] \
+		--target=module.range-infra.module.secdevops.aws_instance.ami_ms3_2k12[0] \
+		--target=module.range-infra.module.secdevops.aws_instance.cr_ms3_nix[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.kali[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.commando[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.dl-dc[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.dl-wef[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.dl-win10[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.dl-logger[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.tpot[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.fbctf[0] \
+        --target=module.range-infra.module.secdevops.aws_instance.flarevm-win7[0] \
+		--target=module.range-infra.module.network.aws_internet_gateway.gw \
+		--target=module.range-infra.module.network.aws_nat_gateway.nat-a \
+		--target=module.range-infra.module.network.aws_route_table.private-a \
+		--target=module.range-infra.module.network.aws_route_table.public-a \
+		--target=module.range-infra.module.network.aws_route_table_association.private-a \
+		--target=module.range-infra.module.network.aws_route_table_association.public-a \
+		--target=module.range-infra.module.secdevops.aws_security_group.kali
