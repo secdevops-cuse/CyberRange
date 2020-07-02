@@ -87,8 +87,10 @@ apply_job: &apply_job
               mentions: 'cappetta'
               webhook: '${SLACK_WEBHOOK}'
 
+
 jobs:
   test:
+    <<: *default_config
     steps:
         - compare-url/reconstruct
         - slack/notify:
