@@ -78,9 +78,9 @@ apply_job: &apply_job
           make destroy-force
         when: always
     - slack/status:
-        channel: cicd
-        mentions: 'cappetta'
-        webhook: '${SLACK_WEBHOOK}'
+              channel: cicd
+              mentions: 'cappetta'
+              webhook: '${SLACK_WEBHOOK}'
 
 
 
