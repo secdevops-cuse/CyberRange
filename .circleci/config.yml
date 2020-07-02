@@ -153,6 +153,10 @@ jobs:
             chmod 700 circleci_terraform
             cd /opt/AWSCyberRange
             ENV=circleci REGION=eu-west-2 make plan
+      - slack/status:
+                channel: cicd
+                mentions: 'cappetta'
+                webhook: '${SLACK_WEBHOOK}'
       - persist_to_workspace:
           root: *working_directory
           paths:
