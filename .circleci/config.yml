@@ -81,10 +81,6 @@ apply_job: &apply_job
             message: "CICD Pipeline build has completed, reivew the status" # Optional: Enter your own message
             mentions: "cappetta" # Optional: Enter the Slack IDs of any user or group (sub_team) to be mentioned
             color: "#42e2f4" # Optional: Assign custom colors for each notification
-    - slack/status:
-              channel: cicd
-              mentions: 'cappetta'
-              webhook: '${SLACK_WEBHOOK}'
 
 jobs:
 
