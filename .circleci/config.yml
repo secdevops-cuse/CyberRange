@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
-  circle-compare-url: iynere/compare-url@1.2.0
 
 references:
 
@@ -20,6 +19,7 @@ default_config: &default_config
   working_directory: *working_directory
   environment:
     BASH_ENV: /root/.bashrc
+    CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
 
 repo_cache_key: &repo_cache_key
   v1-repo-{{ .Branch }}-{{ .Revision }}
@@ -56,6 +56,11 @@ terraform_init: &terraform_init
 apply_job: &apply_job
   <<: *default_config
   steps:
+    - slack/notify:
+              channel: cicd
+              color: '#42e2f4'
+              message: A $CIRCLE_JOB job has started the for the Cyber Range\n\n Compare URL -> $CIRCLE_COMPARE_URL
+              webhook: '${SLACK_WEBHOOK}'
     - *restore_repo
     - *set_terraform_environment
     - *terraform_init
@@ -88,23 +93,10 @@ jobs:
   build:
     <<: *default_config
     steps:
-      - circle-compare-url/reconstruct
-      - circle-compare-url/use:
-          step-name: Compare URL Create Step
-      - run:
-          name: print environment vars
-          command: |
-            echo 'export CIRCLE_COMPARE_URL=$(cat CIRCLE_COMPARE_URL.txt)' >> $BASH_ENV
-            env
-      - run:
-          name: print environment vars 2nd
-          command: |
-            env
-
       - slack/notify:
                 channel: cicd
                 color: '#42e2f4'
-                message: A $CIRCLE_JOB job has started with the latest to master\n\n Compare URL -> $CIRCLE_COMPARE_URL
+                message: A $CIRCLE_JOB job has started the for the Cyber Range\n\n Compare URL -> $CIRCLE_COMPARE_URL
                 webhook: '${SLACK_WEBHOOK}'
       - checkout
       - *set_terraform_environment
@@ -141,6 +133,11 @@ jobs:
   plan:
     <<: *default_config
     steps:
+      - slack/notify:
+                channel: cicd
+                color: '#42e2f4'
+                message: A $CIRCLE_JOB job has started the for the Cyber Range\n\n Compare URL -> $CIRCLE_COMPARE_URL
+                webhook: '${SLACK_WEBHOOK}'
       - *restore_repo
       - *set_terraform_environment
       - *terraform_init
