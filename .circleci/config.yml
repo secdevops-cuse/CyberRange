@@ -2,7 +2,6 @@ version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
   circle-compare-url: iynere/compare-url@1.2.0
-  persist-env: christeredvartsen/persist-env@0.1.0
 
 references:
 
@@ -92,11 +91,6 @@ jobs:
       - circle-compare-url/reconstruct
       - circle-compare-url/use:
           step-name: Compare URL Create Step
-          attach-workspace: true
-      - env/set-env-var:
-                var-name: CIRCLE_COMPARE_URL
-                var-value: $(cat CIRCLE_COMPARE_URL.txt)
-      - env/persist-env
       - run:
           name: print environment vars
           command: |
