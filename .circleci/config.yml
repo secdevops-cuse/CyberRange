@@ -96,6 +96,7 @@ jobs:
       - env/set-env-var:
                 var-name: CIRCLE_COMPARE_URL
                 var-value: $(cat CIRCLE_COMPARE_URL.txt)
+      - env/persist-env
       - run:
           name: print environment vars
           command: |
