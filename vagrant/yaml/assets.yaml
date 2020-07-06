@@ -11,7 +11,7 @@
   type: t2.medium
 
 - name: commando
-  ami: ami-01d0140f57149a9da
+  ami: ami-09f5a44cf69b1ec5c
   user: vagrant
   isWin: true
   type: t2.medium
@@ -35,10 +35,9 @@
   user: admin
 
 - name: tpot
-  ami: ami-0dedf6a6502877301
+  ami: ami-04d70e069399af2e9
   user: admin
   type: t2.large
-  port: 64295
   userData: "../terraform/modules/infrastructure/cloud-init/tpot.setup.yml"
 
 - name: flarevm

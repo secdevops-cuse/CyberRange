@@ -1,6 +1,6 @@
 variable "ip_list" {
   description = "Protect your research lab, use your your IP"
-    default     = "0.0.0.0/32"
+    default     = "71.115.213.232/32"
 }
 
 ///////////////////////////////////
@@ -8,7 +8,7 @@ variable "ip_list" {
 ///////////////////////////////////
 variable "instance_type_tpot" {
 description = "honeypot instance type"
-default     = "t2.large"
+default     = "t2.xlarge"
 }
 
 variable "instance_type_docker" {
@@ -74,6 +74,10 @@ variable "vpc-id" {
 }
 
 variable "vpc-cidr-block" {
+  description = "the cidr block of the vpc"
+}
+
+variable "cidr" {
   description = "the cidr block of the vpc"
 }
 

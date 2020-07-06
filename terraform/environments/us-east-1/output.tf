@@ -11,7 +11,7 @@ output "vpc" {
 }
 
 output "secgroup" {
-  value = module.range-infra.attacker_secgroup
+  value = "${module.range-infra.attacker_secgroup}"
 }
 
 output "attacker_subnet" {

@@ -1,5 +1,5 @@
 ![alt text](img/cyberRange_logo_v2.png "Cyber Range")
-[![CircleCI](https://circleci.com/gh/cappetta/CyberRange.svg?style=svg)](https://circleci.com/gh/cappetta/CyberRange)
+[![CircleCI](https://circleci.com/gh/secdevops-cuse/CyberRange.svg?style=svg)](https://circleci.com/gh/secdevops-cuse/CyberRange)
 
 # Overview: 
 ![Arsenal](https://github.com/secdevops-cuse/badges/blob/master/arsenal/europe/2019.svg)<br>
@@ -7,9 +7,8 @@ This CyberRange project represents the first open-source Cyber Range blueprint i
 
 This project provides a bootstrap framework for a complete  offensive, defensive, reverse engineering, & security intelligence tooling in a private research lab using the AWS Cloud. 
 
-This project contains vulnerable systems and a toolkit of the most powerful open-source / community edition tools known to Penetration testers.
+This project contains vulnerable systems and a toolkit of the most powerful open-source / community edition tools known to Penetration testers, Developers, Malware Analysts, Forensic/Reverse Engineers, ThreatHunters, & more.
 
-It simply provides a researcher with a disposable offensive / defensive AWS-based environment in less than 5 minutes.
 
 ![What does it create](img/CyberRange-architecture-v2.png)
 ![how long does it take](img/how-long-does-it-take.png)
@@ -57,9 +56,6 @@ CyberRange combines best practices with emerging technologies.
  - Inspec - to test the state of your environment, application, system, processes, configurations, etc.
  - Plus Many more things to setup, configure, and experiment with.
  
-  
-
-
 ## Domains of knowledge
 This open-source research lab provides a bootstrap learning platform for 
 Technologists studying any one of the "Big-3" technology skills.  
@@ -86,12 +82,10 @@ creating strategic hubs of Cyber Security Center-of-Excellence Partnerships wher
 between enterprise experience & academic learning is addressed by focusing training paths on 
 people, products, and process. 
 
-## SEED Funding / Training Programs
-[AWS Educate](https://aws.amazon.com/education/awseducate/) - Free cloud training for students w/ edu address <br/>
-[AWS EdStart](https://aws.amazon.com/education/edstart/) - $500 in AWS Credits for startup's <br/>
-[Program Solicitation NSF 17-573](https://www.nsf.gov/pubs/2017/nsf17573/nsf17573.htm) aims to make advancements in informal STEM learning. <br/>
-[Graduate Research Fellowship Program (GRFP)](https://www.nsf.gov/pubs/2019/nsf19590/nsf19590.htm) - SU's Master of Cyber Security program requires a bit more funding, this is opensource - win,win,win.<br/>  
-[America's Seed Fund](https://seedfund.nsf.gov/) - a creative outlet  
+## 2020 Research Funding
+[AWS Activate]() - AWS Activate Credits 
+[AWS OpenSource]() - OpenSource Project Credits
+CloudCraft License
 
 
 ### Credits

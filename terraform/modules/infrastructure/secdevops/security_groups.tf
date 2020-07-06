@@ -118,7 +118,15 @@ resource "aws_security_group" "kali" {
     cidr_blocks = ["${var.ip_list}"]
   }
 
-  tags = {
+  # outbound internet access
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [
+      "0.0.0.0/0"]
+  }
+    tags = {
     Name        = "kali"
     Environment = "${var.environment}"
     Terraform   = "True"

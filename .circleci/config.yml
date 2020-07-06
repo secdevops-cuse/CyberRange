@@ -1,15 +1,17 @@
-version: 2
+version: 2.1
+orbs:
+  slack: circleci/slack@3.4.2
 
 references:
 
 base_image: &base_image
-  hashicorp/terraform:latest
+  awscyberrange/commandcenter:latest
 
 working_directory: &working_directory
-  ~/CyberRange
+  /opt/AWSCyberRange
 
 gitclone_dir: &gitclone_dir
-  ~/CyberRange
+  /opt/AWSCyberRange
 
 default_config: &default_config
   docker:
@@ -17,6 +19,7 @@ default_config: &default_config
   working_directory: *working_directory
   environment:
     BASH_ENV: /root/.bashrc
+    CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
 
 repo_cache_key: &repo_cache_key
   v1-repo-{{ .Branch }}-{{ .Revision }}
@@ -37,11 +40,8 @@ set_terraform_environment: &set_terraform_environment
     name: set terraform environment
     command: |
       cd && touch $BASH_ENV
-      apk add bash curl
       if [ "${CIRCLE_BRANCH}" == "master" ]; then
         echo 'export TERRAFORM_ENVIRONMENT=eu-west-2' >> $BASH_ENV
-      elif [ "${CIRCLE_BRANCH}" == "hackupstate_2019" || "${CIRCLE_BRANCH}" == "feature/kali-setup" ]; then
-        echo 'export TERRAFORM_ENVIRONMENT=us-east-1' >> $BASH_ENV
       else
         echo 'export TERRAFORM_ENVIRONMENT=us-east-1' >> $BASH_ENV
       fi
@@ -51,60 +51,53 @@ terraform_init: &terraform_init
     name: terraform init
     command: |
       source $BASH_ENV
-      cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
-      terraform init
-
-alpine_setup: &alpine_setup
-  run:
-    name: alpine_setup
-    command: |
-      apk update
-      apk upgrade
-      apk add curl wget bash git
-      apk add ruby ruby-bundler
-      apk add ruby ruby-dev make gcc libc-dev g++ python python-dev py-pip build-base ruby-rdoc
-      pip install awscli
-      apk --purge -v del py-pip
-      rm -rf /var/cache/apk/*
-
-
+      ENV=circleci REGION=eu-west-2 make init
 
 apply_job: &apply_job
   <<: *default_config
   steps:
+    - slack/notify:
+              channel: cicd
+              color: '#42e2f4'
+              message: A $CIRCLE_JOB job has started the for the Cyber Range\n\n Compare URL -> $CIRCLE_COMPARE_URL
+              webhook: '${SLACK_WEBHOOK}'
     - *restore_repo
     - *set_terraform_environment
     - *terraform_init
     - attach_workspace:
         at: *working_directory
     - run:
-        name: terraform apply
+        name: terraform apply test
         command: |
           source $BASH_ENV
-          cd ~/CyberRange/terraform/keys
+          cd /opt/AWSCyberRange/terraform/keys
           echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
           echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
           echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
           chmod 700 circleci_terraform
-          cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
-          terraform apply --auto-approve
-          terraform output -json > /tmp/output.json
-          cd ~/CyberRange/terraform/keys
-          mv circleci_terraform .circleci_terraform
-    - *alpine_setup
+          cd /opt/AWSCyberRange
+          make
     - run:
         name: Delete Terraform Assets
-#        when: on_fail
         command: |
-          source $BASH_ENV
-          cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
-          terraform destroy -force
+          cd /opt/AWSCyberRange
+          make destroy-force
+        when: always
+    - slack/notify:
+            message: "CICD Pipeline build has completed the final pipeline test, review the results" # Optional: Enter your own message
+            mentions: "cappetta" # Optional: Enter the Slack IDs of any user or group (sub_team) to be mentioned
+            color: "#42e2f4" # Optional: Assign custom colors for each notification
 
 jobs:
 
   build:
     <<: *default_config
     steps:
+      - slack/notify:
+                channel: cicd
+                color: '#42e2f4'
+                message: A $CIRCLE_JOB job has started the for the Cyber Range\n\n Compare URL -> $CIRCLE_COMPARE_URL
+                webhook: '${SLACK_WEBHOOK}'
       - checkout
       - *set_terraform_environment
       - run:
@@ -123,14 +116,13 @@ jobs:
           name: terraform format (fmt) check # 2
           command: |
             source $BASH_ENV
-            cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
+            cd /opt/AWSCyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
             if [ $(terraform fmt | grep -v .terraform | tee fmt_result.txt | wc -l) -gt 1 ]; then
               echo "Format of this terraform files is not appropiate:"
               echo
               cat fmt_result.txt
               rm fmt_result.txt
               git checkout -- .
-
               echo
               echo "Please run terraform fmt"
 
@@ -141,6 +133,11 @@ jobs:
   plan:
     <<: *default_config
     steps:
+      - slack/notify:
+                channel: cicd
+                color: '#42e2f4'
+                message: A $CIRCLE_JOB job has started the for the Cyber Range\n\n Compare URL -> $CIRCLE_COMPARE_URL
+                webhook: '${SLACK_WEBHOOK}'
       - *restore_repo
       - *set_terraform_environment
       - *terraform_init
@@ -148,27 +145,22 @@ jobs:
           name: terraform plan
           command: |
             source $BASH_ENV
-            cd ~/CyberRange/terraform/keys
+            cd /opt/AWSCyberRange/terraform/keys
             echo '-----BEGIN RSA PRIVATE KEY-----' > circleci_terraform
             echo $AWS_SSH_KEY | sed -e 's/\s\+/\n/g' >> circleci_terraform
             echo '-----END RSA PRIVATE KEY-----' >> circleci_terraform
             chmod 700 circleci_terraform
-            cd ~/CyberRange/terraform/environments/$TERRAFORM_ENVIRONMENT
-            terraform init
-            terraform plan -out=../../terraform.plan
-            apk add python python-dev py-pip
-            pip install awscli
+            cd /opt/AWSCyberRange
+            ENV=circleci REGION=eu-west-2 make plan
       - persist_to_workspace:
           root: *working_directory
           paths:
             - ./terraform/terraform.plan
-
   apply:
     <<: *apply_job
 
   apply-with-approval:
     <<: *apply_job
-
 
 workflows:
   version: 2
@@ -183,4 +175,4 @@ workflows:
             - plan
           filters:
             branches:
-              only: development
+              only: master

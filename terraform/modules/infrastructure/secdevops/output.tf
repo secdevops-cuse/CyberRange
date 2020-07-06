@@ -38,14 +38,14 @@ output "access_key_id" {
   value = "${aws_iam_access_key.cloudgoat.id}"
 }
 
-output "TPOT_Admin_UI" {
-  value = "https://${aws_instance.tpot-full-build[0].public_dns}:64294/"
-}
+//output "TPOT_Admin_UI" {
+//  value = "https://${aws_instance.tpot-full-build[0].public_dns}:64294/"
+//}
+////
+//output "TPOT_SSH_Access" {
+//  value = "ssh -i {private_key_file} -p 64295 admin@${aws_instance.tpot-full-build[0].public_dns}"
+//}
 //
-output "TPOT_SSH_Access" {
-  value = "ssh -i {private_key_file} -p 64295 admin@${aws_instance.tpot-full-build[0].public_dns}"
-}
-
-output "TPOT_Web_UI" {
-  value = "https://${aws_instance.tpot-full-build[0].public_dns}:64297/"
-}
+//output "TPOT_Web_UI" {
+//  value = "https://${aws_instance.tpot-full-build[0].public_dns}:64297/"
+//}

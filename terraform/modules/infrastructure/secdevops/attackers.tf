@@ -12,7 +12,7 @@ resource "aws_instance" "kali" {
   subnet_id              = "${element(local.pen_subnet_ids, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.kali.id}"]
   key_name = "${aws_key_pair.circleci_key.key_name}"
-  user_data = "${file("${path.module}/../../cloud-init/kali.yml")}"
+  user_data = "${file("${path.module}/../cloud-init/kali.yml")}"
 
   root_block_device {
     delete_on_termination = true

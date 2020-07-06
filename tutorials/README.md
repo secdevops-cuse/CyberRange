@@ -23,9 +23,8 @@ automate those tasks so you don't have to waste time repeating them.
 
   
 ## Low-Cost
-The goal is to make this project 'free tier' compatible, yet it might not be.  
-
-Just in case obtain an AWS edu gift-card of Amazon, [$150 of credit for $30](https://www.ebay.com/itm/150-Amazon-Web-Services-AWS-Credit-Code/153384276906).
+The goal is to make this project 'free tier' compatible, yet a truly setup research 
+lab is going to require paid assets.
 
 Destroy assets often. Terraform does a great job at creating assets, sometimes 
 it's destruction is not perfect.  Consider learning how to wipe-out
@@ -41,7 +40,8 @@ This project leverages [Terraform](http://lmgtfy.com/?q=aws+billing+alert) to au
 linking of services & assets in the cloud.  
 
 
-## Usernames / Passwords: 
+## Default Usernames / Passwords: 
 win7/8 box is `IEUser/Passw0rd!`
 `vagrant/vagrant`
 `terraform/terraform`
+`root/root`
