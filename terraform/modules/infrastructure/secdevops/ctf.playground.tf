@@ -28,8 +28,5 @@ resource "aws_instance" "fbctf" {
   tags = {
     Name = "FBCTF-${count.index}"
     Environment = "${var.environment}"
-    Terraform = "True"
-    Zombie = "True"
-    Initialization_Complete = "True"
   }
 }
