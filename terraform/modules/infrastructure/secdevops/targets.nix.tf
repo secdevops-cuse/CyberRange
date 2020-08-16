@@ -20,7 +20,6 @@ resource "aws_instance" "cr_skytower" {
   tags = {
     Name        = "Skytower-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -37,7 +36,6 @@ resource "aws_instance" "cr_stapler" {
   tags = {
     Name        = "Stapler-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -54,7 +52,6 @@ resource "aws_instance" "cr_vulnos" {
   tags = {
     Name        = "Vulnos-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -71,7 +68,6 @@ resource "aws_instance" "cr_sickos" {
   tags = {
     Name        = "Sickos-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -88,7 +84,6 @@ resource "aws_instance" "cr_mrrobot" {
   tags = {
     Name        = "MrRobot-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -105,7 +100,6 @@ resource "aws_instance" "cr_fristileaks" {
   tags = {
     Name        = "fristileaks-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -122,7 +116,6 @@ resource "aws_instance" "cr_hackinos" {
   tags = {
     Name        = "hackinos-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -139,7 +132,6 @@ resource "aws_instance" "cr_bulldog" {
   tags = {
     Name        = "bulldog-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -156,7 +148,6 @@ resource "aws_instance" "cr_myhouse7" {
   tags = {
     Name        = "myhouse7-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
 
@@ -175,6 +166,5 @@ resource "aws_instance" "docker" {
   tags = {
     Name        = "docker-via-cloudinit-${count.index}"
     Environment = "${var.environment}"
-    Terraform   = "True"
   }
 }
