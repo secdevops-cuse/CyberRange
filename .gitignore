@@ -11,3 +11,15 @@ research/
 screencast/
 onboarding/
 sponsors/
+terraform/modules/infrastructure/terraform-aws-lambda/
+terraform/modules/infrastructure/serverless/
+terraform/modules/infrastructure/secdevops/variables.tf.template
+terraform/modules/infrastructure/secdevops/iam-policies.tf
+terraform/modules/infrastructure/iam/
+terraform/modules/infrastructure/__init__.py
+terraform/modules/__init__.py
+terraform/exploratory/
+terraform/__init__.py
+vagrant/yaml/assets.yaml.bak
+terraform/LICENSE.md
+mindmap/
