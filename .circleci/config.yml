@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+  jira: circleci/jira@1.2.2
 
 references:
 
@@ -166,13 +167,19 @@ workflows:
   version: 2
   development_build:
     jobs:
-      - build
+      - build:
+          post-steps:
+            - jira/notify
       - plan:
           requires:
             - build
+          post-steps:
+            - jira/notify
       - apply:
           requires:
             - plan
           filters:
             branches:
               only: master
+          post-steps:
+            - jira/notify
