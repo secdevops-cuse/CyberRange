@@ -167,7 +167,7 @@ workflows:
   version: 2
   development_build:
     jobs:
-      - build
+      - build:
           post-steps:
             - jira/notify
       - plan:
